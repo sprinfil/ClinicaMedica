@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('apellido_2');
             $table->enum('Puesto', ['Medico','Recepcionista']);
             $table->enum('Tipo', ['Admin','Empleado']);
-            $table->timestamps();
         });
     }
 
