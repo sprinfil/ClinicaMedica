@@ -6,7 +6,10 @@
                        <!--Texto Superior-->
                  <p class="text-base font-bold texto ocultar-texto text-[30px]">MENU</p>
                  <p class="text-[17px] font-bold texto mt-2 ocultar-texto">Historial Clinico</p>
+                 @if (session()->has('usuario'))
                  <p class="text-[17px] texto mt-2 ocultar-texto">{{session('usuario')->nombre}} - {{session('usuario')->Tipo}}</p>
+              
+                 @endif
            </div>
   
        </div>
@@ -22,7 +25,7 @@
 
             <!--ADMIN-->
                           <!--///////Usuarios//////-->
-                  @if (session('usuario')->Tipo === 'Admin')
+                  @if (session()->has('usuario') && session('usuario')->Tipo === 'Admin')
                     <!--///////Boton//////-->
                     <a href="usuarios">
                       <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]" onclick="toggleSubMenu('ventas')">
