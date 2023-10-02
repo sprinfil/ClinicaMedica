@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//HOME
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('/dashboard', function () {
-    return view('usuarios.crud');
-});
+
+// AUTH
+    //LOGIN
+        Route::get('/login', [LoginController::class, 'index'])->name('login');
+        Route::post('/login', [LoginController::class, 'store']);
+    //LOGOUT
+        Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+
+// Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
 
 
 Route::controller(UsuarioController::class)->group(function () {

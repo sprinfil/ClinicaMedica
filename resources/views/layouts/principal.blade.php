@@ -16,20 +16,22 @@
 </head>
 <body class="font-Poppins flex bg-negro-fondo">
 
-    <!--Menu-->
-    @section('menu')
-    @include('layouts.menu')
-    @show
-
+        <!--Menu-->
+        @section('menu')
+            @include('layouts.menu')
+        @show
+    
     <!--Main-->
     <main class="fondo bg-negro-fondo ease-out duration-100 h-screen main-cerrado" id="main" >
 
-            <!--Boton Para desplegar el menu-->
-            <div>
-            <svg xmlns="http://www.w3.org/2000/svg" id="boton-toggle-menu" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 cursor-pointer active:bg-active bg-principal border border-solid border-gray-600 text-fuente-botones ease-out duration-500 p-1 h-full text-fuente-botones" onclick="togglemenu()">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            </div> 
+            @if (session()->has('usuario'))
+                <!--Boton Para desplegar el menu-->
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="boton-toggle-menu" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 cursor-pointer active:bg-active bg-principal border border-solid border-gray-600 text-fuente-botones ease-out duration-500 p-1 h-full text-fuente-botones" onclick="togglemenu()">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </div> 
+            @endif
 
             <!--Seccion del contenido-->
             @section('contenido')
