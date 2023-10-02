@@ -31,7 +31,7 @@ Route::get('/', HomeController::class)->name('home');
         Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 
-// Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
 
 
 Route::controller(UsuarioController::class)->group(function () {

@@ -65,6 +65,16 @@ class UsuarioController extends Controller
 
     //Metodo para mostrar el crud de los usuarios
     public function show_crud(){
-        return view('usuarios.crud');
+        if (session()->has('usuario')){
+            if(session('usuario')->Tipo === 'Admin'){
+                return view('usuarios.crud');
+            }
+            else
+                {
+                    return redirect()->route('home');
+                }
+        }
+        else
+            return redirect()->route('login');
     }
 }
