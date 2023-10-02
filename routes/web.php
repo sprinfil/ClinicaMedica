@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/dashboard', function () {
+    return view('usuarios.crud');
+});
+
+
+Route::controller(UsuarioController::class)->group(function () {
+
+    Route::get('/usuarios','show_crud');
+
+});
+
+//ruta para limpiar el cache
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:cache');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    return  "all cleared ...";
 });

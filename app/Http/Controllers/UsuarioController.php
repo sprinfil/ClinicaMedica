@@ -62,4 +62,9 @@ class UsuarioController extends Controller
     {
         //
     }
+
+    //Metodo para mostrar el crud de los usuarios
+    public function show_crud(){
+        return view('usuarios.crud');
+    }
 }

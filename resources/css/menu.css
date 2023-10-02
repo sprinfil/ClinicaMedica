@@ -1,0 +1,22 @@
+.close-nav{
+    width: 0px;
+  }
+  .ocultar-texto{
+    opacity: 0;
+    display: none;
+  }
+  .boton-toggle-menu{
+ 
+  }
+  .fondo{
+    width: calc(100% - 250px);
+  }
+  .main-cerrado{
+    width: calc(100%);
+  }
+  .ocultar{
+   display: none;
+  }
+  #contenedor-botones{
+    height: calc(100vh - 150px);
+  }
