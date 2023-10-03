@@ -6,11 +6,11 @@
 
 @section('contenido')
     <div class="flex justify-center items-center h-screen">
-        <div class="w-[30%] flex justify-center items-center bg-white bg-opacity-20 rounded-3xl">
+        <div class="w-[300px] flex justify-center items-center bg-white bg-opacity-20 rounded-3xl md:w-[600px]">
             <div class="flex flex-col items-center justify-center">
                 <div>
-                        <img src="" alt="">
-                </div>
+                        <img  src="images/logo.png" alt="" class="w-[200px]">
+                </div>                    
                 <div>
                     <h2 class="text-2xl text-white font-semibold my-3 mx-2">Bienvenido</h2>
                 </div>
@@ -25,6 +25,7 @@
                             </p>
                         @endif
             
+
                         <!-- INPUT usuario-->
                         <div class="mb-5">
                             <input 

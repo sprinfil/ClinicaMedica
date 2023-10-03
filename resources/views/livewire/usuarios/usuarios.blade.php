@@ -73,7 +73,7 @@
           </tbody>
       </table>
       <div class="px-[10px] py-[10px] bg-gray-700">
-        {{ $usuarios->links() }}
+        {{ $usuarios->links()}}
     </div>
 
     </div>
