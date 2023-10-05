@@ -43,7 +43,7 @@
           </thead>
           <tbody>
             @foreach ($usuarios as $usuario)
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                     <span >{{$usuario->usuario}}</span>
                 </td>
@@ -62,11 +62,11 @@
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                     <span >{{$usuario->Tipo}}</span>
                 </td>
-                  <td class="px-6 py-4 text-right">
-                      <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                  </td>
-                  <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-rojo hover:underline">Eliminar</a>
+                <td class="px-6 py-4 text-right"  wire:click="editar({{ $usuario->id }})">
+                  <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline">Editar</button>
+                </td>      
+                <td class="px-6 py-4 text-right">
+                    <button class="font-medium text-blue-600 dark:text-rojo hover:underline" wire:click="eliminar({{ $usuario->id }})">Eliminar</button>
                 </td>
               </tr>
             @endforeach

@@ -38,6 +38,7 @@ Route::controller(UsuarioController::class)->group(function () {
 
     Route::get('/usuarios','show_crud');
 
+
 });
 
 //ruta para limpiar el cache

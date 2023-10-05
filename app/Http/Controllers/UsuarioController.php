@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use Exception;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -28,7 +29,39 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* 
+                try{
+            $this->validate($request, [
+                'usuario' => 'required|min:5',
+                'clave' => 'required',
+                'nombre' => 'required',
+                'apellido_1' => 'required',
+                'apellido_2' => 'required',
+                'Puesto' => 'required',
+                'Tipo' => 'required'
+            ]);
+    
+            $clave_encriptada = bcrypt($request->clave);
+    
+            $usuario = new Usuario();
+            $usuario->usuario = $request->usuario;
+            $usuario->clave = $clave_encriptada;
+            $usuario->nombre = $request->nombre;
+            $usuario->apellido_1 = $request->apellido_1;
+            $usuario->apellido_2 = $request->apellido_2;
+            $usuario->puesto = $request->Puesto;
+            $usuario->tipo = $request->Tipo;
+            
+            $usuario->save();
+    
+            return redirect('usuarios');
+        }catch(Exception $e){
+
+        }
+        
+        */
+
+
     }
 
     /**
