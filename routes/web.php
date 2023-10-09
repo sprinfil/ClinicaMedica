@@ -4,6 +4,7 @@ use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,10 @@ Route::controller(UsuarioController::class)->group(function () {
     Route::get('/usuarios','show_crud');
 
 
+});
+
+Route::controller(PacienteController::class)->group(function(){
+    Route::get('/pacientes', 'index')->name('pacientes');
 });
 
 //ruta para limpiar el cache
