@@ -41,4 +41,8 @@ class Pacientes extends Component
     public function eliminar($paciente_id){
         $this->dispatch('eliminar', ['paciente' => $paciente_id]);
     }
+
+    public function contacto($paciente_id){
+        $this->dispatch('contacto', ['paciente' => $paciente_id]);
+    }
 }
