@@ -17,7 +17,7 @@
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="px-6 py-3">
-                          Nombre
+                          Nombre (S)
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Apellido 1
@@ -47,7 +47,7 @@
                         Correo del Contacto
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Parentesco del Contacto con el Paciente
+                        Parentesco
                       </th>
                       <th scope="col" class="px-6 py-3">
                         
@@ -76,7 +76,7 @@
                         <span >{{$paciente->numero}}</span>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
-                        <span >{{$paciente->fecha_nac}}</span>
+                        <span >{{\Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y')}}</span>
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$paciente->Genero}}</span>

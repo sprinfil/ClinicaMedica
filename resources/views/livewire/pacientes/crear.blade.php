@@ -11,7 +11,7 @@
             <div class="w-screen h-screen z-[30] absolute top-0 left-0 items-center justify-center flex">
         
                    <!--///////Contenedor del modal//////-->
-                <div class="bg-negro-menu w-[90%] h-auto rounded-md overflow-auto">
+                <div class="bg-negro-menu rounded-md overflow-auto md:w-[90%] w-full md:h-auto h-[700px]">
     
                       <!--///////Icono del modal (contenedor superior)//////-->
                       <div class="w-full h-[200px] flex items-center justify-center">
@@ -24,7 +24,7 @@
                        <form wire:submit="save">
                                             <!--///////Contenedor del formulario (contenedor main)//////-->
                             @csrf
-                            <div class="placeholder:w-full h-auto grid grid-cols-3 gap-4 px-[60px]">
+                            <div class="placeholder:w-full h-auto md:px-[60px] px-[30px] grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
                                     <p class="text-fuente mb-2">Informaci&oacute;n del Paciente</p>
 
@@ -50,11 +50,10 @@
                                     <input type="date" class="input-pdv w-full mb-3 text-[20px]" placeholder="Fecha de Nacimiento" name="fecha_nac" wire:model="fecha_nac" value="{{old('fecha_nac')}}" >
                                     @error('fecha_nac')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
                                     
-                                    <select class="input-pdv w-full mb-3 text-[20px]" name="Genero" wire:model="Genero" value="{{old('Genero')}}" >
-                                        <option value="" disabled selected>-- SELECCIONAR --</option>    
-                                        <option value="MASCULINO">MASCULINO</option>    
-                                        <option value="FEMENINO">FEMENINO</option>    
-                                        <option value="OTRO">OTRO</option>    
+                                    <select class="input-pdv w-full mb-3 text-[20px]" name="Genero" wire:model="Genero" value="{{old('Genero')}}" >  
+                                        <option value="Masculino" selected>MASCULINO</option>    
+                                        <option value="Femenino">FEMENINO</option>    
+                                        <option value="Otro">OTRO</option>    
                                     </select>
                                     @error('Genero')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
                                 </div>

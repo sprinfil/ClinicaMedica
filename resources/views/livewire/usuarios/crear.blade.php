@@ -4,13 +4,13 @@
     <div class="{{$esconder}}">
 
     <!--///////Div para agregar transparencia//////-->
-        <div class="bg-black w-screen h-screen z-[10] absolute top-0 left-0 opacity-60"></div>
+        <div class="bg-black w-screen z-[10] absolute top-0 left-0 opacity-60 h-full"></div>
 
         <!--///////Div contenedor para centrar el modal//////-->
         <div class="w-screen h-screen z-[30] absolute top-0 left-0 items-center justify-center flex">
     
                <!--///////Contenedor del modal//////-->
-            <div class="bg-negro-menu w-[800px] h-auto rounded-md overflow-auto">
+            <div class="bg-negro-menu rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-[700px]">
 
                   <!--///////Icono del modal (contenedor superior)//////-->
                   <div class="w-full h-[200px] flex items-center justify-center">
@@ -23,7 +23,7 @@
                    <form wire:submit="save">
                                         <!--///////Contenedor del formulario (contenedor main)//////-->
                         @csrf
-                        <div class="placeholder:w-full h-auto grid grid-cols-2 gap-4 px-[60px]">
+                        <div class="placeholder:w-full h-auto md:px-[60px] px-[30px] grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="usuario" name="usuario" wire:model="usuario" value="{{old('usuario')}}">
                                 @error('usuario')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror

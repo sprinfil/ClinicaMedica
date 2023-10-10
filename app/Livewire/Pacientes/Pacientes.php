@@ -3,6 +3,8 @@
 namespace App\Livewire\Pacientes;
 
 use App\Models\Paciente;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,12 +18,12 @@ class Pacientes extends Component
     public function render()
     {
         $query = Paciente::query();
-    
+
         if (!empty($this->filtroNombre)) {
-            $query->where('nombre', 'LIKE', '%' . $this->filtroNombre . '%');
+            $query->where(DB::raw("CONCAT(nombre, ' ',apellido_1, ' ', apellido_2)"), 'LIKE', '%' . $this->filtroNombre . '%');
         }
-    
-        $pacientes = $query->orderBy('id')->paginate(10);
+
+        $pacientes = $query->orderBy('id')->paginate(8);
     
         return view('livewire.pacientes.pacientes', compact('pacientes'));
     }

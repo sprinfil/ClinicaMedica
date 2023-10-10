@@ -9,19 +9,19 @@
             <div class="w-screen h-screen z-[30] absolute top-0 left-0 items-center justify-center flex">
         
                    <!--///////Contenedor del modal//////-->
-                <div class="bg-negro-menu w-[800px] h-auto rounded-md overflow-auto">
+                <div class="bg-negro-menu rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-[600px]">
     
                       <!--///////Icono del modal (contenedor superior)//////-->
                       <div class="w-full h-[200px] flex items-center justify-center">
-                        <p class="text-fuente text-[30px]">¿Seguro que desea eliminar el usuario?</p>
+                        <p class="text-fuente text-[20px] ">¿Seguro que desea eliminar el usuario?</p>
                       </div>
     
     
                        <form wire:submit="save">
                                             <!--///////Contenedor del formulario (contenedor main)//////-->
                             @csrf
-                            <div class="placeholder:w-full h-auto text-center flex justify-center grid grid-rows-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-[170px] text-negro-fondo text-center">
+                            <div class="placeholder:w-full h-auto text-center justify-center grid grid-rows-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-[170px] text-negro-fondo text-center w-full">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                                   </svg>  
                                 <p class="text-fuente text-[25px] ">{{$usuario_objeto->usuario}}</p>

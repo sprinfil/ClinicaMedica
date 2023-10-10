@@ -14,7 +14,7 @@
     @livewireStyles
     <title>@yield('titulo')</title>
 </head>
-<body class="font-Poppins flex bg-negro-fondo">
+<body class="font-Poppins flex bg-negro-fondo ">
 
         <!--Menu-->
         @section('menu')

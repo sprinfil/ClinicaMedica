@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('historial_clinicos', function (Blueprint $table) {
             $table->id();
-            $table->string('Diabetes');
-            $table->string('Tuberculosis');
-            $table->string('Presion');
-            $table->string('Hepatitis');
-            $table->string('Anemia');
-            $table->string('Asma');
-            $table->string('Neumonia');
-            $table->string('Migrana');
-            $table->string('Fuma');
-            $table->string('Alcohol');
-            $table->string('Ejercicio');
-            $table->string('PDF');
+            $table->string('Diabetes')->nullable();
+            $table->string('Tuberculosis')->nullable();
+            $table->string('Presion')->nullable();
+            $table->string('Hepatitis')->nullable();
+            $table->string('Anemia')->nullable();
+            $table->string('Asma')->nullable();
+            $table->string('Neumonia')->nullable();
+            $table->string('Migrana')->nullable();
+            $table->string('Fuma')->nullable();
+            $table->string('Alcohol')->nullable();
+            $table->string('Ejercicio')->nullable();
+            $table->string('PDF')->nullable();
 
             
             $table->foreignId('paciente_id')->constrained();

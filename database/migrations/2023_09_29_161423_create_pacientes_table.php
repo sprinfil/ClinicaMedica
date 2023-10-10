@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellido_1');
-            $table->string('apellido_2');
-            $table->string('correo');
-            $table->string('numero');
-            $table->string('fecha_nac');
-            $table->enum('Genero', ['Masculino','Femenino','Otro']);
-            $table->string('contacto_nombre');
-            $table->string('contacto_numero');
-            $table->string('contacto_correo');
-            $table->string('contacto_parentesco');
+            $table->string('apellido_1')->nullable();
+            $table->string('apellido_2')->nullable();
+            $table->string('correo')->nullable();
+            $table->string('numero')->nullable();
+            $table->timestamp('fecha_nac')->useCurrent()->format('d-m-Y');
+            $table->enum('Genero', ['Masculino','Femenino','Otro'])->nullable();
+            $table->string('contacto_nombre')->nullable();
+            $table->string('contacto_numero')->nullable();
+            $table->string('contacto_correo')->nullable();
+            $table->string('contacto_parentesco')->nullable();
+            $table->string('nombre_completo')->nullable();
 
         });
     }

@@ -5,7 +5,13 @@
     
     <div class="mx-[10px] md:mx-[50px] md:flex justify-between block">
       @csrf
-      <input name="filtroNombre" type="text" class="input-pdv w-[100px] mt-[50px] md:w-[170px] " placeholder="Buscar...">
+      <input 
+      type="text" 
+      class="input-pdv w-[100px] mt-[50px] md:w-[170px] " 
+      placeholder="Buscar..." 
+      wire:model="FiltroNombre"
+      wire:input="actualizarFiltroNombre"
+      >
       
       @livewire('usuarios.crear')
 

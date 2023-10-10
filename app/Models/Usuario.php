@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model implements Authenticatable
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
         'usuario',

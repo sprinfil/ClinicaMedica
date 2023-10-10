@@ -12,10 +12,10 @@
                         <img  src="images/logo.png" alt="" class="w-[200px]">
                 </div>                    
                 <div>
-                    <h2 class="text-2xl text-white font-semibold my-3 mx-2">Bienvenido</h2>
+                    <h2 class="text-2xl text-white font-semibold my-10 mx-2 text-[30px]">BIENVENIDO</h2>
                 </div>
 
-                <div class="">
+                <div>
                     <form method="POST" action="{{ route('login') }}" class="flex flex-col items-center justify-center" novalidate>
                         @csrf     
                         
@@ -33,7 +33,7 @@
                                 name="usuario"
                                 type="text"
                                 placeholder="usuario"
-                                class="input-pdv @error('usuario')
+                                class="input-pdv w-[100%] text-[20px] @error('usuario')
                                 border-red-500
                                 @enderror"
                                 value="{{old('usuario')}}" 
@@ -50,7 +50,7 @@
                                 name="clave"
                                 type="password"
                                 placeholder="clave"
-                                class="input-pdv @error('clave')
+                                class="input-pdv w-[100%] text-[20px] @error('clave')
                                 border-red-500
                                 @enderror"
                             />
@@ -62,7 +62,7 @@
                         <input 
                             type="submit"
                             value="Ingresar"
-                            class=" btn-primary mb-4"
+                            class=" btn-primary mb-4 w-[100%]"
                         />
                     </form>
                 </div>

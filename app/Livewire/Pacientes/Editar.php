@@ -3,6 +3,7 @@
 namespace App\Livewire\Pacientes;
 
 use App\Models\Paciente;
+use DateTime;
 use Livewire\Component;
 
 class Editar extends Component
@@ -30,14 +31,15 @@ class Editar extends Component
 
     public function editar($paciente_id){
         $this->esconder = '';
-        $this->paciente_objeto = Paciente::where('id', $paciente_id)->first();
-        
+        $this->paciente_objeto = Paciente::where('id', $paciente_id)->first();  
+        $fecha_nac = new DateTime($this->paciente_objeto->fecha_nac);
+
         $this->nombre =  $this->paciente_objeto->nombre;
         $this->apellido_1 =  $this->paciente_objeto->apellido_1;
         $this->apellido_2 =  $this->paciente_objeto->apellido_2;
         $this->correo =  $this->paciente_objeto->correo;
         $this->numero =  $this->paciente_objeto->numero;
-        $this->fecha_nac =  $this->paciente_objeto->fecha_nac;
+        $this->fecha_nac =  $fecha_nac->format('Y-m-d');
         $this->Genero =  $this->paciente_objeto->Genero;
         $this->contacto_nombre =  $this->paciente_objeto->contacto_nombre;
         $this->contacto_numero =  $this->paciente_objeto->contacto_numero;
@@ -54,24 +56,16 @@ class Editar extends Component
     public function save(){
         $validated = $this->validate([ 
             'nombre' => 'required',
-            'apellido_1' => 'required',
-            'apellido_2' => 'required',
-            'correo' => 'required',
-            'numero' => 'required|min:10',
-            'fecha_nac' => 'required',
-            'Genero' => 'required',
-            'contacto_nombre' => 'required',
-            'contacto_numero' => 'required|min:10',
-            'contacto_correo' => 'required',
-            'contacto_parentesco' => 'required',
         ]);
-    
+
+        $fecha_nac = new DateTime($this->fecha_nac);
+
         $this->paciente_objeto->nombre =  $this->nombre;
         $this->paciente_objeto->apellido_1 =  $this->apellido_1;
         $this->paciente_objeto->apellido_2 =  $this->apellido_2;
         $this->paciente_objeto->correo =  $this->correo;
         $this->paciente_objeto->numero =  $this->numero;
-        $this->paciente_objeto->fecha_nac =  $this->fecha_nac;
+        $this->paciente_objeto->fecha_nac = $fecha_nac->format('Y-m-d');
         $this->paciente_objeto->Genero =  $this->Genero;
         $this->paciente_objeto->contacto_nombre =  $this->contacto_nombre;
         $this->paciente_objeto->contacto_numero =  $this->contacto_numero;

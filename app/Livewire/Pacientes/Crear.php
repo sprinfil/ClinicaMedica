@@ -3,6 +3,7 @@
 namespace App\Livewire\Pacientes;
 
 use App\Models\Paciente;
+use DateTime;
 use Livewire\Component;
 
 class Crear extends Component
@@ -16,7 +17,7 @@ class Crear extends Component
     public $correo = '';
     public $numero = '';
     public $fecha_nac = '';
-    public $Genero = '';
+    public $Genero = 'Masculino';
     public $contacto_nombre = '';
     public $contacto_numero = '';
     public $contacto_correo = '';
@@ -29,22 +30,36 @@ class Crear extends Component
 
     public function save()
     {
-        
-        $validated = $this->validate([ 
+        $this->validate([ 
             'nombre' => 'required',
+            /*
             'apellido_1' => 'required',
             'apellido_2' => 'required',
             'correo' => 'required',
-            'numero' => 'required|min:10',
             'fecha_nac' => 'required',
-            'Genero' => 'required',
+            'numero' => 'required|min:10',
             'contacto_nombre' => 'required',
             'contacto_numero' => 'required|min:10',
             'contacto_correo' => 'required',
             'contacto_parentesco' => 'required',
+            */
         ]);
 
-        Paciente::create($validated);
+        $fecha_nac = new DateTime($this->fecha_nac);
+        $data = [
+            'nombre'=> $this->nombre,
+            'apellido_1' => $this->apellido_1,
+            'apellido_2' => $this->apellido_2,
+            'correo' => $this->correo,
+            'numero' => $this->numero,
+            'fecha_nac' => $fecha_nac->format('Y-m-d'),
+            'Genero' => $this->Genero,
+            'contacto_nombre' => $this->contacto_nombre,
+            'contacto_numero' => $this->contacto_numero,
+            'contacto_correo' => $this->contacto_correo,
+            'contacto_parentesco' => $this->contacto_parentesco,
+        ];
+        Paciente::create($data);
 
         return redirect()->route('pacientes');
     }
