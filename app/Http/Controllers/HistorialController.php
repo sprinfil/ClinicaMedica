@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Historial;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 class HistorialController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        if(session()->has('usuario')){
+            return view('historials.index');
+        }
+        else{
+            return redirect()->route('login');
+        }
     }
 
     /**

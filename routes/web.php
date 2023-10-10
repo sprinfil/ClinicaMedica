@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -41,10 +42,11 @@ Route::controller(UsuarioController::class)->group(function () {
 
 
 });
-
 Route::controller(PacienteController::class)->group(function(){
     Route::get('/pacientes', 'index')->name('pacientes');
 });
+
+Route::get('historial-medico', [HistorialController::class, 'index'])->name('historial_medico');
 
 //ruta para limpiar el cache
 Route::get('/clear', function() {

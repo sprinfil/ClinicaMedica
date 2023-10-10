@@ -13,7 +13,13 @@ class PacienteController extends Controller
     public function index()
     {
         //
-        return view('pacientes.index');
+        if(session()->has('usuario')){
+            return view('pacientes.index');
+        }
+        else{
+            return redirect()->route('login');
+        }
+        
     }
 
     /**
