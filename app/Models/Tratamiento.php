@@ -9,4 +9,9 @@ class Tratamiento extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function atendio()
+    {
+        return $this->hasOne(Usuario::class,'id','usuario_id');
+    }
 }

@@ -32,40 +32,39 @@
                         Genero
                       </th>
                       <th scope="col" class="px-6 py-3 text-right">
-                        Contacto de Emergencia
-                      </th>
-                      <th scope="col" class="px-6 py-3">
-                      
-                      </th>
-                      <th scope="col" class="px-6 py-3">
-
+                
                       </th>
                   </tr>
               </thead>
               <tbody>
                 @foreach ($pacientes as $paciente)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                      <td wire:click="editar({{ $paciente->id }})" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                           <span >{{$paciente->getFullNombre($paciente->id)}}</span>
                       </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                    <td wire:click="editar({{ $paciente->id }})" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$paciente->correo}}</span>
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                    <td wire:click="editar({{ $paciente->id }})" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$paciente->numero}}</span>
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                    <td wire:click="editar({{ $paciente->id }})" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{\Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y')}}</span>
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                    <td wire:click="editar({{ $paciente->id }})" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$paciente->Genero}}</span>
                     </td>
+                    <!--
                     <td class="px-6 py-4 text-right">
                       <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="contacto({{ $paciente->id }})">Ver Informaci&oacute;n</button>
-                    </td>      
-                    <td class="px-6 py-4 text-right">
+                    </td> 
+                    -->
+                    <!--
+                      <td class="px-6 py-4 text-right">
                       <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="editar({{ $paciente->id }})">Editar</button>
-                    </td>      
+                    </td>   
+                    -->
+   
                     <td class="px-6 py-4 text-right">
                         <button class="font-medium text-blue-600 dark:text-rojo hover:underline" wire:click="eliminar({{ $paciente->id }})">Eliminar</button>
                     </td>
