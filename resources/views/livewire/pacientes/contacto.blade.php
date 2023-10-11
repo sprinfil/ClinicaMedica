@@ -19,8 +19,8 @@
                         <div class="placeholder:w-full h-auto text-center justify-center grid grid-rows-4 mb-6">
 
                             <div class="mb-2">
-                                <h3 class="">Nombre Completo</h3>
-                                <p class="text-fuente text-[20px] ">{{$paciente_objeto->getFullNombre($paciente_objeto->id)}}</p>
+                                <h3 class="">Nombre</h3>
+                                <p class="text-fuente text-[20px] ">{{$paciente_objeto->contacto_nombre}}</p>
                             </div>
 
                             <div class="mb-2">

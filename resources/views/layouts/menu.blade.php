@@ -64,7 +64,7 @@
                           <!--///////Usuarios//////-->
                   @if (session()->has('usuario') && session('usuario')->Tipo === 'Admin')
                     <!--///////Boton//////-->
-                    <a href="usuarios">
+                    <a href="{{route('usuarios')}}">
                       <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]" onclick="toggleSubMenu('ventas')">
                           <!--Icono-->
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-fuente-botones">

@@ -21,7 +21,7 @@ class HistorialMedico extends Component
             $query->where(DB::raw("CONCAT(nombre, ' ',apellido_1, ' ', apellido_2)"), 'LIKE', '%' . $this->filtroNombre . '%');
         }
 
-        $pacientes = $query->orderBy('id')->paginate(8);
+        $pacientes = $query->orderBy('id')->paginate(5);
         
         return view('livewire.historials.historial-medico', ['pacientes' => $pacientes]);
     }
@@ -30,4 +30,9 @@ class HistorialMedico extends Component
     {
         $this->render();
     }
+
+    public function historia_odontologica($paciente_id){
+        return redirect(route('historia_odontologica',['paciente_id' => $paciente_id]));
+    }
+
 }

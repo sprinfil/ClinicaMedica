@@ -27,7 +27,7 @@
                         Fecha de Nacimiento
                       </th>
                       <th scope="col" class="px-6 py-3">
-                            Opciones
+                    
                       </th>
                   </tr>
               </thead>
@@ -48,7 +48,7 @@
                     </td>
                     <td class="px-6 py-4 flex flex-col">
                       <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="historial_clinico({{ $paciente->id }})">Historial Clinico</button>
-                      <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="historial_odontologica({{ $paciente->id }})">Historial Odontologica</button>
+                      <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="historia_odontologica({{ $paciente->id }})">Historia Odontologica</button>
                       <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="contrato({{ $paciente->id }})">Contrato Medico</button>
                     </td>      
                   </tr>
