@@ -6,7 +6,7 @@
         
         <div class="mx-[10px] md:mx-[50px] md:flex justify-between block">
           @csrf
-          <input wire:model="filtroNombre" wire:input="actualizarFiltroNombre" name="filtroNombre" type="text" class="input-pdv w-[100px] mt-[50px] md:w-[170px]" placeholder="Buscar...">
+          <input wire:model="filtroNombre" wire:input="actualizarFiltroNombre" name="filtroNombre" type="text" class="input-pdv mt-[50px]" placeholder="Buscar...">
               
         </div>
         

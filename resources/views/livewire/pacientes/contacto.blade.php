@@ -9,17 +9,17 @@
             <div class="w-screen h-screen z-[30] absolute top-0 left-0 items-center justify-center flex">
         
                    <!--///////Contenedor del modal//////-->
-                <div class="bg-negro-menu rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-[600px]">
+                <div class="bg-negro-menu rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-auto">
     
                       <!--///////Icono del modal (contenedor superior)//////-->
                       <div class="w-full h-[200px] flex items-center justify-center">
-                        <p class="text-fuente text-[20px]">Informaci&oacute;n del Contacto</p>
+                        <p class="text-fuente text-[35px]">Informaci&oacute;n del Contacto</p>
                       </div>
     
                         <div class="placeholder:w-full h-auto text-center justify-center grid grid-rows-4 mb-6">
 
                             <div class="mb-2">
-                                <h3>Nombre Completo</h3>
+                                <h3 class="">Nombre Completo</h3>
                                 <p class="text-fuente text-[20px] ">{{$paciente_objeto->getFullNombre($paciente_objeto->id)}}</p>
                             </div>
 

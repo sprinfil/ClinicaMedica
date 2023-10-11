@@ -7,7 +7,7 @@
       @csrf
       <input 
       type="text" 
-      class="input-pdv w-[100px] mt-[50px] md:w-[170px] " 
+      class="input-pdv mt-[50px]" 
       placeholder="Buscar..." 
       wire:model="FiltroNombre"
       wire:input="actualizarFiltroNombre"
