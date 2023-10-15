@@ -24,4 +24,9 @@ class HistoriaOdontologica extends Component
         $this->edad = $this->fecha_nacimiento->age;
         $this->tratamientos = Tratamiento::where('paciente_id',$this->paciente->id)->get();
     }
+    
+    public function historia_odontologica_create($paciente_id){
+        return redirect(route('historia_odontologica_create',['paciente_id' => $paciente_id]));
+    }
+
 }

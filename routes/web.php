@@ -48,7 +48,14 @@ Route::controller(PacienteController::class)->group(function(){
 });
 
 Route::get('historial-medico', [HistorialController::class, 'index'])->name('historial_medico');
-Route::get('historial-medico/historia-odontologica/{paciente_id}', [HistoriaOdontologicaController::class, 'index'])->name('historia_odontologica');
+
+
+Route::controller(HistoriaOdontologicaController::class)->group(function () {
+
+    Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');
+    Route::get('historial-medico/historia-odontologica/create/tratamiento/{paciente_id}','create')->name('historia_odontologica_create');
+
+});
 
 
 //ruta para limpiar el cache

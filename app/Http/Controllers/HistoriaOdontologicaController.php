@@ -12,7 +12,20 @@ class HistoriaOdontologicaController extends Controller
         $paciente_id = $request->paciente_id;
         
         if(session()->has('usuario')){
-            return view('historials.historia-odontologica',compact('paciente_id'));
+            return view('historials.historia-odontologica.historia-odontologica',compact('paciente_id'));
+        }
+        else{
+            return redirect()->route('login');
+        }
+    }
+
+    public function create(Request $request)
+    {
+        //
+        $paciente_id = $request->paciente_id;
+        
+        if(session()->has('usuario')){
+            return view('historials.historia-odontologica.crear',compact('paciente_id'));
         }
         else{
             return redirect()->route('login');

@@ -1,8 +1,11 @@
 <div>
     <div>
+      <div class=" w-full h-full py-4 bg-terciario shadow-lg pb-[40px]">
         <div class="mx-[10px] md:mx-[50px] flex justify-between mt-[40px]">
-          <p class="text-fuente text-[40px]">Pacientes</p>
+          <p class="text-fuente text-[40px]">PACIENTES</p>
         </div>
+      </div>
+
         
         <div class="mx-[10px] md:mx-[50px] md:flex justify-between block">
           @csrf
