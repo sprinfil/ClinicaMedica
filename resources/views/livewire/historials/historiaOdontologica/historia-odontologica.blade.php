@@ -31,9 +31,6 @@
                     <th scope="col" class="px-6 py-3" >
                         Metodo de pago
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Notas
-                      </th>
                 </tr>
             </thead>
             <tbody>
@@ -53,9 +50,6 @@
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$tratamiento->metodo_pago}}</span>
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
-                        <span >{{$tratamiento->notas}}</span>
                     </td>
                 </tr>
              @endforeach

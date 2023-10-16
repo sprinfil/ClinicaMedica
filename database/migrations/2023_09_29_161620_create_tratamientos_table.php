@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
-            $table->string('tratamiento');
-            $table->dateTime('fecha');
+            $table->string('tratamiento')->nullable();
+            $table->dateTime('fecha')->nullable();
             $table->string('nota')->nullable();
             $table->unsignedBigInteger('monto')->nullable();
             $table->string('metodo_pago')->nullable();

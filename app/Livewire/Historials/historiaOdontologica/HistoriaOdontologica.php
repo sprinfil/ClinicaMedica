@@ -22,7 +22,7 @@ class HistoriaOdontologica extends Component
         $this->paciente = Paciente::find($paciente_id);
         $this->fecha_nacimiento = Carbon::parse($this->paciente->fecha_nac);
         $this->edad = $this->fecha_nacimiento->age;
-        $this->tratamientos = Tratamiento::where('paciente_id',$this->paciente->id)->get();
+        $this->tratamientos = Tratamiento::where('paciente_id',$this->paciente->id)->orderby('fecha','desc')->get();
     }
     
     public function historia_odontologica_create($paciente_id){

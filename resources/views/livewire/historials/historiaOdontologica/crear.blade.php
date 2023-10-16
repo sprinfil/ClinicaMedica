@@ -13,39 +13,54 @@
         </div>
     </div>
 
-    <form action="">
+    <form action="{{route('historia_odontologica_store', ['paciente_id' => $paciente->id])}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2">
             <div>
-                <label for="fecha" class="text-fuente">Fecha:</label>
-                <input type="datetime-local" class="input-pdv w-full mb-3 text-[20px]" name="fecha" wire:model="fecha" value="{{old('fecha')}}" >
-                @error('nombre')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+                <p class="text-fuente">Fecha:</p>
+                <input type="datetime-local" class="input-pdv w-full mb-3 text-[20px]" name="fecha" value="{{old('fecha')}}" >
+                @error('fecha')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
-                <label for="tratamiento" class="text-fuente">Tratamiento:</label>
-                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Tratamiento" name="tratamiento" wire:model="tratamiento" value="{{old('tratamiento')}}" >
+                <p class="text-fuente">Tratamiento:</p>
+                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Tratamiento" name="tratamiento" value="{{old('tratamiento')}}" >
                 @error('tratamiento')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
-                <label for="nota" class="text-fuente">Notas:</label>
-                <textarea name="nota" id="" rows="6" class="input-pdv w-full" wire:model="nota"></textarea>
+                <p class="text-fuente">Notas:</p>
+                <textarea name="nota" id="" rows="6" class="input-pdv w-full"></textarea>
                 @error('nota')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
             </div>
             <div>
-                <label for="atendio" class="text-fuente">Atendió:</label> 
-                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Atendió" name="atendio" wire:model="atendio" value="{{old('atendio')}}" value="{{$atendio}}" disabled>
+                <p class="text-fuente">Atendio:</p>
+                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Atendió" name="atendio" wire:model="atendio" value="{{$atendio}}">
                 @error('atendio')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
-                <label for="metodo_pago" class="text-fuente">Metodo de pago:</label> 
+                <p class="text-fuente">Metodo de pago:</p>
                 <select name="metodo_pago" class="input-pdv w-full mb-3 text-[20px]">
                     <option value="Tarjeta">Tarjeta</option>
                     <option value="Efectivo">Efectivo</option>
                 </select>
                 @error('metodo_pago')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
-                <label for="monto" class="text-fuente">Monto:</label> 
-                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="monto" name="monto" wire:model="monto" value="{{old('monto')}}" >
+                <p class="text-fuente">Monto:</p>
+                <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="monto" name="monto" value="{{old('monto')}}" >
                 @error('monto')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
-            </div>
+                
+            
+                <p class="text-fuente">Foto Clinica:</p>
+                <input type="file" name="clinica" class="input-pdv  w-full" accept="image/*">
+                @error('clinica')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
+                <button class="btn-primary mt-[20px] ml-[30px]" type="submit">Aceptar</button>
+
+            </div>
+    
         </div>
 
     </form>
+
+    <form action="/file-upload"
+    class="dropzone mx-[30px]"
+    id="my-awesome-dropzone"></form>
+
+
 </div>

@@ -54,6 +54,7 @@ Route::controller(HistoriaOdontologicaController::class)->group(function () {
 
     Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');
     Route::get('historial-medico/historia-odontologica/create/tratamiento/{paciente_id}','create')->name('historia_odontologica_create');
+    Route::post('historial-medico/historia-odontologica/create/store/{paciente_id}','store')->name('historia_odontologica_store');
 
 });
 

@@ -2,3 +2,7 @@ Solucion a error de los estilos de paginacion
 1. ejecutar el siguiente comando:
     php artisan vendor:publish --tag=laravel-pagination
 2. refrescar los links (quita la linea de codigo y vuelvela a poner o algo asi)
+
+Desplegar formato de fecha en blade
+ <span >{{\Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y')}}</span>
+ 

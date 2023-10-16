@@ -9,3 +9,4 @@
     @livewire('historials.historiaOdontologica.historia-odontologica', ['paciente_id' => $paciente_id])
 
 @endsection
+

@@ -6,7 +6,7 @@
         </div>
       </div>
 
-        
+
         <div class="mx-[10px] md:mx-[50px] md:flex justify-between block">
           @csrf
           <input wire:model="filtroNombre" wire:input="actualizarFiltroNombre" name="filtroNombre" type="text" class="input-pdv mt-[50px]" placeholder="Buscar...">
@@ -27,9 +27,6 @@
                         N&uacute;mero
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Fecha de Nacimiento
-                      </th>
-                      <th scope="col" class="px-6 py-3">
                     
                       </th>
                   </tr>
@@ -46,13 +43,10 @@
                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
                         <span >{{$paciente->numero}}</span>
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
-                        <span >{{\Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y')}}</span>
-                    </td>
-                    <td class="px-6 py-4 flex flex-col">
-                      <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="historial_clinico({{ $paciente->id }})">Historial Clinico</button>
-                      <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="historia_odontologica({{ $paciente->id }})">Historia Odontologica</button>
-                      <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline" wire:click="contrato({{ $paciente->id }})">Contrato Medico</button>
+                    <td class="px-6 py-4 flex justify-end">
+                      <button class="btn-primary mx-[5px] my-[5px]" wire:click="historial_clinico({{ $paciente->id }})">Historial Clinico</button>
+                      <button class="btn-primary mx-[5px] my-[5px]" wire:click="historia_odontologica({{ $paciente->id }})">Historia Odontologica</button>
+                      <button class="btn-primary mx-[5px] my-[5px]" wire:click="contrato({{ $paciente->id }})">Contrato Medico</button>
                     </td>      
                   </tr>
                 @endforeach

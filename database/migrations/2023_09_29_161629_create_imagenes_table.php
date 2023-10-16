@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->id();
-            $table->string('clinica');
-            $table->string('radiografia');
+            $table->string('clinica')->nullable();
+            $table->string('radiografia')->nullable();
 
             
             $table->foreignId('tratamiento_id')->constrained();

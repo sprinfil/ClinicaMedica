@@ -9,6 +9,7 @@ class Crear extends Component
 {
     public $paciente;
     public $atendio;
+    public $fecha;
 
     public function render()
     {
@@ -18,4 +19,5 @@ class Crear extends Component
         $this->paciente = Paciente::find($paciente_id);
         $this->atendio = session('usuario')->nombre;
     }
+
 }
