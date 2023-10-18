@@ -29,4 +29,8 @@ class HistoriaOdontologica extends Component
         return redirect(route('historia_odontologica_create',['paciente_id' => $paciente_id]));
     }
 
+    public function editar($tratamiento_id){
+        return redirect(route('historia_odontologica_editar',['tratamiento_id'=>$tratamiento_id,'paciente_id'=>$this->paciente->id]));
+    }
+
 }

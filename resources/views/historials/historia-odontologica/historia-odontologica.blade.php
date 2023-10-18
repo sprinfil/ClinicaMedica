@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('titulo')
-    Historia Odontologica
+    Expedientes
 @endsection
 
 @section('contenido')

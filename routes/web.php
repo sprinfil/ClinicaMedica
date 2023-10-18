@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\subirImagenController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -51,11 +52,17 @@ Route::get('historial-medico', [HistorialController::class, 'index'])->name('his
 
 
 Route::controller(HistoriaOdontologicaController::class)->group(function () {
-
     Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');
     Route::get('historial-medico/historia-odontologica/create/tratamiento/{paciente_id}','create')->name('historia_odontologica_create');
     Route::post('historial-medico/historia-odontologica/create/store/{paciente_id}','store')->name('historia_odontologica_store');
+    Route::get('historial-medico/historia-odontologica/create/tratamiento/{paciente_id}','create')->name('historia_odontologica_create');
 
+    Route::get('historial-medico/historia-odontologica/tratamiento/{tratamiento_id}/{paciente_id}','edit')->name('historia_odontologica_editar');
+});
+
+Route::controller(subirImagenController::class)->group(function () {
+    Route::get('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','index')->name('historia_odontologica_imagen');
+    Route::post('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','store')->name('historia_odontologica_imagen_subir');
 });
 
 

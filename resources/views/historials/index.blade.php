@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('titulo')
-    Historial Medico
+    Expedientes
 @endsection
 
 @section('contenido')

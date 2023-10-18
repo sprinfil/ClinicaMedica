@@ -23,7 +23,7 @@
   
 
 
-                    <!--///////Pacientes//////-->
+             <!--///////Home//////-->
                     <a href="{{ route('home') }}">
                       <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]" onclick="toggleSubMenu('ventas')">
                           <!--Icono-->
@@ -36,6 +36,8 @@
                     </a>
 
 
+
+                    <!--///////Pacientes//////-->
                       <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]" onclick="toggleSubMenu('Pacientes')">
                           <!--Icono-->
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-fuente-botones">
@@ -49,12 +51,12 @@
                       <ul class="">
                         <a href="{{ route('pacientes') }}">
                           <div class="hover:bg-principal active:bg-active hover:text-fuente-botones ease-out duration-500 rounded-sm py-2">
-                            <li class="texto ocultar-texto ml-[10px]"><span>Altas</span></li>
+                            <li class="texto ocultar-texto ml-[10px]"><span>Pacientes</span></li>
                         </div>
                         </a>
                         <a href="{{ route('historial_medico') }}">
                           <div class="hover:bg-principal active:bg-active hover:text-fuente-botones ease-out duration-500 rounded-sm py-2">
-                              <li class="texto ocultar-texto ml-[10px]"><span>Historial Medico</span></li>
+                              <li class="texto ocultar-texto ml-[10px]"><span>Expedientes</span></li>
                           </div>
                         </a>
                       </ul>
