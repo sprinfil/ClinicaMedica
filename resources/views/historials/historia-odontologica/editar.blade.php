@@ -10,3 +10,15 @@
 
 @endsection
 
+@section('js')
+
+<script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
+<script>
+    lightbox.option({
+      'resizeDuration': 20,
+      'wrapAround': true,
+      'fadeDuration': 10,
+    })
+</script>
+@endsection
+

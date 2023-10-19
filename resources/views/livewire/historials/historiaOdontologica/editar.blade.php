@@ -53,7 +53,10 @@
       </div>
       <div class="h-[200px] w-[200px] bg-red-500 mx-[20px] flex">
         @foreach($imagenes as $imagen)
+        <a href="{{$imagen->clinica}}" data-lightbox="galeria">
             <img src="{{$imagen->clinica}}" alt="">
+        </a>
+
         @endforeach
 
       </div>

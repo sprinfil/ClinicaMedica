@@ -7,10 +7,12 @@
     @vite('resources/css/app.css')
     @vite('resources/css/componentes.css')
     @vite('resources/css/menu.css')
+    @vite('resources/css/lightbox.min.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{ asset('js/menu.js') }}"></script>
+
     @livewireStyles
     <title>@yield('titulo')</title>
     @yield('css')
