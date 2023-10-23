@@ -29,6 +29,8 @@ class Editar extends Component
         $this->paciente = Paciente::find($paciente_id);
 
         $this->fechaTratamiento = new Carbon($this->tratamiento->fecha);
+
+ 
         $this->tratamientoNombre = $this->tratamiento->tratamiento;
         $this->nota = $this->tratamiento->nota;
         $this->monto = $this->tratamiento->monto;

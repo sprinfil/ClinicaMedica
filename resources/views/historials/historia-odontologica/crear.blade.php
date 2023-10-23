@@ -35,7 +35,7 @@
               @error('tratamiento')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
 
               <p class="text-fuente">Notas:</p>
-              <textarea name="nota" id="" rows="6" class="input-pdv w-full"></textarea>
+              <textarea name="nota" id="" rows="6" class="input-pdv w-full mb-3"></textarea>
               @error('nota')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
           </div>
           <div>

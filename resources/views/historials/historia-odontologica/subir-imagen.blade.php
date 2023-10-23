@@ -1,7 +1,11 @@
 @extends('layouts.principal')
 
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+
+
 @endsection
 
 @section('titulo')
@@ -30,28 +34,33 @@
         <p class="text-fuente ml-[30px] mb-[30px]">Agregar Imagen (Odontológica)</p>
 
         
-        <form action="{{route('historia_odontologica_imagen_subir',['tratamiento_id'=>$tratamiento->id,'paciente_id'=>$paciente->id])}}"
+        <form action="{{route('historia_odontologica_clinica_subir',['tratamiento_id'=>$tratamiento->id,'paciente_id'=>$paciente->id])}}"
         class="dropzone mx-[30px]"
         id="my-awesome-dropzone">
         </form>
+
+        <p class="text-fuente ml-[30px] mb-[30px] mt-[30px]">Agregar Imagen (Radiografía)</p>
+
+        
+        <form action="{{route('historia_odontologica_radiografia_subir',['tratamiento_id'=>$tratamiento->id,'paciente_id'=>$paciente->id])}}"
+        class="dropzone mx-[30px]"
+        id="my-awesome-dropzone">
+        </form>
+
+
         <a href="{{route('historia_odontologica',['paciente_id' => $paciente->id])}}">
             <button class="btn-primary mt-[20px] ml-[30px]">Aceptar</button>
         </a>
 
   </div>
 
-
-
-
-
-
-
 </div>
 
 @endsection
 
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+
+<script src="{{ asset('js/dropzone.min.js') }}"></script>
 <script>
     Dropzone.options.myAwesomeDropzone = { 
       headers:{

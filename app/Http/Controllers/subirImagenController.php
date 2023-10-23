@@ -16,18 +16,36 @@ class subirImagenController extends Controller
         return view('historials.historia-odontologica.subir-imagen',compact('paciente','tratamiento'));
     }
 
-    public function store(Request $request){
+    public function store_clinica(Request $request){
         $tratamiento = Tratamiento::find($request->tratamiento_id);
 
         //guardar la imagen y obtener ruta
-        $clinica = $request->file('file')->store('public/clinica/'.$tratamiento->id);
+        $imagen = $request->file('file')->store('public/clinica/'.$tratamiento->id);
 
         //convertir la ruta en vez de public a storage
-        $url_clinica = Storage::url($clinica);
+        $url_imagen = Storage::url($imagen);
 
         //crear las imagenes
         $imagen = new Imagen;
-        $imagen->clinica = $url_clinica;
+        $imagen->url = $url_imagen;
+        $imagen->tipo = 'clinica';
+        $imagen->tratamiento_id = $tratamiento->id;
+        $imagen->save();
+    }
+
+    public function store_radiografia(Request $request){
+        $tratamiento = Tratamiento::find($request->tratamiento_id);
+
+        //guardar la imagen y obtener ruta
+        $imagen = $request->file('file')->store('public/radiografia/'.$tratamiento->id);
+
+        //convertir la ruta en vez de public a storage
+        $url_imagen = Storage::url($imagen);
+
+        //crear las imagenes
+        $imagen = new Imagen;
+        $imagen->url = $url_imagen;
+        $imagen->tipo = 'radiografia';
         $imagen->tratamiento_id = $tratamiento->id;
         $imagen->save();
     }

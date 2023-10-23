@@ -62,7 +62,8 @@ Route::controller(HistoriaOdontologicaController::class)->group(function () {
 
 Route::controller(subirImagenController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','index')->name('historia_odontologica_imagen');
-    Route::post('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','store')->name('historia_odontologica_imagen_subir');
+    Route::post('historial-medico/historia-odontologica/subirClinica/{tratamiento_id}/{paciente_id}','store_clinica')->name('historia_odontologica_clinica_subir');
+    Route::post('historial-medico/historia-odontologica/subirRadiografia/{tratamiento_id}/{paciente_id}','store_radiografia')->name('historia_odontologica_radiografia_subir');
 });
 
 

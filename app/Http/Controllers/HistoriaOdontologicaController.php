@@ -62,7 +62,7 @@ class HistoriaOdontologicaController extends Controller
         //validar datos 
         $request->validate([
             'tratamiento' => 'required',
-            'monto' => 'required',
+            'monto' => 'required|numeric',
         ]);
 
         
