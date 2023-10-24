@@ -44,7 +44,7 @@
                     </td>
                     <td class="px-6 py-4 flex justify-end">
                       <button class="btn-primary mx-[5px] my-[5px]" wire:click="historial_clinico({{ $paciente->id }})">Historial Clinico</button>
-                      <button class="btn-primary mx-[5px] my-[5px]" wire:click="historia_odontologica({{ $paciente->id }})">Historia Odontologica</button>
+                      <button class="btn-primary mx-[5px] my-[5px]" wire:click="historia_odontologica({{ $paciente->id }})">Historial Odontologico</button>
                       <button class="btn-primary mx-[5px] my-[5px]" wire:click="contrato({{ $paciente->id }})">Contrato Medico</button>
                     </td>      
                   </tr>

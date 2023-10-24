@@ -44,35 +44,29 @@
                   <th scope="col" class="px-6 py-3">
     
                   </th>
-                  <th scope="col" class="px-6 py-3">
-    
-                  </th>
               </tr>
           </thead>
           <tbody>
             @foreach ($usuarios as $usuario)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                     <span >{{$usuario->usuario}}</span>
                 </td>
-                  <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                  <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                       <span >{{$usuario->nombre}}</span>
-                  </td>
-                  <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                  </td> 
+                  <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                     <span >{{$usuario->apellido_1}}</span>
                 </td>
-                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                     <span >{{$usuario->apellido_2}}</span>
                 </td>
-                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                     <span >{{$usuario->Puesto}}</span>
                 </td>
-                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla" wire:click="editar({{ $usuario->id }})">
                     <span >{{$usuario->Tipo}}</span>
-                </td>
-                <td class="px-6 py-4 text-right"  wire:click="editar({{ $usuario->id }})">
-                  <button class="font-medium text-blue-600 dark:text-blue-600 hover:underline">Editar</button>
-                </td>      
+                </td>   
                 <td class="px-6 py-4 text-right">
                     <button class="font-medium text-blue-600 dark:text-rojo hover:underline" wire:click="eliminar({{ $usuario->id }})">Eliminar</button>
                 </td>

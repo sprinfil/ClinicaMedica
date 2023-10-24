@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div>
-                                    <p class="text-fuente mb-2">Contacto de emergencia del Paciente</p>
+                                    <p class="text-fuente mb-2">Contacto de emergencia</p>
                                     
                                     <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Nombre(s)" name="contacto_nombre" wire:model="contacto_nombre" value="{{old('contacto_nombre')}}" >
                                     @error('contacto_nombre')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror

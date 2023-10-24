@@ -55,6 +55,7 @@
               <button class="btn-primary mt-[20px]" type="submit" id="submit-button">Aceptar</button>
 
           </div>
+          
       </div>
 
   </form>

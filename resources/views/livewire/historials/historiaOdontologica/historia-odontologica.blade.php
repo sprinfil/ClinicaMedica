@@ -7,7 +7,7 @@
           </div>
     
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
-            <p class="text-fuente text-[40px]">HISTORIA ODONTOLÓGICA</p>
+            <p class="text-fuente text-[40px]">HISTORIAL ODONTOLÓGICO</p>
             <button class="btn-primary mt-[10px]" wire:click="historia_odontologica_create({{$paciente->id}})">Agregar +</button>
         </div>
     </div>
@@ -55,4 +55,7 @@
              @endforeach
             </tbody>
         </table>
+        <div class="px-[10px] py-[10px] bg-gray-700">
+            {{ $tratamientos->links()}}
+        </div>
     </div>

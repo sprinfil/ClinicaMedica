@@ -11,6 +11,7 @@
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
             <p class="text-fuente text-[40px]">{{$tratamiento->tratamiento}}</p>
             <button class="btn-primary mt-[10px]">Editar</button>
+            <button class="btn-primary mt-[10px] ml-[10px] bg-rojo">Eliminar</button>
         </div>
 
     </div>
@@ -30,14 +31,15 @@
                   <p class="text-fuente">Tratamiento:</p>
                   <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Tratamiento" name="tratamiento" value="{{$tratamientoNombre}}" disabled>
                   @error('tratamiento')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
-    
-                  <p class="text-fuente">Notas:</p>
-                  <textarea name="nota" id="" rows="6" class="input-pdv w-full mb-3" disabled>{{$nota}}</textarea>
-                  @error('nota')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+
+                  <p class="text-fuente">Atendió:</p>
+                  <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="monto" name="monto" value="{{$tratamiento->atendio->nombre}}" disabled>
+                  @error('monto')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+
               </div>
               <div>
     
-                  <p class="text-fuente">Metodo de pago:</p>
+                  <p class="text-fuente">Método de pago:</p>
                   <select name="metodo_pago" class="input-pdv w-full mb-3 text-[20px]" disabled>
                       <option value="Tarjeta" @if($tratamiento->metodo_pago == 'Tarjeta') selected @endif >Tarjeta</option>
                       <option value="Efectivo" @if($tratamiento->metodo_pago == 'Efectivo') selected @endif>Efectivo</option>
@@ -50,6 +52,15 @@
                   
               </div>
           </div> 
+
+            <div class="mx-[30px]">
+              <p class="text-fuente">Notas:</p>
+              <textarea name="nota" id="" rows="6" class="input-pdv w-full mb-3" disabled>{{$nota}}</textarea>
+              @error('nota')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+            </div>
+
+          <div>
+          </div>
         </form>      
       </div>
 
