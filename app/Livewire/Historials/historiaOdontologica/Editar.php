@@ -17,6 +17,16 @@ class Editar extends Component
     public $nota;
     public $monto;
     public $imagenes;
+    public $edit = false;
+    public $lblBoton = "Editar";
+    public $greenClass = "";
+
+    public $dtFecha;
+    public $txtTratamiento;
+    public $txtAtendio;
+    public $txtNotas;
+    public $txtMetodoPago;
+    public $txtMonto;
 
     public function render()
     {
@@ -36,6 +46,38 @@ class Editar extends Component
         $this->monto = $this->tratamiento->monto;
 
         $this->imagenes = Imagen::where('tratamiento_id',$this->tratamiento->id)->get();
+
+        //inputs
+        $this->dtFecha = $this->tratamiento->fecha;
+        $this->txtMetodoPago = $this->tratamiento->metodo_pago;
+        $this->txtTratamiento = $this->tratamiento->tratamiento;
+        $this->txtAtendio = $this->tratamiento->atendio->nombre;
+        $this->txtMonto = $this->tratamiento->monto;
+        $this->txtNotas = $this->tratamiento->nota;
+
+    }
+
+    public function toggleEdicion(){
+        if($this->edit == false){
+            //activar edicion
+            $this->edit = true;
+            $this->lblBoton = "Aceptar";
+            $this->greenClass = "bg-green-500";
+        }else{
+            //aplicar edicion   
+            $this->tratamiento->fecha = $this->dtFecha;
+            $this->tratamiento->tratamiento = $this->txtTratamiento;
+            $this->tratamiento->nota = $this->txtNotas;
+            $this->tratamiento->metodo_pago =  $this->txtMetodoPago;
+            $this->tratamiento->monto = $this->txtMonto;
+
+            $this->tratamiento->save();
+
+            //reiniciar variables
+            $this->greenClass = "";
+            $this->edit = false;
+            $this->lblBoton = "Editar";
+        }
 
     }
 }
