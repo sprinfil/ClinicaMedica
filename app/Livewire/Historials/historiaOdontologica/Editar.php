@@ -7,6 +7,7 @@ use App\Models\Paciente;
 use App\Models\Tratamiento;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 class Editar extends Component
 {
@@ -34,7 +35,6 @@ class Editar extends Component
     }
 
     public function Mount($tratamiento_id, $paciente_id){
-        
         $this->tratamiento = Tratamiento::find($tratamiento_id);
         $this->paciente = Paciente::find($paciente_id);
 
@@ -70,6 +70,8 @@ class Editar extends Component
             $this->tratamiento->nota = $this->txtNotas;
             $this->tratamiento->metodo_pago =  $this->txtMetodoPago;
             $this->tratamiento->monto = $this->txtMonto;
+            $imagenes_eliminar = Imagen::where('eliminar','si');
+            $imagenes_eliminar->delete();
 
             $this->tratamiento->save();
 
@@ -77,7 +79,21 @@ class Editar extends Component
             $this->greenClass = "";
             $this->edit = false;
             $this->lblBoton = "Editar";
+            return redirect(route('historia_odontologica_editar',['tratamiento_id'=>$this->tratamiento->id,'paciente_id'=>$this->paciente->id]));
         }
 
+    }
+
+    public function advertencia($imagen_id){
+        $this->dispatch('advertencia', ['imagen_id' => $imagen_id]);  
+    }
+
+    #[On('EliminarImagen')] 
+    public function actualizarImagenes($id){
+        //eliminar imagen
+        $imagen = Imagen::find($id);
+        $imagen->eliminar = "si";
+        $imagen->save();
+        $this->imagenes = Imagen::where('tratamiento_id',$this->tratamiento->id)->get();
     }
 }

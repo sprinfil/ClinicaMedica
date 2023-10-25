@@ -7,26 +7,23 @@
 @section('contenido')
 
     @livewire('historials.historiaOdontologica.editar',['tratamiento_id'=>$tratamiento_id, 'paciente_id' => $paciente_id])
-
+    @livewire('historials.historiaOdontologica.eliminar-imagen')
+    
 @endsection
 
 @section('js')
 
-
     <script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
 
+    <script>
 
+            lightbox.option({
+        'resizeDuration': 20,
+        'wrapAround': true,
+        'fadeDuration': 10,
+        })
 
+    </script>
 
-<script>
-
-        lightbox.option({
-      'resizeDuration': 20,
-      'wrapAround': true,
-      'fadeDuration': 10,
-    })
-
-
-</script>
 @endsection
 

@@ -21,6 +21,7 @@
 
     </div>
 
+      <!--Datos del tratamiento-->
     <div class="h-full py-4 bg-terciario shadow-lg pb-[40px] mt-[20px] mx-[20px] rounded-lg">
         <form action="{{route('historia_odontologica_store', ['paciente_id' => $paciente->id])}}" method="POST" enctype="multipart/form-data">
           @csrf
@@ -69,34 +70,58 @@
         </form>      
       </div>
 
+      <!--Imagenes clinicas-->
       <div  class="h-full py-8 px-4 bg-terciario shadow-lg  mt-[20px] mx-[20px] rounded-lg mb-[30px]">
         <div class="mx-[20px] mb-[30px]">
             <p class="text-fuente text-[20px]">Imagenes Clinicas</p>
         </div>
         <div class="flex overflow-x-auto">
             @foreach($imagenes as $imagen)
-            @if($imagen->tipo == 'clinica')
-            <a href="{{$imagen->url}}" data-lightbox="clinica" class="px-4">
-              <img src="{{$imagen->url}}" alt="" class="h-100px min-w-[200px] rounded-md">
-            </a>  
-            @endif
+            @if($imagen->tipo == 'clinica' && $imagen->eliminar == null)
+            <div class="mx-4 w-[200px]">
+              <a href="{{$imagen->url}}" data-lightbox="clinica">
+                <img src="{{$imagen->url}}" alt="" class="h-100px min-w-[200px] rounded-md">
+              </a> 
+              @if($edit==true)
+              <div class="w-full justify-center flex mt-[10px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-rojo cursor-pointer active:text-fuente ease-out duration-200" wire:click="advertencia({{$imagen->id}})">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>   
+              </div>
+              @endif
 
+            </div>
+            @endif
+          
             @endforeach
         </div>
 
       </div>
 
+
+    <!--Radiografias-->
       <div  class="h-full py-8 px-4 bg-terciario shadow-lg  mt-[20px] mx-[20px] rounded-lg mb-[30px]">
         <div class="mx-[20px] mb-[30px]">
-            <p class="text-fuente text-[20px]">Radiografias</p>
+            <p class="text-fuente text-[20px]">Imagenes Clinicas</p>
         </div>
         <div class="flex overflow-x-auto">
             @foreach($imagenes as $imagen)
-            @if($imagen->tipo == 'radiografia')
-            <a href="{{$imagen->url}}" data-lightbox="radiografia" class="px-4">
-              <img src="{{$imagen->url}}" alt="" class="h-100px min-w-[200px] rounded-md">
-            </a>  
+            @if($imagen->tipo == 'radiografia' && $imagen->eliminar == null)
+            <div class="mx-4 w-[200px]">
+              <a href="{{$imagen->url}}" data-lightbox="radiografia">
+                <img src="{{$imagen->url}}" alt="" class="h-100px min-w-[200px] rounded-md">
+              </a> 
+              @if($edit==true)
+              <div class="w-full justify-center flex mt-[10px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 text-rojo cursor-pointer active:text-fuente ease-out duration-200" wire:click="advertencia({{$imagen->id}})">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>   
+              </div>
+              @endif
+
+            </div>
             @endif
+          
             @endforeach
         </div>
 
