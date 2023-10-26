@@ -96,4 +96,8 @@ class Editar extends Component
         $imagen->save();
         $this->imagenes = Imagen::where('tratamiento_id',$this->tratamiento->id)->get();
     }
+
+    public function TratamientoEliminar(){
+        $this->dispatch('advertenciaTratamientoEliminar', data: ['tratamiento_id' => $this->tratamiento->id, 'paciente_id' => $this->paciente->id]);
+    }
 }

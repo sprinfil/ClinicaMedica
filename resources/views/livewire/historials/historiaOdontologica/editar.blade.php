@@ -12,8 +12,8 @@
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
           <p class="text-fuente text-[40px]">{{$tratamiento->tratamiento}}</p>
           @if(session()->has('usuario') && session('usuario')->Tipo === 'Admin')
-          <button class="btn-primary mt-[10px] {{$greenClass}}" wire:click="toggleEdicion">{{$lblBoton}}</button>
-          <button class="btn-primary mt-[10px] ml-[10px] bg-rojo">Eliminar</button>
+          <button class="btn-primary mt-[10px] {{$greenClass}}" @if($edit == true) @class(['bg-green-200']) @endif wire:click="toggleEdicion">{{$lblBoton}}</button>
+          <button class="btn-primary mt-[10px] ml-[10px] bg-rojo" wire:click = "TratamientoEliminar">Eliminar</button>
           @endif
       </div>
 
@@ -73,9 +73,18 @@
       <!--Imagenes clinicas-->
       <div  class="h-full py-8 px-4 bg-terciario shadow-lg  mt-[20px] mx-[20px] rounded-lg mb-[30px]">
         <div class="mx-[20px] mb-[30px]">
-            <p class="text-fuente text-[20px]">Imagenes Clinicas</p>
+            <p class="text-fuente text-[20px]">Imagenes Clínicas</p>
         </div>
+
+        <div @if($edit == false) @class(['hidden']) @endif>
+          <form action="{{route('historia_odontologica_clinica_subir',['tratamiento_id'=>$tratamiento->id,'paciente_id'=>$paciente->id])}}"
+            class="dropzone mx-[19px] mb-[30px] bg-fuente rounded-md"
+            id="my-awesome-dropzone">
+            </form>
+        </div>
+
         <div class="flex overflow-x-auto">
+
             @foreach($imagenes as $imagen)
             @if($imagen->tipo == 'clinica' && $imagen->eliminar == null)
             <div class="mx-4 w-[200px]">
@@ -99,12 +108,21 @@
       </div>
 
 
-    <!--Radiografias-->
+      <!--Radiografias-->
       <div  class="h-full py-8 px-4 bg-terciario shadow-lg  mt-[20px] mx-[20px] rounded-lg mb-[30px]">
         <div class="mx-[20px] mb-[30px]">
-            <p class="text-fuente text-[20px]">Imagenes Clinicas</p>
+            <p class="text-fuente text-[20px]">Radiografías</p>
         </div>
+
+        <div @if($edit == false) @class(['hidden']) @endif>
+          <form action="{{route('historia_odontologica_radiografia_subir',['tratamiento_id'=>$tratamiento->id,'paciente_id'=>$paciente->id])}}"
+            class="dropzone mx-[19px] mb-[30px] bg-fuente rounded-md"
+            id="my-awesome-dropzone">
+            </form>
+        </div>
+
         <div class="flex overflow-x-auto">
+
             @foreach($imagenes as $imagen)
             @if($imagen->tipo == 'radiografia' && $imagen->eliminar == null)
             <div class="mx-4 w-[200px]">

@@ -9,9 +9,41 @@
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
             <p class="text-fuente text-[40px]">HISTORIAL ODONTOLÓGICO</p>
             <button class="btn-primary mt-[10px]" wire:click="historia_odontologica_create({{$paciente->id}})">Agregar +</button>
+            <button class="btn-primary mt-[10px]" wire:click="toggleVerInfo">Ver información del paciente</button>
         </div>
     </div>
-      
+            <!--Datos del paciente-->
+    <div class="h-full {{$esconder}} py-4 bg-terciario shadow-lg mt-[20px] mx-[20px] rounded-lg ease-out duration-300 overflow-hidden">
+          <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 ">
+              <div>
+                <p class="text-fuente text-[20px] mb-[20px]">Información del paciente</p>
+                  <p class="text-fuente">Nombre:</p>
+                  <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->getFullNombre($paciente->id)}}" disabled>
+                  <p class="text-fuente">Correo:</p>
+                  <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->correo}}" disabled>
+                  <p class="text-fuente">Número:</p>
+                  <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->numero}}" disabled>
+                  <p class="text-fuente">Edad:</p>
+                  <input class="input-pdv w-full mb-3 text-[20px]" value="{{$edad}}" disabled>
+                  <p class="text-fuente">Genero:</p>
+                  <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->Genero}}" disabled>
+              </div>
+              <div>
+                <p class="text-fuente text-[20px] mb-[20px]">Contacto de emergencia</p>
+                <p class="text-fuente">Nombre:</p>
+                <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->contacto_nombre}}" disabled>
+                <p class="text-fuente">Número:</p>
+                <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->contacto_numero}}" disabled>
+                <p class="text-fuente">Correo:</p>
+                <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->contacto_correo}}" disabled>
+                <p class="text-fuente">Parentesco:</p>
+                <input class="input-pdv w-full mb-3 text-[20px]" value="{{$paciente->contacto_parentesco}}" disabled>
+              </div>
+        </div> 
+
+      </div>
+
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg md:mx-[50px] my-[25px]">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

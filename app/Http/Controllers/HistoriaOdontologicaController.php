@@ -81,4 +81,16 @@ class HistoriaOdontologicaController extends Controller
         return redirect(route('historia_odontologica_imagen',['paciente_id' => $paciente_id,'tratamiento_id' => $tratamiento->id]));
     }
 
+    public function delete(Request $request){
+
+        
+        $imagenes = Imagen::where('tratamiento_id',$request->tratamiento_id);
+        $imagenes->delete();
+        
+        $tratamiento = Tratamiento::find($request->tratamiento_id);
+        $tratamiento->delete();
+
+        return redirect(route('historia_odontologica', ['paciente_id' => $request->paciente_id]));
+    }
+
 }
