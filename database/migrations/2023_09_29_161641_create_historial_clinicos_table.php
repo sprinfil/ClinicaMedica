@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('historial_clinicos', function (Blueprint $table) {
             $table->id();
-            $table->string('Diabetes')->nullable();
-            $table->string('Tuberculosis')->nullable();
-            $table->string('Presion')->nullable();
-            $table->string('Hepatitis')->nullable();
-            $table->string('Anemia')->nullable();
-            $table->string('Asma')->nullable();
-            $table->string('Neumonia')->nullable();
-            $table->string('Migrana')->nullable();
-            $table->string('Fuma')->nullable();
-            $table->string('Alcohol')->nullable();
-            $table->string('Ejercicio')->nullable();
+            $table->boolean('Diabetes')->nullable();
+            $table->boolean('Tuberculosis')->nullable();
+            $table->boolean('Presion')->nullable();
+            $table->boolean('Hepatitis')->nullable();
+            $table->boolean('Anemia')->nullable();
+            $table->boolean('Asma')->nullable();
+            $table->boolean('Neumonia')->nullable();
+            $table->boolean('Migrana')->nullable();
+            $table->boolean('Fuma')->nullable();
+            $table->boolean('Alcohol')->nullable();
+            $table->boolean('Ejercicio')->nullable();
+            
             $table->string('PDF')->nullable();
 
             
