@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\HistoriaClinicaController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\HistoriaOdontologicaController;
 use App\Http\Controllers\HomeController;
@@ -60,6 +61,10 @@ Route::controller(subirImagenController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','index')->name('historia_odontologica_imagen');
     Route::post('historial-medico/historia-odontologica/subirClinica/{tratamiento_id}/{paciente_id}','store_clinica')->name('historia_odontologica_clinica_subir');
     Route::post('historial-medico/historia-odontologica/subirRadiografia/{tratamiento_id}/{paciente_id}','store_radiografia')->name('historia_odontologica_radiografia_subir');
+});
+
+Route::controller(HistoriaClinicaController::class)->group(function() {
+    Route::get('historial-medico/historia-clinica/{paciente_id}', 'index')->name('historia-clinica');
 });
 
 

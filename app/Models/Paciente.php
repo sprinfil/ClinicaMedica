@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Paciente extends Model
 {
@@ -27,6 +28,17 @@ class Paciente extends Model
     public function getAuthIdentifierName()
     {
         return 'paciente'; // Cambia esto si el nombre del paciente es diferente en tu base de datos
+    }
+
+    public function getEdad($id){
+        $paciente = Paciente::find($id);
+        $edad = now()->format('Y') - Carbon::parse($paciente->fecha_nac)->format('Y') ;
+
+        if (Carbon::parse($paciente->fecha_nac)->format('m') - now()->format('m')) {
+            $edad--;
+        }
+
+        return $edad;
     }
 
     public function getFullNombre($id){

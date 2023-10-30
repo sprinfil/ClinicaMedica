@@ -31,6 +31,10 @@ class HistorialMedico extends Component
         $this->render();
     }
 
+    public function historial_clinico($paciente_id){
+        return redirect()->route('historia-clinica', ['paciente_id' => $paciente_id]);
+    }
+
     public function historia_odontologica($paciente_id){
         return redirect(route('historia_odontologica',['paciente_id' => $paciente_id]));
     }
