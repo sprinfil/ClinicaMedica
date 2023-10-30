@@ -30,27 +30,28 @@ class HistoriaClinica extends Component
     public function mount(){
         $this->paciente = Paciente::find($this->paciente_id);
         $this->historial = Historial::where('paciente_id', $this->paciente->id)->get()->first();
-        
+
+
         if($this->historial){
-            if($this->historial->Diabetes === 1)
+            if($this->historial->Diabetes == 1)
                 $this->diabetes = true;
-            if($this->historial->Tuberculosis === 1)
+            if($this->historial->Tuberculosis == 1)
                 $this->tuberculosis = true;
-            if($this->historial->Presion === 1)
+            if($this->historial->Presion == 1)
                 $this->presion = true;
-            if($this->historial->Hepatitis === 1)
+            if($this->historial->Hepatitis == 1)
                 $this->hepatitis = true;
-            if($this->historial->Anemia === 1)
+            if($this->historial->Anemia == 1)
                 $this->anemia = true;
-            if($this->historial->Asma === 1)
+            if($this->historial->Asma == 1)
                 $this->asma = true;
-            if($this->historial->Migrana === 1)
+            if($this->historial->Migrana == 1)
                 $this->migrana = true;
-            if($this->historial->Fuma === 1)
+            if($this->historial->Fuma == 1)
                 $this->fuma = true;
-            if($this->historial->Alcohol === 1)
+            if($this->historial->Alcohol == 1)
                 $this->alcohol = true;
-            if($this->historial->Ejercicio === 1)
+            if($this->historial->Ejercicio == 1)
                 $this->ejercicio = true;
             
         }else{
