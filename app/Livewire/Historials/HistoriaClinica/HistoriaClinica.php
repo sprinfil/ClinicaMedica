@@ -30,7 +30,8 @@ class HistoriaClinica extends Component
     public function mount(){
         $this->paciente = Paciente::find($this->paciente_id);
         $this->historial = Historial::where('paciente_id', $this->paciente->id)->get()->first();
-        
+
+
         if($this->historial){
             if($this->historial->Diabetes == 1)
                 $this->diabetes = true;

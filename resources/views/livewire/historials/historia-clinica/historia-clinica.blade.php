@@ -31,11 +31,11 @@
                         <!-- Antecedentes -->
                         <label class="my-2 flex justify-between">
                             Diabetes 
-                            <input type="checkbox" wire:model="diabetes" class=" h-4 w-4"> 
+                            <input type="checkbox" wire:model="diabetes" class="h-4 w-4"> 
                         </label>
                         <label class="my-2 flex justify-between">
                             Tuberculosis 
-                            <input type="checkbox" wire:model="tuberculosis" class=" h-4 w-4"> 
+                            <input type="checkbox" wire:model="tuberculosis" class="h-4 w-4"> 
                         </label>
                         <label class="my-2 flex justify-between">
                             Presión alta 

@@ -10,10 +10,11 @@
           
     
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
-          <p class="text-fuente text-[40px]">{{$tratamiento->tratamiento}}</p>
+          <p class="text-fuente text-[40px] mb-[20px]">{{$tratamiento->tratamiento}}</p>
           @if(session()->has('usuario') && session('usuario')->Tipo === 'Admin')
+          <p class="text-fuente text-[20px]">Opciones</p>
           <button class="btn-primary mt-[10px] {{$greenClass}}" @if($edit == true) @class(['bg-green-200']) @endif wire:click="toggleEdicion">{{$lblBoton}}</button>
-          <button class="btn-primary mt-[10px] ml-[10px] bg-rojo" wire:click = "TratamientoEliminar">Eliminar</button>
+          <button class="btn-primary mt-[10px]  bg-rojo" wire:click = "TratamientoEliminar">Eliminar</button>
           @endif
       </div>
 

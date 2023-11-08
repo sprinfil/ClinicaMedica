@@ -40,17 +40,13 @@ Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard
 
 
 Route::controller(UsuarioController::class)->group(function () {
-
     Route::get('/usuarios','show_crud')->name('usuarios');
-
-
 });
 Route::controller(PacienteController::class)->group(function(){
     Route::get('/pacientes', 'index')->name('pacientes');
 });
 
 Route::get('historial-medico', [HistorialController::class, 'index'])->name('historial_medico');
-
 
 Route::controller(HistoriaOdontologicaController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');

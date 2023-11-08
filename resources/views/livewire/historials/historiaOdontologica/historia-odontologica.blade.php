@@ -7,12 +7,14 @@
           </div>
     
         <div class="mx-[10px] md:mx-[50px] mt-[10px]">
-            <p class="text-fuente text-[40px]">HISTORIAL ODONTOLÓGICO</p>
+            <p class="text-fuente text-[40px] mb-[20px]">HISTORIAL ODONTOLÓGICO</p>
+            <p class="text-fuente text-[20px]">Opciones</p>
             <button class="btn-primary mt-[10px]" wire:click="historia_odontologica_create({{$paciente->id}})">Agregar +</button>
             <button class="btn-primary mt-[10px]" wire:click="toggleVerInfo">Ver información del paciente</button>
         </div>
     </div>
-            <!--Datos del paciente-->
+
+    <!--Datos del paciente-->
     <div class="h-full {{$esconder}} py-4 bg-terciario shadow-lg mt-[20px] mx-[20px] rounded-lg ease-out duration-300 overflow-hidden">
           <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 ">
               <div>
@@ -68,19 +70,19 @@
             <tbody>
                 @foreach($tratamientos as $tratamiento)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:click="editar({{$tratamiento->id}})">
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer" id="casilla">
                             <span>{{$tratamiento->tratamiento}}</span>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer" id="casilla">
                             <span >{{\Carbon\Carbon::parse($tratamiento->fecha)->format('d/m/Y h:i A')}}</span>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer" id="casilla">
                             <span >{{$tratamiento->atendio->nombre}}</span>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer" id="casilla">
                             <span >$ {{$tratamiento->monto}}</span>
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" id="casilla">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer" id="casilla">
                             <span >{{$tratamiento->metodo_pago}}</span>
                         </td>
                     </tr>
