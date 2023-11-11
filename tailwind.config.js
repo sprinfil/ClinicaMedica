@@ -12,8 +12,8 @@ module.exports = {
       },
       colors:{
         //'negro-menu': '#5C5470',
-        'negro-menu': '#484258',
-         'negro-fondo': '#352F44',
+         'negro-menu': '#286c68',
+         'negro-fondo': '#1b4946',
          'secundario': '#29bcb2',
          'fuente-botones': '#171717',
          'active':'#2CC9BF',
@@ -21,7 +21,7 @@ module.exports = {
          'fuente':'#D1D5DB',
          'rojo':'#EF4444',
          'menu':'#141414',
-         'terciario':"#2D283A",
+         'terciario':"#286c68",
       }
     },
   },
@@ -29,7 +29,7 @@ module.exports = {
 }
 
 /*
-         //'negro-menu': '#5C5470',
+          //'negro-menu': '#5C5470',
         'negro-menu': '#484258',
          'negro-fondo': '#352F44',
          'secundario': '#29bcb2',

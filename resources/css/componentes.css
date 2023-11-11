@@ -7,7 +7,7 @@
       @apply py-2 px-4 bg-principal text-fuente-botones rounded-lg shadow-md  active:bg-secundario focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 ease-out duration-500 text-[15px] h-[55px];
     }
     .input-pdv{
-      @apply bg-fuente border border-fuente text-gray-900 text-sm rounded-lg hover:ring-2 focus:ring-blue-500 block p-2.5 text-[20px] w-[300px]  md:w-[450px] focus:outline-none ;
+      @apply bg-fuente border border-blue-500 text-gray-900 text-sm rounded-lg hover:ring-2 focus:ring-blue-500 block p-2 text-[15px] w-[250px]  md:w-[400px] focus:outline-none placeholder-gray-700;
     }
   }
 
@@ -35,4 +35,8 @@ input[type=number]::-webkit-outer-spin-button
 
 select {
   appearance: none; /* Esto oculta las flechas predeterminadas */
+}
+
+html{
+  scroll-behavior: smooth;
 }

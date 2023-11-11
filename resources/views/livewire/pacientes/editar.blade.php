@@ -22,7 +22,7 @@
                     <form wire:submit="save">
                         <!--///////Contenedor del formulario (contenedor main)//////-->
                             @csrf
-                            <div class="placeholder:w-full h-auto md:px-[60px] px-[30px] grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="placeholder:w-full h-auto md:px-[60px] px-[30px] grid grid-cols-1 md:grid-cols-3 gap-4 py-[70px]">
                                 <div>
                                     <p class="text-fuente mb-2">Informaci&oacute;n del Paciente</p>
 
@@ -34,6 +34,17 @@
 
                                     <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Apellido 2" name="apellido_2" wire:model="apellido_2" value="{{old('apellido_2')}}" >
                                     @error('apellido_2')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror    
+
+                                    <input type="date" class="input-pdv w-full mb-3 text-[20px]" name="fecha_nac" wire:model="fecha_nac" value="{{old('fecha_nac')}}" >
+                                    @error('fecha_nac')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+                                    
+                                    <select class="input-pdv w-full mb-3 text-[20px]" name="Genero" wire:model="Genero" value="{{old('Genero')}}" >
+                                        <option value="" disabled selected>-- SELECCIONAR --</option>    
+                                        <option value="Masculino"@if($paciente_objeto->genero == 'Masculino') @selected(true) @endif>MASCULINO</option>    
+                                        <option value="Femenino" @if($paciente_objeto->genero == 'Femenino') @selected(true) @endif>FEMENINO</option>    
+                                        <option value="Otro" @if($paciente_objeto->genero == 'Otro') @selected(true) @endif>OTRO</option>    
+                                    </select>
+                                    @error('Genero')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
                                 </div>
 
                                 <div>
@@ -45,16 +56,7 @@
                                     <input type="tel" class="input-pdv w-full mb-3 text-[20px]" placeholder="N&uacute;mero Tel" name="numero" wire:model="numero" value="{{old('numero')}}" >
                                     @error('numero')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
                                     
-                                    <input type="date" class="input-pdv w-full mb-3 text-[20px]" name="fecha_nac" wire:model="fecha_nac" value="{{old('fecha_nac')}}" >
-                                    @error('fecha_nac')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
-                                    
-                                    <select class="input-pdv w-full mb-3 text-[20px]" name="Genero" wire:model="Genero" value="{{old('Genero')}}" >
-                                        <option value="" disabled selected>-- SELECCIONAR --</option>    
-                                        <option value="Masculino"@if($paciente_objeto->genero == 'Masculino') @selected(true) @endif>MASCULINO</option>    
-                                        <option value="Femenino" @if($paciente_objeto->genero == 'Femenino') @selected(true) @endif>FEMENINO</option>    
-                                        <option value="Otro" @if($paciente_objeto->genero == 'Otro') @selected(true) @endif>OTRO</option>    
-                                    </select>
-                                    @error('Genero')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+
                                 </div>
 
                                 <div>
