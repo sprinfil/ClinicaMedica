@@ -6,7 +6,7 @@
                        <!--Texto Superior-->
                  <p class="texto ocultar-texto text-[20px] text-fuente">MENU</p>
                  @if (session()->has('usuario'))
-                 <p class="text-[17px] texto mt-2 ocultar-texto">{{session('usuario')->nombre}} - {{session('usuario')->Tipo}}</p>
+                 <p class="text-[17px] texto mt-2 ocultar-texto md:hidden block">{{session('usuario')->nombre}} - {{session('usuario')->Tipo}}</p>
                  @endif
            </div>
            <div>

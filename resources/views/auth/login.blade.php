@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="flex justify-center items-center h-screen">
-        <div class="w-[300px] flex justify-center items-center bg-white bg-opacity-20 rounded-3xl md:w-[600px]">
+        <div class="w-[300px] flex justify-center items-center bg-negro-menu rounded-3xl md:w-[600px] py-9">
             <div class="flex flex-col items-center justify-center">
                 <div>
                         <img  src="images/logo.png" alt="" class="w-[200px]">

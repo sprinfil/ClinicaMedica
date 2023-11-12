@@ -22,6 +22,7 @@ module.exports = {
          'rojo':'#EF4444',
          'menu':'#141414',
          'terciario':"#286c68",
+         'color-borde':"#286c68",
       }
     },
   },

@@ -1,4 +1,11 @@
-<div class="mx-2 md:mx-[60px] mt-[20px]">
+<div>
+  <!--navegacion superior-->
+  <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
+    <a href="{{route('historial_medico')}}" class="underline text-blue-500">Expedientes</a> 
+    </div>
+
+
+  <div class="mx-2 md:mx-[60px] mt-[20px]">
     <div>
        <!--Cabecera-->
     <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden border-2 border-color-borde">
@@ -34,7 +41,7 @@
               <tbody>
                 @foreach ($pacientes as $paciente)
                 <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400">
-                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones id="casilla">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones" id="casilla">
                         <div class="flex items-center gap-x-3">
                           <div>
                             <span >{{$paciente->getFullNombre($paciente->id)}}</span>
@@ -54,3 +61,5 @@
         </div>
       </div>
 </div>
+</div>
+
