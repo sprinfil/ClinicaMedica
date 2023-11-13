@@ -39,4 +39,7 @@ class HistorialMedico extends Component
         return redirect(route('historia_odontologica',['paciente_id' => $paciente_id]));
     }
 
+    public function expediente($paciente_id){
+        return redirect(route('expediente',['paciente_id' => $paciente_id]));
+    }
 }

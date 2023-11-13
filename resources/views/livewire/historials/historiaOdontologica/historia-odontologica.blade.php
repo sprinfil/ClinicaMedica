@@ -3,65 +3,24 @@
     <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
         <a href="{{ route('historial_medico') }}" class="underline text-blue-500">Expedientes</a>
         /
+        <a href="{{ route('expediente', ['paciente_id' => $paciente->id]) }}"
+            class="underline text-blue-500">{{ $paciente->getFullNombre($paciente->id) }}</a>
+        /
         <a href="" class="underline text-blue-500">Tratamientos</a>
     </div>
 
 
     <div class="mx-2 md:mx-[60px] ">
-
         <!--Cabecera-->
-        <div class=" w-full h-full bg-terciario shadow-lg rounded-md overflow-x-hidden">
-            <!--Titulo -->
-            <div class="justify-between mt-[20px] mx-[20px]">
-                <p class="text-fuente text-[40px] mb-[20px]">Tratamientos</p>
+        <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden border-2 border-color-borde">
+            <div class="mx-[10px] md:mx-[50px]  justify-between">
+                <p class="text-fuente text-[40px]">Tratamientos</p>
+                <p class="text-fuente text-[25px]"> {{ $paciente->getFullNombre($paciente->id) }}</p>
                 <!--opciones-->
-                <div class="mb-[20px]">
-                    <button class="btn-primary mt-[10px]"
-                        wire:click="historia_odontologica_create({{ $paciente->id }})">Agregar +</button>
-                    <button class="btn-primary mt-[10px]" wire:click="toggleVerInfo">Ver información del
-                        paciente</button>
-                </div>
+                <button class="btn-primary mt-[10px]"
+                    wire:click="historia_odontologica_create({{ $paciente->id }})">Agregar +</button>
             </div>
         </div>
-
-
-        <!--Datos del paciente-->
-        <div
-            class="h-full {{ $esconder }} bg-[#E1E1E1] shadow-lg mt-[20px] rounded-lg ease-out duration-300 overflow-hidden">
-            <div class="w-full bg-negro-menu text-center py-2">
-                <p class="text-fuente text-[20px]">Informacion del paciente</p>
-            </div>
-            <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 ">
-                <div>
-                    <p class="text-fuente-botones text-[20px] mb-[20px]">Información del paciente</p>
-                    <p class="text-fuente-botones">Nombre:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]"
-                        value="{{ $paciente->getFullNombre($paciente->id) }}" disabled>
-                    <p class="text-fuente-botones">Correo:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->correo }}" disabled>
-                    <p class="text-fuente-botones">Número:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->numero }}" disabled>
-                    <p class="text-fuente-botones">Edad:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $edad }}" disabled>
-                    <p class="text-fuente-botones">Genero:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->Genero }}" disabled>
-                </div>
-                <div>
-                    <p class="text-fuente-botones text-[20px] mb-[20px]">Contacto de emergencia</p>
-                    <p class="text-fuente-botones">Nombre:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->contacto_nombre }}" disabled>
-                    <p class="text-fuente-botones">Número:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->contacto_numero }}" disabled>
-                    <p class="text-fuente-botones">Correo:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->contacto_correo }}" disabled>
-                    <p class="text-fuente-botones">Parentesco:</p>
-                    <input class="input-pdv w-full mb-3 text-[15px]" value="{{ $paciente->contacto_parentesco }}"
-                        disabled>
-                </div>
-            </div>
-
-        </div>
-
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

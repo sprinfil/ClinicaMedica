@@ -47,6 +47,7 @@ Route::controller(PacienteController::class)->group(function(){
 });
 
 Route::get('historial-medico', [HistorialController::class, 'index'])->name('historial_medico');
+Route::get('historial-medico/expediente/{paciente_id}', [HistorialController::class, 'expediente'])->name('expediente');
 
 Route::controller(HistoriaOdontologicaController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');
