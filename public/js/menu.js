@@ -24,6 +24,7 @@ function toggleSubMenu(id){
     }  
 }
 
+//creo que esta funcion no se ocupa
 function abrirMenu(){
     document.getElementById("menu").classList.remove("close-nav");
     document.getElementById("main").classList.remove("main-cerrado");

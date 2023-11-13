@@ -33,7 +33,8 @@ class HistoriaOdontologicaController extends Controller
         $paciente_id = $request->paciente_id;
         $paciente = Paciente::find($request->paciente_id);
         $atendio = session('usuario')->nombre;
-        $fechaActual = Carbon::now()->subHour();
+        $fechaActual = Carbon::now();
+        //$fechaActual = Carbon::now()->subHour();
 
         if(session()->has('usuario')){
             return view('historials.historia-odontologica.crear',
