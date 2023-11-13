@@ -3,32 +3,21 @@
     <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
         <a href="{{ route('historial_medico') }}" class="underline text-blue-500">Expedientes</a>
         /
+        <a href="{{ route('expediente', ['paciente_id' => $paciente->id]) }}"
+            class="underline text-blue-500">{{ $paciente->getFullNombre($paciente->id) }}</a>
+        /
         <a href="" class="underline text-blue-500">Historial Clinico</a>
     </div>
     <div class="mx-2 md:mx-[60px] ">
 
-
         <!--Cabecera-->
-        <div class=" w-full h-full bg-terciario shadow-lg rounded-md overflow-x-hidden">
-            <!--Titulo -->
-            <div class="justify-between mt-[20px] mx-[20px]">
-                <p class="text-fuente text-[40px] mb-[20px]">Historial Clinico</p>
+        <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden border-2 border-color-borde">
+            <div class="mx-[10px] md:mx-[50px]  justify-between">
+                <p class="text-fuente text-[40px]">Historial Clinico</p>
+                <p class="text-fuente text-[25px]"> {{ $paciente->getFullNombre($paciente->id) }}</p>
                 <!--opciones-->
-                <div class="mb-[20px]">
-                    <button class="btn-primary mt-[10px]" wire:click="pdf">Exportar PDF</button>
-                    <button class="btn-primary mt-[10px] bg-green-500" wire:click="guardar">Guardar</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="h-full py-4 bg-terciario shadow-lg mt-[20px]  rounded-lg ease-out duration-300 overflow-hidden">
-            <div class="p-3 text-fuente ">
-                <h3 class="text-xl font-bold mb-4">Informaci&oacute;n Personal</h3>
-                <div>
-                    <p>{{ $paciente->nombre }} {{ $paciente->apellido_1 }} {{ $paciente->apellido_2 }}</p>
-                    <p>Edad: {{ $paciente->getEdad($paciente->id) }}</p>
-                    <p>Sexo: {{ $paciente->Genero }}</p>
-                </div>
+                <button class="btn-primary mt-[10px]" wire:click="pdf">Exportar PDF</button>
+                <button class="btn-primary mt-[10px] bg-green-500" wire:click="guardar">Guardar</button>
             </div>
         </div>
 

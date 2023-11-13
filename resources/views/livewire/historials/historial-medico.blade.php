@@ -40,16 +40,17 @@
               </thead>
               <tbody>
                 @foreach ($pacientes as $paciente)
-                <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400">
+                <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400" wire:click="expediente({{ $paciente->id }})">
                       <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones" id="casilla">
                         <div class="flex items-center gap-x-3">
                           <div>
                             <span >{{$paciente->getFullNombre($paciente->id)}}</span>
                           </div>
                           <div class="w-full flex justify-end items-center">
-                            <button class="btn-primary mx-[5px] my-[5px]" wire:click="historial_clinico({{ $paciente->id }})">Historial Clinico</button>
-                            <button class="btn-primary mx-[5px] my-[5px]" wire:click="historia_odontologica({{ $paciente->id }})">Tratamientos</button>
-                            <button class="btn-primary mx-[5px] my-[5px]" wire:click="contrato({{ $paciente->id }})">Consentimiento</button>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-fuente-botones ml-[10px]">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
                           </div>
                         </div>
                       </td>
