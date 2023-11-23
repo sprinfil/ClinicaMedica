@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fecha')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable();
+            $table->date('fecha')->nullable();
             $table->unsignedBigInteger('paciente')->nullable();
             $table->unsignedBigInteger('agendo')->nullable();
             $table->unsignedBigInteger('atiende')->nullable();
             $table->string('tratamiento')->nullable();
-            $table->time('hora')->nullable();
             $table->boolean('confirmada')->nullable();
 
 

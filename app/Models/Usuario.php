@@ -26,6 +26,10 @@ class Usuario extends Model implements Authenticatable
         return 'usuario'; // Cambia esto si el nombre de usuario es diferente en tu base de datos
     }
 
+    public function getNombreCompleto(){
+        return $this->nombre . " ". $this->apellido_1 . " " . $this->apellido_2;
+    }
+
     public function getAuthIdentifier()
     {
         return $this->getKey();

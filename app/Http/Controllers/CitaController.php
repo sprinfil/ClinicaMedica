@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 class CitaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of th
+     * e resource.
      */
     public function index()
     {
-        //
+        return view('citas.index');
     }
 
     /**

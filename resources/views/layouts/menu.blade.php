@@ -83,7 +83,8 @@
                     </div>
 
                     <!--///////CITAS//////-->
-                    <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]"
+                    <a href={{ route('citas_index') }}>
+                        <div class=" my-1 p-3 rounded-md flex cursor-pointer active:bg-active bg-principal ease-out duration-500 h-[65px]"
                         onclick="">
                         <!--Icono-->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -98,6 +99,7 @@
                             <span>Citas</span>
                         </li>
                     </div>
+                    </a>
 
                     <!--ADMIN-->
                     <!--///////Usuarios//////-->
