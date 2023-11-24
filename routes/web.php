@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\DashBoardController;
-use App\Http\Controllers\HistoriaClinicaController;
-use App\Http\Controllers\HistorialController;
-use App\Http\Controllers\HistoriaOdontologicaController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PacienteController;
-use App\Http\Controllers\subirImagenController;
 use App\Http\Controllers\UsuarioController;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\HistorialController;
+use App\Http\Controllers\subirImagenController;
+use App\Http\Controllers\HistoriaClinicaController;
+use App\Http\Controllers\HistoriaOdontologicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,10 @@ Route::controller(subirImagenController::class)->group(function () {
 
 Route::controller(HistoriaClinicaController::class)->group(function() {
     Route::get('historial-medico/historia-clinica/{paciente_id}', 'index')->name('historia-clinica');
+});
+
+Route::controller(CitaController::class)->group(function() {
+    Route::get('citas', 'index')->name('citas_index');
 });
 
 
