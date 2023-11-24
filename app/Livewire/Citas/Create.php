@@ -70,8 +70,12 @@ class Create extends Component
         $this->dia = $data['dia'];
         $this->fecha = $data['fecha'];
         $this->duracion_cita = "60";
-        $this->selected_paciente = $this->pacientes->first()->id;
-        $this->selected_atiende = $this->medicos->first()->id;
+        if($this->pacientes){
+            $this->selected_paciente = $this->pacientes->first()->id;
+        }
+        if($this->medicos){
+            $this->selected_atiende = $this->medicos->first()->id;
+        }
         $this->citas = Cita::all();
         $this->esconder_error ="hidden";
     }

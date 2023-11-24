@@ -67,7 +67,8 @@ class Index extends Component
     public function avanzar_fecha()
     {
         $this->fecha = new Carbon($this->FechaPicker);
-        $this->fecha = $this->fecha->addWeek();
+        //$this->fecha = $this->fecha->addWeek();
+        $this->fecha = $this->fecha->addDays(2);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -77,7 +78,8 @@ class Index extends Component
     public function retroceder_fecha()
     {
         $this->fecha = new Carbon($this->FechaPicker);
-        $this->fecha = $this->fecha->subWeek();
+        //$this->fecha = $this->fecha->subWeek();
+        $this->fecha = $this->fecha->subDays(2);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -137,7 +139,7 @@ class Index extends Component
                     }
                     if($ocupado){
                         //$this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "ocupada";
-                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id];
+                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento];
                     }else{
                         $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "disponible";
                     }
