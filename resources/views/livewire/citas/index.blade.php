@@ -60,7 +60,7 @@
                             @foreach ($horas as $hora)
                                 @if ($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][0] == 'ocupada')
                                     <div
-                                        class=" text-fuente  py-4 cursor-pointer hover:bg-[#205753] bg-terciario ease-in duration-100 rounded-md  shadow-md max-h-[56px] h-[56px]">
+                                        class=" text-fuente  py-4 cursor-pointer hover:bg-[#205753]  ease-in duration-100 rounded-md  shadow-md max-h-[56px] h-[56px] @if($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][4] == 'confirmada') bg-green-800 @else bg-terciario @endif">
                                         <div class="flex items-center justify-center">
                                             <p class="text-[11px] ">
                                                 {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][1] }}</p>

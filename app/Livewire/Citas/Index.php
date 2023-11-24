@@ -98,8 +98,8 @@ class Index extends Component
     public function config_horas()
     {
         $ctr = 0;
-        $hora_inicial = Carbon::createFromTime(7, 0, 0); //7:00am
-        $hora_fin = Carbon::createFromTime(15, 0, 0); //3:00pm
+        $hora_inicial = Carbon::createFromTime(9, 0, 0); //7:00am
+        $hora_fin = Carbon::createFromTime(13, 0, 0); //3:00pm
 
         while ($hora_inicial <= $hora_fin) {
             $this->horas[$ctr] = $hora_inicial->format('h:i A');
@@ -139,7 +139,10 @@ class Index extends Component
                     }
                     if($ocupado){
                         //$this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "ocupada";
-                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento];
+                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'no'];
+                        if($cita_temp->confirmada){
+                            $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'confirmada'];
+                        }
                     }else{
                         $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "disponible";
                     }
@@ -157,8 +160,8 @@ class Index extends Component
         }else{
             $cita->confirmada = true;
         }
-
         $cita->save();
+        $this->refrescar_citas();
     }
 
     public function cancelar_cita($cita_id){

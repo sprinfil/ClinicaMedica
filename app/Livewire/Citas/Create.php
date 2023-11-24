@@ -70,10 +70,10 @@ class Create extends Component
         $this->dia = $data['dia'];
         $this->fecha = $data['fecha'];
         $this->duracion_cita = "60";
-        if($this->pacientes){
+        if(count($this->pacientes) > 0){
             $this->selected_paciente = $this->pacientes->first()->id;
         }
-        if($this->medicos){
+        if(count($this->medicos) > 0){
             $this->selected_atiende = $this->medicos->first()->id;
         }
         $this->citas = Cita::all();
@@ -101,7 +101,7 @@ class Create extends Component
 
         $hora_inicio = Carbon::createFromFormat('h:i A', $this->hora_inicio);
         $hora_i =  Carbon::createFromFormat('h:i A', $this->hora_inicio);
-        $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita));
+        $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita) - 15);
         $horario_ocupado = false;
   
         foreach($this->citas as $cita){
