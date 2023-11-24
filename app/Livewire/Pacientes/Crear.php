@@ -4,6 +4,7 @@ namespace App\Livewire\Pacientes;
 
 use App\Models\Paciente;
 use DateTime;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class Crear extends Component
@@ -45,7 +46,8 @@ class Crear extends Component
             */
         ]);
 
-        $fecha_nac = new DateTime($this->fecha_nac);
+        $fecha_nac = new Carbon($this->fecha_nac);
+        //dd($fecha_nac->format('Y-m-d'));
         $data = [
             'nombre'=> $this->nombre,
             'apellido_1' => $this->apellido_1,

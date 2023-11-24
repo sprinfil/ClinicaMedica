@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('apellido_2')->nullable();
             $table->string('correo')->nullable();
             $table->string('numero')->nullable();
-            $table->timestamp('fecha_nac')->useCurrent()->format('d-m-Y');
+            $table->date('fecha_nac')->nullable();
             $table->enum('Genero', ['Masculino','Femenino','Otro'])->nullable();
             $table->string('contacto_nombre')->nullable();
             $table->string('contacto_numero')->nullable();
