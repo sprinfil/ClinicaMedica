@@ -30,7 +30,7 @@
 
             <div class="h-full bg-[#E1E1E1] shadow-lg pb-[40px] mt-[20px] rounded-lg">
                 <div class="w-full bg-negro-menu text-center py-2 rounded-t-lg">
-                    <p class="text-fuente text-[20px]">Informacion del paciente</p>
+                    <p class="text-fuente text-[20px]">Informacion del Tratamiento</p>
                 </div>
                 <form action="{{ route('historia_odontologica_store', ['paciente_id' => $paciente->id]) }}" method="POST"
                     enctype="multipart/form-data">

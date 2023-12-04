@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CitaController;
@@ -71,6 +72,10 @@ Route::controller(HistoriaClinicaController::class)->group(function() {
 
 Route::controller(CitaController::class)->group(function() {
     Route::get('citas', 'index')->name('citas_index');
+});
+
+Route::controller(ReportesController::class)->group(function() {
+    Route::get('reportes', 'index')->name('reportes');
 });
 
 

@@ -103,9 +103,11 @@ class Create extends Component
         $hora_i =  Carbon::createFromFormat('h:i A', $this->hora_inicio);
         $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita) - 15);
         $horario_ocupado = false;
+
+        $hora_fin_confirguracion = Carbon::createFromFormat('h:i A', '1:00 PM');
   
         foreach($this->citas as $cita){
-            if(($hora_inicio->format('H:i:s') < $cita->hora_inicio && $hora_fin->format('H:i:s') >= $cita->hora_inicio) && $this->fecha == $cita->fecha){
+            if((($hora_inicio->format('H:i:s') < $cita->hora_inicio && $hora_fin->format('H:i:s') >= $cita->hora_inicio) && $this->fecha == $cita->fecha) || $hora_fin > $hora_fin_confirguracion){
                 $this->esconder_error ="";
                 $horario_ocupado = true;
             }

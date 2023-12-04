@@ -6,3 +6,5 @@ Solucion a error de los estilos de paginacion
 Desplegar formato de fecha en blade
  <span >{{\Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y')}}</span>
  
+Formato de carbon en vista blade
+    Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->format('d')

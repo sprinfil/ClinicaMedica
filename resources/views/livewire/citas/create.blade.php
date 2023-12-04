@@ -16,7 +16,7 @@
                         <p class="text-fuente-botones text-[20px] ">Agendar nueva cita</p>
                     </div>
                     <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center {{ $esconder_error }}">
-                        El horario para esta cita esta ocupado </div>
+                        El horario para esta cita esta ocupado o excede el horario laboral </div>
                     <form wire:submit="save">
                         <!--///////Contenedor del formulario (contenedor main)//////-->
                         @csrf

@@ -26,4 +26,9 @@ class Cita extends Model
     {
         return $this->hasOne(Paciente::class,'id','paciente');
     }
+
+    public function atiendee()
+    {
+        return $this->hasOne(Usuario::class,'id','atiende');
+    }
 }

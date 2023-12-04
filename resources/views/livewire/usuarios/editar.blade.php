@@ -9,11 +9,11 @@
             <div class="w-screen h-screen z-[30] absolute top-0 left-0 items-center justify-center flex">
         
                    <!--///////Contenedor del modal//////-->
-                <div class="bg-negro-menu rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-[700px]">
+                <div class="bg-fuente rounded-md overflow-auto md:w-[800px] w-full md:h-auto h-[700px]">
     
                       <!--///////Icono del modal (contenedor superior)//////-->
                       <div class="w-full h-[200px] flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-[150px] text-negro-fondo">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-[150px] text-[#AFB3B8]">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>                      
                       </div>
@@ -42,7 +42,7 @@
                                     <input type="password" class="input-pdv w-full text-[20px] mb-3 " placeholder="clave" name="clave" wire:model="clave">
                                     @error('clave')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
-                                    <p class="text-fuente mb-2">Puesto</p>
+                                    <p class="text-fuente-botones mb-2">Puesto</p>
                                     <select name="Puesto" class="input-pdv w-full text-[20px] mb-3" wire:model="Puesto">
                                         <option value="" >Seleccionar</option>
                                         <option value="Medico" >Medico</option>
@@ -50,7 +50,7 @@
                                     </select>
                                     @error('Puesto')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
-                                    <p class="text-fuente mb-2">Tipo de usuario</p>
+                                    <p class="text-fuente-botones mb-2">Tipo de usuario</p>
                                     <select name="Tipo" name="tipo" class="input-pdv w-full text-[20px] mb-3 " wire:model="Tipo">
                                         <option value="" >Seleccionar</option>
                                         <option value="Empleado" >Empleado</option>
@@ -62,7 +62,7 @@
                         
                         
                             <!--///////Botones (contenedor inferior)//////-->
-                            <div class="bg-negro-fondo w-full h-[100px] flex justify-end py-5 mt-[50px]">
+                            <div class="bg-fuente w-full h-[100px] flex justify-end py-5 mt-[50px]">
                                 <button class="btn-primary right-0 mr-5 bg-rojo" wire:click="cerrar"> Cancelar </button>
                                 <button class="btn-primary right-0 mr-5" type="submit"> Aceptar </button>
                             </div>

@@ -58,7 +58,7 @@
                 <tbody>
                     @foreach ($usuarios as $usuario)
                         <tr
-                        class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400">
+                        class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer">
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla" wire:click="editar({{ $usuario->id }})">

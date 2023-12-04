@@ -50,15 +50,12 @@
                             <th scope="col" class="px-6 py-3">
                                 Genero
                             </th>
-                            <th scope="col" class="px-6 py-3 text-right">
-
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($pacientes as $paciente)
                             <tr
-                                class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400">
+                                class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer">
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
@@ -83,10 +80,6 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
                                     <span>{{ $paciente->Genero }}</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="font-medium text-blue-600 dark:text-rojo hover:underline"
-                                        wire:click="eliminar({{ $paciente->id }})">Baja</button>
                                 </td>
                             </tr>
                         @endforeach

@@ -63,11 +63,12 @@ class Crear extends Component
         ];
         Paciente::create($data);
 
-        return redirect()->route('pacientes');
+        $this->cancel();
+        $this->dispatch('mount');
     }
 
     public function cancel(){
         $this->esconder = 'hidden';
-        return redirect()->route('pacientes');
+        $this->dispatch('mount');
     }
 }

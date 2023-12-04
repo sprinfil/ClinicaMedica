@@ -21,12 +21,13 @@
         </div>
 
         @if ($fecha != null)
-            <div class="w-full flex justify-center mt-[20px]">
-                <p class="text-[20px] uppercase">{{ $fecha->monthName }}</p>
-            </div>
-            <div class="w-full overflow-auto no-scrollbar" id="hijo">
+       
+            <div class="w-full overflow-auto no-scrollbar bg-principal rounded-md py-3 px-3  mt-[30px] shadow-lg" id="hijo">
+                <div class="w-full flex justify-center ">
+                    <p class="text-[20px] uppercase">{{ $fecha->monthName }}</p>
+                </div>
                 <div
-                    class="relative w-full grid grid-cols-9 mt-[20px] max-h-[600px] overflow-auto shadow-md min-w-[1000px] no-scrollbar">
+                    class="relative w-full grid grid-cols-9 mt-[20px]  h-full overflow-auto  min-w-[1000px] no-scrollbar">
                     <div>
                         <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md sticky-top h-[77px] bg-terciario text-fuente"
                             wire:click="retroceder_fecha">
@@ -60,17 +61,17 @@
                             @foreach ($horas as $hora)
                                 @if ($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][0] == 'ocupada')
                                     <div
-                                        class=" text-fuente  py-4 cursor-pointer hover:bg-[#205753]  ease-in duration-100 rounded-md  shadow-md max-h-[56px] h-[56px] @if($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][4] == 'confirmada') bg-green-800 @else bg-terciario @endif">
-                                        <div class="flex items-center justify-center">
+                                        class=" text-fuente  py-4 cursor-pointer   ease-in duration-100 rounded-md overflow-auto no-scrollbar shadow-md max-h-[56px] h-[56px] px-1 
+                                        @if($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][4] == 'confirmada') bg-green-800 hover:hover:bg-green-700 @else bg-terciario hover:bg-[#205753] @endif" 
+                                        wire:click="show_detalle({{ "'" . $hora . "'" }},{{ "'" . $dia->dayName . "'" }},{{ "'" . $dia->format('Y') . "'" }},{{ "'" . $dia->monthName . "'" }},{{ "'" . $dia->format('d') . "'" }},{{ "'" . $dia->format('Y-m-d') . "'" }}, {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][2] }})">
+                                        <div class="flex items-center justify-center  overflow-hidden text-center">
                                             <p class="text-[11px] ">
                                                 {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][1] }}</p>
                                         </div>
-                                        <div class="flex items-center justify-center overflow-hidden">
+                                        <div class="flex items-center justify-center overflow-hidden text-center">
                                             <p class="text-[11px]">
                                                 {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][3] }}</p>
                                         </div>
-
-
                                     </div>
                                 @else
                                     <div wire:click="show_create({{ "'" . $hora . "'" }},{{ "'" . $dia->dayName . "'" }},{{ "'" . $dia->format('Y') . "'" }},{{ "'" . $dia->monthName . "'" }},{{ "'" . $dia->format('d') . "'" }},{{ "'" . $dia->format('Y-m-d') . "'" }})"
@@ -170,7 +171,7 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla">
                                 <span>
-                                    {{ App\Models\Usuario::find($cita->atiende)->nombre }}
+                                    {{ $cita->atiendee->nombre }}
                                 </span>
                             </td>
                             <td scope="row"
@@ -185,7 +186,7 @@
                                 id="casilla">
                                 @if ($cita->confirmada)
                                     <div
-                                        class="bg-green-600 py-2 text-fuente rounded-md shadow-md cursor-pointer hover:bg-[#205753] transition ease-in-out delay-40 px-4">
+                                        class="bg-green-600 py-2 text-fuente rounded-md shadow-md cursor-pointer hover:bg-green-700 transition ease-in-out delay-40 px-4">
                                         Confirmada</div>
                                 @else
                                     <div
@@ -223,6 +224,7 @@
                 confirmButtonText: "Aceptar"
             }).then((result) => {
                 if (result.isConfirmed) {
+                    @this.dispatch('cerrar_detalle')
                     @this.dispatch('cancelar_cita_bd')
                     Swal.fire({
                         title: "Cancelado!",

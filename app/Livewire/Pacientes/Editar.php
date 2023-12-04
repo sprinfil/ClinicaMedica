@@ -5,6 +5,7 @@ namespace App\Livewire\Pacientes;
 use App\Models\Paciente;
 use DateTime;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 class Editar extends Component
 {
@@ -50,7 +51,7 @@ class Editar extends Component
 
     public function cerrar(){
         $this->esconder = 'hidden';
-        return redirect('pacientes');
+        $this->dispatch('mount');
     }
 
     public function save(){

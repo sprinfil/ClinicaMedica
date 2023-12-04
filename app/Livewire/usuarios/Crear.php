@@ -56,11 +56,11 @@ class Crear extends Component
 
         Usuario::create($validated);
 
-        return redirect('usuarios');
+       $this->cancel();
     }
 
     public function cancel(){
         $this->esconder = 'hidden';
-        return redirect('usuarios');
+        $this->dispatch('mount');
     }
 }

@@ -48,6 +48,13 @@ class Index extends Component
 
     }
 
+    public function actualizar(){
+        $this->actualizarFecha();
+        $this->config_horas();
+        $this->citas = Cita::All();
+        $this->fechas_ocupadas();
+    }
+
     //actualizar fecha al cambiar de fecha en el picker
     public function actualizarFecha()
     {
@@ -68,7 +75,7 @@ class Index extends Component
     {
         $this->fecha = new Carbon($this->FechaPicker);
         //$this->fecha = $this->fecha->addWeek();
-        $this->fecha = $this->fecha->addDays(2);
+        $this->fecha = $this->fecha->addDays(1);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -79,7 +86,7 @@ class Index extends Component
     {
         $this->fecha = new Carbon($this->FechaPicker);
         //$this->fecha = $this->fecha->subWeek();
-        $this->fecha = $this->fecha->subDays(2);
+        $this->fecha = $this->fecha->subDays(1);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -120,6 +127,7 @@ class Index extends Component
 
     public function fechas_ocupadas()
     {
+        $contador = 2;
         $ocupado = false;
         foreach ($this->dias as $dia) {
             if($this->horas){
@@ -138,7 +146,6 @@ class Index extends Component
                         }
                     }
                     if($ocupado){
-                        //$this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "ocupada";
                         $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'no'];
                         if($cita_temp->confirmada){
                             $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'confirmada'];
@@ -148,11 +155,13 @@ class Index extends Component
                     }
                     $ocupado = false;
                 }
+
             }
         }
       
     }
 
+    #[On('confirmar_cita_detalle')] 
     public function confirmar_cita($cita_id){
         $cita = Cita::find($cita_id);
         if($cita->confirmada){
@@ -163,7 +172,8 @@ class Index extends Component
         $cita->save();
         $this->refrescar_citas();
     }
-
+    
+    #[On('cancelar_cita_detalle')] 
     public function cancelar_cita($cita_id){
         $this->dispatch('cancelar_cita');
         $this->cita_eliminar = $cita_id;
@@ -173,13 +183,26 @@ class Index extends Component
     public function cancelar_cita_bd(){
         $cita = Cita::find($this->cita_eliminar);
         $cita->delete();
-        $this->mount();
+        $this->actualizar();
         $this->render();
     }
 
     #[On('refrescar_citas')] 
     public function refrescar_citas(){
-        $this->mount();
+        $this->actualizar();
         $this->render();
+    }
+
+    public function show_detalle($hora, $nombreDia, $year, $mes, $dia, $fecha, $cita_id)
+    {
+        $this->dispatch('show_detalle', data: [
+                                        'hora_inicio' => $hora, 
+                                        'nombreDia' => $nombreDia,
+                                        'year' => $year,
+                                        'mes' => $mes,
+                                        'dia' => $dia,
+                                        'fecha'=>$fecha,
+                                        'cita_id'=>$cita_id,
+                                    ]);
     }
 }

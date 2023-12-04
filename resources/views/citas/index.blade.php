@@ -7,4 +7,5 @@
 @section('contenido')
     @livewire('citas.index')
     @livewire('citas.create')
+    @livewire('citas.detalle')
 @endsection
