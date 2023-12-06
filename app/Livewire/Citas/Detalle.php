@@ -43,8 +43,8 @@ class Detalle extends Component
         $this->fecha = $data['fecha'];
         $this->cita = Cita::find($data['cita_id']);
         $this->paciente = $this->cita->pacientee->getFullNombre($this->cita->pacientee->id);
-        $this->hora_inicio = Carbon::createFromFormat('h:i:s', $this->cita->hora_inicio)->format('h:i A');
-        $this->hora_fin = Carbon::createFromFormat('h:i:s', $this->cita->hora_fin)->addMinutes(15)->format('h:i A');
+        $this->hora_inicio = Carbon::createFromFormat('H:i:s', $this->cita->hora_inicio)->format('h:i A');
+        $this->hora_fin = Carbon::createFromFormat('H:i:s', $this->cita->hora_fin)->addMinutes(15)->format('h:i A');
         $this->atiende = $this->cita->atiendee->nombre;
         $this->tratamiento = $this->cita->tratamiento;
     }

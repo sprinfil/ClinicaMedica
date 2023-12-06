@@ -6,16 +6,16 @@
 
 @section('contenido')
     <div class="flex justify-center items-center h-screen">
-        <div class="w-[300px] flex justify-center items-center bg-negro-menu rounded-3xl md:w-[600px] py-9">
-            <div class="flex flex-col items-center justify-center">
+        <div class="w-full flex justify-center items-center bg-principal rounded-3xl md:w-[800px] py-9 h-[700px] shadow-lg">
+            <div class="flex flex-col items-center justify-center w-[70%] ">
                 <div>
                         <img  src="images/logo.png" alt="" class="w-[200px]">
                 </div>                    
                 <div>
-                    <h2 class="text-2xl text-white font-semibold my-10 mx-2 text-[30px]">BIENVENIDO</h2>
+                    <h2 class="text-2xl text-fuente-botones font-semibold my-10 mx-2 text-[30px]">BIENVENIDO</h2>
                 </div>
 
-                <div>
+                <div class="w-full">
                     <form method="POST" action="{{ route('login') }}" class="flex flex-col items-center justify-center" novalidate>
                         @csrf     
                         
@@ -27,13 +27,13 @@
             
 
                         <!-- INPUT usuario-->
-                        <div class="mb-5">
+                        <div class="mb-5 w-[100%] ">
                             <input 
                                 id="usuario"
                                 name="usuario"
                                 type="text"
                                 placeholder="usuario"
-                                class="input-pdv w-[100%] text-[20px] @error('usuario')
+                                class="input-pdv w-[100%] text-[20px]  @error('usuario')
                                 border-red-500
                                 @enderror"
                                 value="{{old('usuario')}}" 
@@ -44,7 +44,7 @@
                         </div>
                         
                         <!-- INPUT clave-->
-                        <div class="mb-5">
+                        <div class="mb-5 w-[100%] ">
                             <input 
                                 id="password"
                                 name="clave"
@@ -62,7 +62,7 @@
                         <input 
                             type="submit"
                             value="Ingresar"
-                            class=" btn-primary mb-4 w-[100%]"
+                            class=" btn-primary mb-4 w-[100%] mt-[40px] cursor-pointer"
                         />
                     </form>
                 </div>

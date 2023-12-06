@@ -24,7 +24,7 @@
                         <button class="btn-primary mt-[10px] {{ $greenClass }}"
                             @if ($edit == true) @class(['bg-green-200']) @endif
                             wire:click="toggleEdicion">{{ $lblBoton }}</button>
-                        <button class="btn-primary mt-[10px]  bg-rojo"
+                        <button class="btn-primary-red mt-[10px]  "
                             wire:click = "TratamientoEliminar">Eliminar</button>
                     @endif
                 </div>

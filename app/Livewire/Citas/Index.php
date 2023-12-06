@@ -29,7 +29,16 @@ class Index extends Component
     
         $citas_ordenadas = Cita::orderby('fecha','asc')
         ->orderby('hora_inicio','asc')
-        ->where('fecha','>=',Carbon::now()->toDateString())->paginate(10);
+        ->where('fecha','>',Carbon::now()->toDateString())
+        ->orWhere(function ($query){
+            $query->where('fecha', '>=', Carbon::now()->toDateString())
+            ->where('hora_fin', '>', Carbon::now()->format('H:i:s'));
+        })
+        ->paginate(10);
+
+//dd($citas_ordenadas);
+
+
 
         
         return view('livewire.citas.index',compact('citas_ordenadas'));
@@ -101,12 +110,12 @@ class Index extends Component
         }
     }
 
-    //configurar hotas
+    //configurar horas
     public function config_horas()
     {
         $ctr = 0;
-        $hora_inicial = Carbon::createFromTime(9, 0, 0); //7:00am
-        $hora_fin = Carbon::createFromTime(13, 0, 0); //3:00pm
+        $hora_inicial = Carbon::createFromTime(9, 0, 0); //9:00am
+        $hora_fin = Carbon::createFromTime(13, 0, 0); //1:00pm
 
         while ($hora_inicial <= $hora_fin) {
             $this->horas[$ctr] = $hora_inicial->format('h:i A');
@@ -146,9 +155,9 @@ class Index extends Component
                         }
                     }
                     if($ocupado){
-                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'no'];
+                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->getFullNombre($cita_temp->pacientee->id), $cita_temp->id, $cita_temp->tratamiento,'no'];
                         if($cita_temp->confirmada){
-                            $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id, $cita_temp->tratamiento,'confirmada'];
+                            $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->getFullNombre($cita_temp->pacientee->id), $cita_temp->id, $cita_temp->tratamiento,'confirmada'];
                         }
                     }else{
                         $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "disponible";

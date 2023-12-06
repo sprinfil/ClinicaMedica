@@ -89,7 +89,7 @@
                         
                             <!--///////Botones (contenedor inferior)//////-->
                             <div class="bg-fuente w-full h-[100px] flex justify-end py-5"> 
-                                <div class="btn-primary right-0 mr-5 bg-rojo flex justify-center items-center cursor-pointer" wire:click="cancel"><p>Cancelar</p></div>
+                                <div class="btn-primary-red right-0 mr-5  flex justify-center items-center cursor-pointer" wire:click="cancel"><p>Cancelar</p></div>
                                 <button class="btn-primary right-0 mr-5" type="submit"> Aceptar </button>
                             </div>
                     </form>

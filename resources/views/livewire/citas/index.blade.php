@@ -29,10 +29,10 @@
                 <div
                     class="relative w-full grid grid-cols-9 mt-[20px]  h-full overflow-auto  min-w-[1000px] no-scrollbar">
                     <div>
-                        <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md sticky-top h-[77px] bg-terciario text-fuente"
+                        <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md sticky-top h-[77px] "
                             wire:click="retroceder_fecha">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                stroke-width="1.5" stroke="currentColor" class="w-9 h-9">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                             </svg>
                         </div>
@@ -84,10 +84,10 @@
                     @endforeach
                     <div class="container">
                         <div class="sticky-top">
-                            <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md h-[77px] bg-terciario"
+                            <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md h-[77px] bg-principal text-fuente-botones"
                                 wire:click ="avanzar_fecha">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-10 h-6 text-fuente">
+                                    stroke-width="1.5" stroke="currentColor" class="w-9 h-9 ">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                 </svg>
@@ -146,7 +146,7 @@
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla">
-                                <span>{{ Carbon\Carbon::createFromFormat('H:i:s', $cita->hora_inicio)->format('h:i A') }}</span>
+                                <span>{{ Carbon\Carbon::createFromFormat('H:i:s', $cita->hora_inicio)->format('h:i A') }} - {{ Carbon\Carbon::createFromFormat('H:i:s', $cita->hora_fin)->addMinutes(15)->format('h:i A') }}</span>
                             </td>
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
