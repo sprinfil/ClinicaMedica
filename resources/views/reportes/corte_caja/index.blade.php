@@ -1,9 +1,9 @@
 @extends('layouts.principal')
 
 @section('titulo')
-    Reportes
+    Corte
 @endsection
 
 @section('contenido')
-    @livewire('reportes.index')
+    @livewire('reportes.corte_caja.index')
 @endsection

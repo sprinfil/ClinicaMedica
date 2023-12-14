@@ -21,7 +21,7 @@ class HistorialMedico extends Component
             $query->where(DB::raw("CONCAT(nombre, ' ',apellido_1, ' ', apellido_2)"), 'LIKE', '%' . $this->filtroNombre . '%');
         }
 
-        $pacientes = $query->orderBy('id')->paginate(5);
+        $pacientes = $query->orderBy('id')->paginate(10);
         
         return view('livewire.historials.historial-medico', ['pacientes' => $pacientes]);
     }

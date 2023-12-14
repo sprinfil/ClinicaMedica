@@ -79,11 +79,11 @@
                         <!--///////Botones (contenedor inferior)//////-->
                         <div class="bg-fuente w-full h-[80px] flex justify-end py-3">
 
-                            <p class="btn-primary right-0 mr-2 bg-rojo items-center flex cursor-pointer text-fuente"
+                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
                                 wire:click="salir">Volver</p>
-                            <p class="btn-primary right-0 mr-2 bg-rojo items-center flex cursor-pointer text-fuente"
+                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
                             wire:click="cancelar_cita">Cancelar / Finalizar Cita</p>
-                            <p class="btn-primary right-0 mr-2 bg-terciario items-center flex cursor-pointer text-fuente"
+                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer "
                             wire:click="confirmar_cita">@if($cita->confirmada) Confirmada @else Confirmar @endif</p>
                         </div>
                     </form>

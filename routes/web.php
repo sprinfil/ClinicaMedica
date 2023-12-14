@@ -75,7 +75,7 @@ Route::controller(CitaController::class)->group(function() {
 });
 
 Route::controller(ReportesController::class)->group(function() {
-    Route::get('reportes', 'index')->name('reportes');
+    Route::get('reportes', 'corte_caja_index')->name('corte_caja');
 });
 
 

@@ -44,6 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($tratamientos)
                     @foreach ($tratamientos as $tratamiento)
                         <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer"
                             wire:click="editar({{ $tratamiento->id }})">
@@ -74,6 +75,8 @@
                             </td>
                         </tr>
                     @endforeach
+                    @endif
+
                 </tbody>
             </table>
             {{ $tratamientos->links() }}

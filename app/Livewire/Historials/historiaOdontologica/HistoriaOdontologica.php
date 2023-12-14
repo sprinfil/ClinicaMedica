@@ -19,7 +19,7 @@ class HistoriaOdontologica extends Component
 
     public function render()
     {   
-        $tratamientos = Tratamiento::where('paciente_id',$this->paciente->id)->orderby('fecha','desc')->paginate(8);
+        $tratamientos = Tratamiento::where('paciente_id',$this->paciente->id)->orderby('fecha','desc')->paginate(10);
         return view('livewire.historials.historiaOdontologica.historia-odontologica',compact('tratamientos'));
     }
     public function mount($paciente_id){
