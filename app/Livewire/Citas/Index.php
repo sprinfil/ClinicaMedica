@@ -6,8 +6,9 @@ use DateTime;
 use Carbon\Carbon;
 use App\Models\Cita;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\On; 
+use Livewire\WithPagination;
+use App\Models\Configuracion;
 
 class Index extends Component
 {
@@ -114,8 +115,14 @@ class Index extends Component
     public function config_horas()
     {
         $ctr = 0;
-        $hora_inicial = Carbon::createFromTime(9, 0, 0); //9:00am
-        $hora_fin = Carbon::createFromTime(13, 0, 0); //1:00pm
+        //$hora_inicial = Carbon::createFromTime(9, 0, 0); //9:00am
+        //$hora_fin = Carbon::createFromTime(13, 0, 0); //1:00pm
+        $configuracion = Configuracion::first();
+
+        $hora_inicial = Carbon::createFromFormat('H:i:s', $configuracion->horario_inicio);
+        $hora_fin = Carbon::createFromFormat('H:i:s', $configuracion->horario_final);
+
+
 
         while ($hora_inicial <= $hora_fin) {
             $this->horas[$ctr] = $hora_inicial->format('h:i A');

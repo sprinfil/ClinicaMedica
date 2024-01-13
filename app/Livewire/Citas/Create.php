@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use Livewire\Component;
 use App\Models\Paciente;
 use Livewire\Attributes\On; 
+use App\Models\Configuracion;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -104,7 +105,10 @@ class Create extends Component
         $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita) - 15);
         $horario_ocupado = false;
 
-        $hora_fin_confirguracion = Carbon::createFromFormat('h:i A', '1:00 PM');
+        $configuracion = Configuracion::first();
+
+        //$hora_fin_confirguracion = Carbon::createFromFormat('H:i:s', '1:00 PM');
+        $hora_fin_confirguracion = Carbon::createFromFormat('H:i:s', $configuracion->horario_final);
   
         foreach($this->citas as $cita){
             if((($hora_inicio->format('H:i:s') < $cita->hora_inicio && $hora_fin->format('H:i:s') >= $cita->hora_inicio) && $this->fecha == $cita->fecha) || $hora_fin > $hora_fin_confirguracion){
