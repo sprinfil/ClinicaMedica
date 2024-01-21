@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On; 
 class Usuarios extends Component
 {
 
@@ -24,6 +25,13 @@ class Usuarios extends Component
         $usuarios = $query->orderBy('id')->paginate(8);
         return view('livewire.usuarios.usuarios',compact('usuarios'));
     }
+
+    #[On('mount')] 
+    public function mount(){
+
+    }
+
+ 
 
     public function editar($usuario_id){
         $this->dispatch('editar', ['usuario' => $usuario_id]);

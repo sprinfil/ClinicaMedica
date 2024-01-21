@@ -4,6 +4,7 @@ namespace App\Livewire\Usuarios;
 
 use App\Models\Usuario;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 
 class Editar extends Component
@@ -41,7 +42,7 @@ class Editar extends Component
 
     public function cerrar(){
         $this->esconder = 'hidden';
-        return redirect('usuarios');
+        $this->dispatch('mount');
     }
 
     public function save(){
@@ -66,7 +67,7 @@ class Editar extends Component
     
             $this->usuario_objeto->save();
     
-            Editar::cerrar();
+            $this->cerrar();
         }
         else{
             //Modificar clave
@@ -91,7 +92,7 @@ class Editar extends Component
     
             $this->usuario_objeto->save();
     
-            Editar::cerrar();
+            $this->cerrar();
         }
 
     }

@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use Livewire\Component;
 use App\Models\Paciente;
 use Livewire\Attributes\On; 
+use App\Models\Configuracion;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -70,8 +71,12 @@ class Create extends Component
         $this->dia = $data['dia'];
         $this->fecha = $data['fecha'];
         $this->duracion_cita = "60";
-        $this->selected_paciente = $this->pacientes->first()->id;
-        $this->selected_atiende = $this->medicos->first()->id;
+        if(count($this->pacientes) > 0){
+            $this->selected_paciente = $this->pacientes->first()->id;
+        }
+        if(count($this->medicos) > 0){
+            $this->selected_atiende = $this->medicos->first()->id;
+        }
         $this->citas = Cita::all();
         $this->esconder_error ="hidden";
     }
@@ -97,11 +102,16 @@ class Create extends Component
 
         $hora_inicio = Carbon::createFromFormat('h:i A', $this->hora_inicio);
         $hora_i =  Carbon::createFromFormat('h:i A', $this->hora_inicio);
-        $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita));
+        $hora_fin = $hora_i->addMinutes(intval($this->duracion_cita) - 15);
         $horario_ocupado = false;
+
+        $configuracion = Configuracion::first();
+
+        //$hora_fin_confirguracion = Carbon::createFromFormat('H:i:s', '1:00 PM');
+        $hora_fin_confirguracion = Carbon::createFromFormat('H:i:s', $configuracion->horario_final);
   
         foreach($this->citas as $cita){
-            if(($hora_inicio->format('H:i:s') < $cita->hora_inicio && $hora_fin->format('H:i:s') >= $cita->hora_inicio) && $this->fecha == $cita->fecha){
+            if((($hora_inicio->format('H:i:s') < $cita->hora_inicio && $hora_fin->format('H:i:s') >= $cita->hora_inicio) && $this->fecha == $cita->fecha) || $hora_fin > $hora_fin_confirguracion){
                 $this->esconder_error ="";
                 $horario_ocupado = true;
             }

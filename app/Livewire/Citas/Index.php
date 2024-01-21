@@ -6,8 +6,9 @@ use DateTime;
 use Carbon\Carbon;
 use App\Models\Cita;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\On; 
+use Livewire\WithPagination;
+use App\Models\Configuracion;
 
 class Index extends Component
 {
@@ -29,7 +30,16 @@ class Index extends Component
     
         $citas_ordenadas = Cita::orderby('fecha','asc')
         ->orderby('hora_inicio','asc')
-        ->where('fecha','>=',Carbon::now()->toDateString())->paginate(10);
+        ->where('fecha','>',Carbon::now()->toDateString())
+        ->orWhere(function ($query){
+            $query->where('fecha', '>=', Carbon::now()->toDateString())
+            ->where('hora_fin', '>', Carbon::now()->format('H:i:s'));
+        })
+        ->paginate(10);
+
+//dd($citas_ordenadas);
+
+
 
         
         return view('livewire.citas.index',compact('citas_ordenadas'));
@@ -46,6 +56,13 @@ class Index extends Component
         $this->fechas_ocupadas();
         //dd($this->citas_disponibles_ocupadas);
 
+    }
+
+    public function actualizar(){
+        $this->actualizarFecha();
+        $this->config_horas();
+        $this->citas = Cita::All();
+        $this->fechas_ocupadas();
     }
 
     //actualizar fecha al cambiar de fecha en el picker
@@ -67,7 +84,8 @@ class Index extends Component
     public function avanzar_fecha()
     {
         $this->fecha = new Carbon($this->FechaPicker);
-        $this->fecha = $this->fecha->addWeek();
+        //$this->fecha = $this->fecha->addWeek();
+        $this->fecha = $this->fecha->addDays(1);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -77,7 +95,8 @@ class Index extends Component
     public function retroceder_fecha()
     {
         $this->fecha = new Carbon($this->FechaPicker);
-        $this->fecha = $this->fecha->subWeek();
+        //$this->fecha = $this->fecha->subWeek();
+        $this->fecha = $this->fecha->subDays(1);
         $this->FechaPicker = $this->fecha->format('Y-m-d');
         $this->mostrar_dias($this->fecha);
         $this->fechas_ocupadas();
@@ -92,12 +111,18 @@ class Index extends Component
         }
     }
 
-    //configurar hotas
+    //configurar horas
     public function config_horas()
     {
         $ctr = 0;
-        $hora_inicial = Carbon::createFromTime(7, 0, 0); //7:00am
-        $hora_fin = Carbon::createFromTime(15, 0, 0); //3:00pm
+        //$hora_inicial = Carbon::createFromTime(9, 0, 0); //9:00am
+        //$hora_fin = Carbon::createFromTime(13, 0, 0); //1:00pm
+        $configuracion = Configuracion::first();
+
+        $hora_inicial = Carbon::createFromFormat('H:i:s', $configuracion->horario_inicio);
+        $hora_fin = Carbon::createFromFormat('H:i:s', $configuracion->horario_final);
+
+
 
         while ($hora_inicial <= $hora_fin) {
             $this->horas[$ctr] = $hora_inicial->format('h:i A');
@@ -118,6 +143,7 @@ class Index extends Component
 
     public function fechas_ocupadas()
     {
+        $contador = 2;
         $ocupado = false;
         foreach ($this->dias as $dia) {
             if($this->horas){
@@ -136,18 +162,22 @@ class Index extends Component
                         }
                     }
                     if($ocupado){
-                        //$this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "ocupada";
-                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->nombre, $cita_temp->id];
+                        $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->getFullNombre($cita_temp->pacientee->id), $cita_temp->id, $cita_temp->tratamiento,'no'];
+                        if($cita_temp->confirmada){
+                            $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = ['ocupada', $cita_temp->pacientee->getFullNombre($cita_temp->pacientee->id), $cita_temp->id, $cita_temp->tratamiento,'confirmada'];
+                        }
                     }else{
                         $this->citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora] = "disponible";
                     }
                     $ocupado = false;
                 }
+
             }
         }
       
     }
 
+    #[On('confirmar_cita_detalle')] 
     public function confirmar_cita($cita_id){
         $cita = Cita::find($cita_id);
         if($cita->confirmada){
@@ -155,10 +185,11 @@ class Index extends Component
         }else{
             $cita->confirmada = true;
         }
-
         $cita->save();
+        $this->refrescar_citas();
     }
-
+    
+    #[On('cancelar_cita_detalle')] 
     public function cancelar_cita($cita_id){
         $this->dispatch('cancelar_cita');
         $this->cita_eliminar = $cita_id;
@@ -168,13 +199,26 @@ class Index extends Component
     public function cancelar_cita_bd(){
         $cita = Cita::find($this->cita_eliminar);
         $cita->delete();
-        $this->mount();
+        $this->actualizar();
         $this->render();
     }
 
     #[On('refrescar_citas')] 
     public function refrescar_citas(){
-        $this->mount();
+        $this->actualizar();
         $this->render();
+    }
+
+    public function show_detalle($hora, $nombreDia, $year, $mes, $dia, $fecha, $cita_id)
+    {
+        $this->dispatch('show_detalle', data: [
+                                        'hora_inicio' => $hora, 
+                                        'nombreDia' => $nombreDia,
+                                        'year' => $year,
+                                        'mes' => $mes,
+                                        'dia' => $dia,
+                                        'fecha'=>$fecha,
+                                        'cita_id'=>$cita_id,
+                                    ]);
     }
 }

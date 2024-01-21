@@ -33,9 +33,9 @@
                 </div>
             </div>
 
-            <div class="h-full py-4 bg-terciario shadow-lg pb-[40px] mt-[20px] rounded-lg">
+            <div class="h-full py-4 bg-principal shadow-lg pb-[40px] mt-[20px] rounded-lg">
 
-                <p class="text-fuente ml-[30px] mb-[30px]">Agregar Imagen (Odontológica)</p>
+                <p class="text-fuente-botones ml-[30px] mb-[30px]">Agregar Imagen (Odontológica)</p>
 
 
                 <form
@@ -43,7 +43,7 @@
                     class="dropzone mx-[30px] rounded-md" id="my-awesome-dropzone">
                 </form>
 
-                <p class="text-fuente ml-[30px] mb-[30px] mt-[30px]">Agregar Imagen (Radiografía)</p>
+                <p class="text-fuente-botones ml-[30px] mb-[30px] mt-[30px]">Agregar Imagen (Radiografía)</p>
 
 
                 <form

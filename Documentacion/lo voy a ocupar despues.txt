@@ -1,0 +1,27 @@
+        Es el contenedor que tiene dos columnas y en la primera tiene para seleccionar un perioso
+        
+        <div class="grid grid-cols-2 mt-[20px]">
+
+            <!--Primera Columna-->
+            <div class="bg-principal px-4 py-4 rounded-md shadow-md">
+                <p class="text-[20px] ml-[9px]">PERIODO</p>
+
+                <div class="px-1 py-1">
+                    <p>del</p>
+                    <input type="date" name="" id="inputDate" class="input-pdv w-full" wire:model="FechaPickerInicial"
+                        wire:change="actualizarFecha">
+                </div>
+
+                <div class="px-1 py-1">
+                    <p>al</p>
+                    <input type="date" name="" id="inputDate" class="input-pdv w-full" wire:model="FechaPickerFinal"
+                        wire:change="actualizarFecha">
+                </div>
+
+
+            </div>
+            <!--Segunda Columna-->
+            <div>
+
+            </div>
+        </div>

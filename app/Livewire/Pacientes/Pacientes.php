@@ -7,11 +7,13 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On; 
 
 class Pacientes extends Component
 {
     use WithPagination;
     public $filtroNombre = '';
+
 
     
 
@@ -26,6 +28,11 @@ class Pacientes extends Component
         $pacientes = $query->orderBy('id')->paginate(8);
     
         return view('livewire.pacientes.pacientes', compact('pacientes'));
+    }
+
+    #[On('mount')] 
+    public function mount(){
+    
     }
     
     public function actualizarFiltroNombre()

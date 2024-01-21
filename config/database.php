@@ -14,6 +14,7 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
+    'timezone'  => '+00:00',
 
     'default' => env('DB_CONNECTION', 'mysql'),
 

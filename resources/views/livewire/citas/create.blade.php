@@ -16,7 +16,7 @@
                         <p class="text-fuente-botones text-[20px] ">Agendar nueva cita</p>
                     </div>
                     <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center {{ $esconder_error }}">
-                        El horario para esta cita esta ocupado </div>
+                        El horario para esta cita esta ocupado o excede el horario laboral </div>
                     <form wire:submit="save">
                         <!--///////Contenedor del formulario (contenedor main)//////-->
                         @csrf
@@ -116,7 +116,7 @@
 
                         <!--///////Botones (contenedor inferior)//////-->
                         <div class="bg-fuente w-full h-[80px] flex justify-end py-3">
-                            <p class="btn-primary right-0 mr-5 bg-rojo items-center flex cursor-pointer"
+                            <p class="btn-primary-red right-0 mr-5  items-center flex cursor-pointer"
                                 wire:click="salir">Cancelar</p>
                             <button class="btn-primary right-0 mr-5" type="submit"> Aceptar </button>
                         </div>
