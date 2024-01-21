@@ -119,8 +119,8 @@ class Index extends Component
         //$hora_fin = Carbon::createFromTime(13, 0, 0); //1:00pm
         $configuracion = Configuracion::first();
 
-        $hora_inicial = Carbon::createFromFormat('H:i:s', $configuracion->horario_inicio);
-        $hora_fin = Carbon::createFromFormat('H:i:s', $configuracion->horario_final);
+        $hora_inicial = Carbon::createFromFormat('H:i:s', $configuracion->horario_inicio ?? '00:00:00');
+        $hora_fin = Carbon::createFromFormat('H:i:s', $configuracion->horario_final ?? '00:00:00');
 
 
 
