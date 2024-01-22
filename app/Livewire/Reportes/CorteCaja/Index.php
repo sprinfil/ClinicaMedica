@@ -18,8 +18,12 @@ class Index extends Component
     public function render()
     {
         $cortes = Corte::orderby('fecha','desc')->paginate(10);
+
+
         if($this->selected_corte){
             $tratamientos = Tratamiento::whereDate('fecha',$this->selected_corte->fecha)->get();
+        }else{
+            $tratamientos = null;
         }
         return view('livewire.reportes.corte_caja.index',compact('tratamientos','cortes'));
     }

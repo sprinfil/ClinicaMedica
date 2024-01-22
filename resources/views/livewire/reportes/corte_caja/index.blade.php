@@ -14,6 +14,7 @@
             </div>
         </div>
 
+        @if($selected_corte != null)
         <div class="grid grid-cols-2 mt-[25px] ">
             <!--Primera Columna-->
             <div class="px-3">
@@ -192,6 +193,13 @@
 
 
         </div>
+        @else
+        <p class="mt-[30px] text-[20px]">
+            aun no hay cortes.
+        </p>
+        @endif
+
+        
 
     </div>
 </div>
