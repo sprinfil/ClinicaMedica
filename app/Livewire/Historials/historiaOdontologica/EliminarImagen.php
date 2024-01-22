@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Historials\historiaOdontologica;
+namespace App\Livewire\Historials\HistoriaOdontologica;
 
 use App\Models\Imagen;
 use Livewire\Component;
