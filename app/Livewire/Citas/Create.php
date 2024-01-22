@@ -118,7 +118,6 @@ class Create extends Component
         }
 
 
-
         if(!$horario_ocupado){
             $data = [
                 'fecha'=> $this->fecha,
@@ -127,7 +126,7 @@ class Create extends Component
                 'tratamiento' => $this->tratamiento,
                 'hora_inicio'=> $hora_inicio->format('H:i:s'),
                 'hora_fin'=> $hora_fin->format('H:i:s'),
-                'agendo' => '1',
+                'agendo' =>  session('usuario')->id,
             ];
     
             Cita::create($data);
