@@ -10,7 +10,7 @@
     <a href="{{ route('home') }}">
         <!--Icono-->
         <div
-            class=" items-center  text-fuente-botones ml-[10px] bg-lime-500 rounded-md cursor-pointer shadow-md py-1 px-3 hidden lg:flex">
+            class=" items-center  text-fuente-botones ml-[10px] bg-lime-500 hover:bg-lime-600 transition ease-in-out rounded-md cursor-pointer shadow-md py-1 px-3 flex">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 text-fuente-botones  mr-[10px]">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,7 +21,8 @@
 
     </a>
 
-    <a href="{{ route('pacientes') }}">
+    <!--
+        <a href="{{ route('pacientes') }}">
         <div
             class=" items-center  text-fuente-botones ml-[10px] bg-indigo-400 rounded-md cursor-pointer shadow-md py-1 px-3 hidden lg:flex">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -32,7 +33,9 @@
             PACIENTES
         </div>
     </a>
+    -->
 
+<!--
     <a href="{{ route('historial_medico') }}">
         <div
             class=" items-center  text-fuente-botones ml-[10px] bg-amber-500 rounded-md cursor-pointer shadow-md py-1 px-3 hidden lg:flex">
@@ -44,7 +47,9 @@
             EXPEDIENTES
         </div>
     </a>
+-->
 
+<!--
     <a href="{{ route('citas_index') }}">
         <div
             class=" items-center  text-fuente-botones ml-[10px] bg-teal-500  rounded-md cursor-pointer shadow-md py-1 px-3 hidden lg:flex">
@@ -55,13 +60,14 @@
             </svg>
             CITAS
         </div>
-
     </a>
+-->
+
 
 
     <!--NOMBRE DEL SISTEMA-->
     <div class = "w-full text-center  hidden lg:block">
-        <p class="text-fuente ">Clinica Odontologa</p>
+        <p class="text-fuente "></p>
     </div>
 
     <!--Usuario-->
