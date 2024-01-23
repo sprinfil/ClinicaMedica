@@ -1,0 +1,113 @@
+@extends('layouts.principal')
+
+@section('titulo')
+    Home
+@endsection
+
+@section('contenido')
+  <!--navegacion superior-->
+ <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
+    <a href="{{route('home')}}" class="underline text-blue-500">Home</a> 
+</div>
+<div class="mx-2 md:mx-[60px] mt-[20px]">
+    <!--Cabecera-->
+    <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden">
+        <div class="mx-[10px] md:mx-[50px]  justify-between">
+            <p class="text-fuente text-[40px] mb-[20px]">HOME</p>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-center  mt-[60px]">
+        <p class="text-fuente-botones text-[20px]">CITAS CONFIRMADAS</p>
+    </div>
+    
+    <a href="{{ route('citas_index') }}">
+        <div
+            class=" items-center  text-fuente-botones ml-[10px] bg-teal-500  rounded-md cursor-pointer shadow-md py-3 px-5 flex w-[200px]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 text-fuente-botones  mr-[10px]">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+            </svg>
+            VER CITAS
+        </div>
+    </a>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar">
+        <table class="w-full text-sm text-left text-fuente dark:text-fuente">
+            <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        FECHA
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        HORA
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        PACIENTE
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        NUMERO
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        ATIENDE
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($citas_ordenadas as $cita)
+                    <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 ">
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <span>{{ Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->format('d') }} de
+                                {{ Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->monthName }} del
+                                {{ Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->format('Y') }}
+                                @if (Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->format('Y-m-d') == Carbon\Carbon::now()->toDateString())
+                                    (HOY)
+                                @endif
+                            </span>
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <span>{{ Carbon\Carbon::createFromFormat('H:i:s', $cita->hora_inicio)->format('h:i A') }} - {{ Carbon\Carbon::createFromFormat('H:i:s', $cita->hora_fin)->addMinutes(15)->format('h:i A') }}</span>
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <span>
+                                {{ $cita->pacientee->getFullNombre($cita->pacientee->id) }}
+                            </span>
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <a href="tel:{{ $cita->pacientee->numero }}" class="">
+                            <div class="bg-fuente shadow-md flex items-center justify-center py-2 px-1 cursor-pointer hover:bg-[#ADB0B5] transition ease-in-out delay-50 rounded-md">
+                                {{ $cita->pacientee->numero }}
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9  text-green-600 bg-principal rounded-md p-1 h-9 ml-5 cursor-pointer">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                  </svg>
+                            </div>
+                        </a>
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <span>
+                                {{ $cita->atiendee->nombre }}
+                            </span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    
+    </div>
+
+</div>
+
+
+
+
+@endsection

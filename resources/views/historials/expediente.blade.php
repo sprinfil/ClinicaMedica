@@ -7,7 +7,7 @@
 @section('contenido')
     <!--navegacion superior-->
     <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
-        <a href="{{ route('historial_medico') }}" class="underline text-blue-500">Expedientes</a>
+        <a href="{{ route('pacientes') }}" class="underline text-blue-500">Pacientes</a>
         /
         <a href="" class="underline text-blue-500">{{ $paciente->getFullNombre($paciente->id) }}</a>
     </div>
