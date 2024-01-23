@@ -24,8 +24,8 @@
         <div class=" md:flex gap-x-4 mb-10">
             <div class="h-full py-4 bg-terciario shadow-lg mt-[20px]  rounded-lg mb-2">
                 <div class=" p-3 text-fuente">
+                    <h3 class="text-xl font-bold mb-4">¿Padece o ha padecido alguna de las siguientes enfermedades?</h3>
                     <div class="mb-2 md:mx-5">
-                        <h3 class="text-xl font-bold mb-4">Antecedentes Medicos</h3>
                         <div class=" flex flex-col p-2 w-4/5">
                             <!-- Antecedentes -->
                             <label class="my-2 flex justify-between">
@@ -83,6 +83,15 @@
                                 ¿Hace ejercicio o actividad fisica?
                                 <input type="checkbox" wire:model="ejercicio" class=" h-4 w-4">
                             </label>
+                            
+                            <label class="my-2 flex justify-between">
+                                ¿Ha estado bajo atenci&oacute;n medica en los &uacute;ltimos dos años?
+                            </label>
+                            <select name="atencion_medica" id="atencion_medica" class=" rounded-lg">
+                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n</option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                            </select>
                         </div>
                     </div>
                 </div>
