@@ -60,6 +60,26 @@
                                 Migraña
                                 <input type="checkbox" wire:model="migrana" class=" h-4 w-4">
                             </label>
+                            <label class="my-2 flex justify-between">
+                                Problemas Gastricos
+                                <input type="checkbox" wire:model="gastricos" class=" h-4 w-4">
+                            </label>
+                            <label class="my-2 flex justify-between">
+                                Problemas Renales
+                                <input type="checkbox" wire:model="renales" class=" h-4 w-4">
+                            </label>
+                            <label class="my-2 flex justify-between">
+                                Artritis
+                                <input type="checkbox" wire:model="artritis" class=" h-4 w-4">
+                            </label>
+                            <label class="my-2 flex justify-between">
+                                Epilepsia
+                                <input type="checkbox" wire:model="epilepsia" class=" h-4 w-4">
+                            </label>
+                            <label class="my-2 flex justify-between">
+                                C&aacute;ncer
+                                <input type="checkbox" wire:model="cancer" class=" h-4 w-4">
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -87,11 +107,50 @@
                             <label class="my-2 flex justify-between">
                                 ¿Ha estado bajo atenci&oacute;n medica en los &uacute;ltimos dos años?
                             </label>
-                            <select name="atencion_medica" id="atencion_medica" class=" rounded-lg">
-                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n</option>
+                            <select name="atencion_medica" wire:model="atencion_medica" wire:change="aplicar_cambios" id="atencion_medica" class=" rounded-lg text-gray-700 p-2">
+                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n--</option>
                                 <option value="SI">SI</option>
                                 <option value="NO">NO</option>
                             </select>
+                            @if ($atencion_medica == 'SI')
+                                <label for="porque_atencion_medica">¿Por qu&eacute; requiri&oacute; atenci&oacute;n medica?</label>
+                                <input type="text" id="porque_atencion_medica" wire:model="porque_atencion_medica" name="porque_atencion_medica" class=" rounded-lg text-gray-700 p-2">
+                            @endif
+                            
+                            <label class="my-2 flex justify-between">
+                                ¿Toma alg&uacute;n medicamento actualmente?
+                            </label>
+                            <select name="toma_medicamento" wire:model="toma_medicamento" id="toma_medicamento" class=" rounded-lg text-gray-700 p-2">
+                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n--</option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                            </select>
+
+                            <label class="my-2 flex justify-between">
+                                ¿Es al&eacute;rgico a alg&uacute;n medicamento?
+                            </label>
+                            <select name="es_alergico_medicamento" wire:model="es_alergico_medicamento" wire:change="aplicar_cambios" id="es_alergico_medicamento" class=" rounded-lg text-gray-700 p-2">
+                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n--</option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            @if ($es_alergico_medicamento == 'SI')
+                                <label for="cual_medicamento_alergico">¿A qu&eacute; medicamento es al&eacute;rgico?</label>
+                                <input type="text" id="cual_medicamento_alergico" wire:model="cual_medicamento_alergico" name="cual_medicamento_alergico" class=" rounded-lg text-gray-700 p-2">
+                            @endif
+
+                            <label class="my-2 flex justify-between">
+                                ¿Es al&eacute;rgico a alg&uacute;n alimento?
+                            </label>
+                            <select name="es_alergico_alimento" wire:model="es_alergico_alimento" wire:change="aplicar_cambios" id="es_alergico_alimento" class=" rounded-lg text-gray-700 p-2">
+                                <option value="0"  selected disabled>--Selecciona una opci&oacute;n--</option>
+                                <option value="SI">SI</option>
+                                <option value="NO">NO</option>
+                            </select>
+                            @if ($es_alergico_alimento == 'SI')
+                                <label for="cual_alimento_alergico">¿A qu&eacute; alimento es al&eacute;rgico?</label>
+                                <input type="text" id="cual_alimento_alergico" wire:model="cual_alimento_alergico" name="cual_alimento_alergico" class=" rounded-lg text-gray-700 p-2">
+                            @endif
                         </div>
                     </div>
                 </div>
