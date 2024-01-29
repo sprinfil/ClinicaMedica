@@ -54,4 +54,8 @@ class Usuario extends Model implements Authenticatable
     {
         return 'remember_token';
     }
+
+    static public function medicos(){
+        return Usuario::where('puesto','medico')->get();
+    }
 }

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
-            $table->string('tratamiento')->nullable();
             $table->dateTime('fecha')->nullable();
             $table->string('nota')->nullable();
-            $table->unsignedBigInteger('monto')->nullable();
+            $table->decimal('monto',8 ,2)->nullable();
             $table->string('metodo_pago')->nullable();
 
             $table->foreignId('usuario_id')->constrained();
