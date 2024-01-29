@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ConfiguracionController;
-use App\Http\Controllers\ReportesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\HomeController;
@@ -10,9 +9,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\subirImagenController;
+use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\HistoriaClinicaController;
 use App\Http\Controllers\HistoriaOdontologicaController;
 
@@ -67,10 +68,6 @@ Route::controller(subirImagenController::class)->group(function () {
     Route::post('historial-medico/historia-odontologica/subirRadiografia/{tratamiento_id}/{paciente_id}','store_radiografia')->name('historia_odontologica_radiografia_subir');
 });
 
-Route::controller(HistoriaClinicaController::class)->group(function() {
-    Route::get('historial-medico/historia-clinica/{paciente_id}', 'index')->name('historia-clinica');
-});
-
 Route::controller(CitaController::class)->group(function() {
     Route::get('citas', 'index')->name('citas_index');
 });
@@ -83,6 +80,13 @@ Route::controller(ConfiguracionController::class)->group(function() {
     Route::get('configuracion', 'index')->name('configuracion');
 });
 
+Route::controller(HistoriaClinicaController::class)->group(function() {
+    Route::get('historial-medico/historia-clinica/{paciente_id}', 'index')->name('historia-clinica');
+    
+    Route::controller(PdfController::class)->group(function () {
+        Route::get('historial-medico/historia-clinica/{paciente_id}/pdf','informacion_historia_clinica_paciente_pdf')->name('historia_clinica_paciente_pdf');
+    });
+});
 
 //ruta para limpiar el cache
 Route::get('/clear', function() {

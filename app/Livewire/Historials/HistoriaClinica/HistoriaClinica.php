@@ -125,27 +125,27 @@ class HistoriaClinica extends Component
     }
 
     public function pdf(){
-        dd('pdf...');
+        return redirect(route('historia_clinica_paciente_pdf', ['paciente_id' => $this->paciente->id]));
     }
 
     public function guardar(){
         if($this->historial){
-            $this->historial->Diabetes = $this->diabetes;
-            $this->historial->Tuberculosis = $this->tuberculosis;
-            $this->historial->Presion = $this->presion;
-            $this->historial->Hepatitis = $this->hepatitis;
-            $this->historial->Anemia = $this->anemia;
-            $this->historial->Asma = $this->asma;
-            $this->historial->Neumonia = $this->neumonia;
-            $this->historial->Migrana = $this->migrana;
-            $this->historial->Fuma = $this->fuma;
-            $this->historial->Alcohol = $this->alcohol;
-            $this->historial->Ejercicio = $this->ejercicio;
-            $this->historial->gastricos = $this->gastricos;
-            $this->historial->renales = $this->renales;
-            $this->historial->artritis = $this->artritis;
-            $this->historial->epilepsia = $this->epilepsia;
-            $this->historial->cancer = $this->cancer;
+            $this->historial->Diabetes = $this->diabetes ?? false;
+            $this->historial->Tuberculosis = $this->tuberculosis ?? false;
+            $this->historial->Presion = $this->presion ?? false;
+            $this->historial->Hepatitis = $this->hepatitis ?? false;
+            $this->historial->Anemia = $this->anemia ?? false;
+            $this->historial->Asma = $this->asma ?? false;
+            $this->historial->Neumonia = $this->neumonia ?? false;
+            $this->historial->Migrana = $this->migrana ?? false;
+            $this->historial->Fuma = $this->fuma ?? false;
+            $this->historial->Alcohol = $this->alcohol ?? false;
+            $this->historial->Ejercicio = $this->ejercicio ?? false;
+            $this->historial->gastricos = $this->gastricos ?? false;
+            $this->historial->renales = $this->renales ?? false;
+            $this->historial->artritis = $this->artritis ?? false;
+            $this->historial->epilepsia = $this->epilepsia ?? false;
+            $this->historial->cancer = $this->cancer ?? false;
             $this->historial->atencion_medica = $this->atencion_medica;
             if ($this->historial->atencion_medica == 'SI'){
                 $this->historial->porque_atencion_medica = $this->porque_atencion_medica;
