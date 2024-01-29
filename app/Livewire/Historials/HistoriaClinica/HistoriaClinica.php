@@ -27,6 +27,20 @@ class HistoriaClinica extends Component
     public $alcohol;
     public $ejercicio;
 
+    public $gastricos;
+    public $renales;
+    public $artritis;
+    public $epilepsia;
+    public $cancer;
+
+    public $atencion_medica = 'NO'; // Inicialización predeterminada
+    public $porque_atencion_medica = '';
+    public $toma_medicamento = 'NO';
+    public $es_alergico_medicamento = 'NO'; // Inicialización predeterminada
+    public $cual_medicamento_alergico = '';
+    public $es_alergico_alimento = 'NO'; // Inicialización predeterminada
+    public $cual_alimento_alergico = '';
+
     public function mount(){
         $this->paciente = Paciente::find($this->paciente_id);
         $this->historial = Historial::where('paciente_id', $this->paciente->id)->get()->first();
@@ -53,6 +67,31 @@ class HistoriaClinica extends Component
                 $this->alcohol = true;
             if($this->historial->Ejercicio == 1)
                 $this->ejercicio = true;
+            if($this->historial->gastricos == 1)
+                $this->gastricos = true;
+            if($this->historial->renales == 1)
+                $this->renales = true;
+            if($this->historial->artritis == 1)
+                $this->artritis = true;
+            if($this->historial->epilepsia == 1)
+                $this->epilepsia = true;
+            if($this->historial->cancer == 1)
+                $this->cancer = true;
+            if($this->historial->atencion_medica)
+                $this->atencion_medica = $this->historial->atencion_medica;
+            if($this->historial->porque_atencion_medica)
+                $this->porque_atencion_medica = $this->historial->porque_atencion_medica;
+            if($this->historial->toma_medicamento)
+                $this->toma_medicamento = $this->historial->toma_medicamento;
+            if($this->historial->es_alergico_medicamento)
+                $this->es_alergico_medicamento = $this->historial->es_alergico_medicamento;
+            if($this->historial->cual_medicamento_alergico)
+                $this->cual_medicamento_alergico = $this->historial->cual_medicamento_alergico;
+            if($this->historial->es_alergico_alimento)
+                $this->es_alergico_alimento = $this->historial->es_alergico_alimento;
+            if($this->historial->cual_alimento_alergico)
+                $this->cual_alimento_alergico = $this->historial->cual_alimento_alergico;
+
             
         }else{
             $this->diabetes = false;
@@ -64,33 +103,68 @@ class HistoriaClinica extends Component
             $this->migrana = false;
             $this->fuma = false;
             $this->alcohol = false;
-            $this->ejercicio = false;
+            $this->gastricos = false;
+            $this->renales = false;
+            $this->artritis = false;
+            $this->epilepsia = false;
+            $this->cancer = false;
+            $this->atencion_medica = 'NO';
+            $this->porque_atencion_medica = '';
+            $this->toma_medicamento = 'NO';
+            $this->es_alergico_medicamento = 'NO';
+            $this->cual_medicamento_alergico = '';
+            $this->es_alergico_alimento = 'NO';
+            $this->cual_alimento_alergico = '';
         }
     }
 
     public function render()
     {
+
         return view('livewire.historials.historia-clinica.historia-clinica');
     }
 
     public function pdf(){
-        dd('pdf...');
+        return redirect(route('historia_clinica_paciente_pdf', ['paciente_id' => $this->paciente->id]));
     }
 
     public function guardar(){
-        // dd($this->historial);
         if($this->historial){
-            $this->historial->Diabetes = $this->diabetes;
-            $this->historial->Tuberculosis = $this->tuberculosis;
-            $this->historial->Presion = $this->presion;
-            $this->historial->Hepatitis = $this->hepatitis;
-            $this->historial->Anemia = $this->anemia;
-            $this->historial->Asma = $this->asma;
-            $this->historial->Neumonia = $this->neumonia;
-            $this->historial->Migrana = $this->migrana;
-            $this->historial->Fuma = $this->fuma;
-            $this->historial->Alcohol = $this->alcohol;
-            $this->historial->Ejercicio = $this->ejercicio;
+            $this->historial->Diabetes = $this->diabetes ?? false;
+            $this->historial->Tuberculosis = $this->tuberculosis ?? false;
+            $this->historial->Presion = $this->presion ?? false;
+            $this->historial->Hepatitis = $this->hepatitis ?? false;
+            $this->historial->Anemia = $this->anemia ?? false;
+            $this->historial->Asma = $this->asma ?? false;
+            $this->historial->Neumonia = $this->neumonia ?? false;
+            $this->historial->Migrana = $this->migrana ?? false;
+            $this->historial->Fuma = $this->fuma ?? false;
+            $this->historial->Alcohol = $this->alcohol ?? false;
+            $this->historial->Ejercicio = $this->ejercicio ?? false;
+            $this->historial->gastricos = $this->gastricos ?? false;
+            $this->historial->renales = $this->renales ?? false;
+            $this->historial->artritis = $this->artritis ?? false;
+            $this->historial->epilepsia = $this->epilepsia ?? false;
+            $this->historial->cancer = $this->cancer ?? false;
+            $this->historial->atencion_medica = $this->atencion_medica;
+            if ($this->historial->atencion_medica == 'SI'){
+                $this->historial->porque_atencion_medica = $this->porque_atencion_medica;
+            } else {
+                $this->historial->porque_atencion_medica = '';
+            }
+            $this->historial->toma_medicamento = $this->toma_medicamento;
+            $this->historial->es_alergico_medicamento = $this->es_alergico_medicamento;
+            if ($this->historial->es_alergico_medicamento == 'SI')
+                $this->historial->cual_medicamento_alergico = $this->cual_medicamento_alergico;
+            else {
+                $this->historial->cual_medicamento_alergico = '';
+            }
+            if ($this->historial->es_alergico_alimento){
+                $this->historial->es_alergico_alimento = $this->es_alergico_alimento;
+            } else {
+                $this->historial->es_alergico_alimento = '';
+            }
+            $this->historial->cual_alimento_alergico = $this->cual_alimento_alergico;
             $this->historial->save();
         }else{
             Historial::create([
@@ -105,12 +179,28 @@ class HistoriaClinica extends Component
                 'Fuma' => $this->fuma,
                 'Alcohol' => $this->alcohol,
                 'Ejercicio' => $this->ejercicio,
+                'gastricos' => $this->gastricos,
+                'renales' => $this->renales,
+                'artritis' => $this->artritis,
+                'epilepsia' => $this->epilepsia,
+                'cancer' => $this->cancer,
+                'atencion_medica' => $this->atencion_medica,
+                'porque_atencion_medica' => $this->porque_atencion_medica,
+                'toma_medicamento' => $this->toma_medicamento,
+                'es_alergico_medicamento' => $this->es_alergico_medicamento,
+                'cual_medicamento_alergico' => $this->cual_medicamento_alergico,
+                'es_alergico_alimento' => $this->es_alergico_alimento,
+                'cual_alimento_alergico' => $this->cual_alimento_alergico,
                 'PDF' => null,
                 'paciente_id' => $this->paciente->id,
             ]);
         }
 
         $this->dispatch('success');
+    }
+
+    public function aplicar_cambios(){
+        $this->render();
     }
 
     public function volver(){
