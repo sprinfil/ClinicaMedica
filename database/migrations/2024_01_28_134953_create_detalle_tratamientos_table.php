@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('tratamiento_id')->nullable();
             $table->unsignedBigInteger('servicio_id')->nullable();
+            $table->unsignedBigInteger('cantidad')->nullable();
 
 
             $table->foreign('tratamiento_id')->references('id')->on('tratamientos');

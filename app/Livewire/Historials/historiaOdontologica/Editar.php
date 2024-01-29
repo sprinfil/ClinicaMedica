@@ -66,7 +66,6 @@ class Editar extends Component
         }else{
             //aplicar edicion   
             $this->tratamiento->fecha = $this->dtFecha;
-            $this->tratamiento->tratamiento = $this->txtTratamiento;
             $this->tratamiento->nota = $this->txtNotas;
             $this->tratamiento->metodo_pago =  $this->txtMetodoPago;
             $this->tratamiento->monto = $this->txtMonto;

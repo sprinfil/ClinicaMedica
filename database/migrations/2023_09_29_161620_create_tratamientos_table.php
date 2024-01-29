@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nota')->nullable();
             $table->decimal('monto',8 ,2)->nullable();
             $table->string('metodo_pago')->nullable();
+            $table->decimal('pago_con',8 ,2)->nullable();
 
             $table->foreignId('usuario_id')->constrained();
             $table->foreignId('paciente_id')->constrained();
