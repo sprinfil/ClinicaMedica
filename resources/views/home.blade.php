@@ -55,6 +55,7 @@
             </a>
 
             <!--SERVICIOS-->
+            @if (session()->has('usuario') && session('usuario')->Tipo === 'Admin')
             <a href="{{ route('servicios.index') }}">
                 <div
                     class="w-full h-[140px] transition ease-in-out bg-blue-400 hover:bg-blue-500 shadow-lg rounded-md overflow-x-hidden grid grid-rows-2 justify-center items-center cursor-pointer  px-4">
@@ -69,6 +70,7 @@
                     </div>
                 </div>
             </a>
+            @endif
 
             <!--PACIENTES-->
             <a href="{{ route('corte_caja') }}">

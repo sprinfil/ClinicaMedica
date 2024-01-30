@@ -45,9 +45,9 @@
    
 
           
-            <!--Seccion del contenido-->
-            @section('contenido')
-            @show
+        <!--Seccion del contenido-->
+        @section('contenido')
+        @show
             
     </main>
     @livewireScripts

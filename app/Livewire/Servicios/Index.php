@@ -19,7 +19,7 @@ class Index extends Component
     public function render()
     {
         $query = Servicio::query();
-
+      
         if ($this->nombre) {
             $query->where('nombre', 'like', '%' . $this->nombre . '%');
         }

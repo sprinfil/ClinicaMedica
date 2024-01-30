@@ -59,8 +59,10 @@
                     </select>
                 </div>
                 <div>
-                    <button class="btn-primary h-[37px]" wire:click="agregar_servicio">+ Agregar</button>
-                   
+                    <button class="btn-primary h-[42px]" wire:click="agregar_servicio"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
+                      </button> 
                 </div>
 
             </div>
@@ -153,37 +155,72 @@
                         </div>
                     </div>
                     <!--METODO PAGO-->
-                    <div >
-                        <div class="mt-[10px]">
-                            <p class="md:text-[50px] text-[20px]">TOTAL MXN $ {{ $total }}</p>
-                            @if($metodo_pago == "EFECTIVO")
-                            <p class="md:text-[50px] text-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
+                    <div class="">
+                        <div class="mt-[10px] flex-col items-end flex w-[400px]">
+                            @if($metodo_pago == "DOLAR")
+                            <p class="text-[25px]">TOTAL USD   $ {{ number_format($total_usd , 2)}}</p>
+                            <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
+                            <p class="text-[25px] font-bold">MONTO TOTAL USD $ {{ $total_impuesto }}</p>
+
+                            <p class="text-[25px] mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio_usd, 2)}}</p>
+                            <p class="text-[25px]" >CAMBIO MXN $  {{ number_format( $cambio, 2)}}</p>
+                            @else
+                                <p class="text-[25px]">TOTAL MXN $ {{ $total }}</p>
+                                <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
+                                <p class="text-[25px] font-bold">MONTO TOTAL MXN $ {{ $total_impuesto }}</p>
+                                @if($metodo_pago == "EFECTIVO")
+                                <p class="text-[25px] mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
+                                @endif
                             @endif
                         </div>
-                        <div class="mt-[10px] ">
-                            <p class="text-[20px]">Metodo de pago</p>
-                            <select name="" id="" class="input-pdv w-[50%]" wire:model = "metodo_pago" wire:click="actualizar_metodo_pago">
-                                <option value="">--SELECCIONAR--</option>
-                                <option value="EFECTIVO">EFECTIVO</option>
-                                <option value="TARJETA DEBITO">TARJETA DEBITO</option>
-                                <option value="TARJETA CREDITO">TARJETA CREDITO</option>
-                                <option value="DOLAR">DOLAR</option>
-                                <option value="CHEQUE">CHEQUE</option>
-                            </select>
+                        <div class="w-[400px]">
+                            <div class="mt-[10px] ">
+                                <p class="text-[20px]">Metodo de pago</p>
+                                <select name="" id="" class="input-pdv w-full" wire:model = "metodo_pago" wire:click="actualizar_metodo_pago">
+                                    <option value="">--SELECCIONAR--</option>
+                                    <option value="EFECTIVO">EFECTIVO</option>
+                                    <option value="TARJETA DEBITO">TARJETA DEBITO</option>
+                                    <option value="TARJETA CREDITO">TARJETA CREDITO</option>
+                                    <option value="DOLAR">DOLAR</option>
+                                </select>
+                            </div>
+    
+                            @if($metodo_pago == "EFECTIVO")
+                            <p class="text-[20px] mt-[20px]">Pago con...</p>
+                            <div class="mt-[10px]">
+                                <input type="number" class="input-pdv w-full" placeholder="MXN" wire:model="pago_con_mxn" wire:input="actualizar_cambio">
+                            </div>
+                            @endif
+    
+                            @if($metodo_pago == "TARJETA DEBITO")
+                            <div class="mt-[10px]">
+                                <input type="number" class="input-pdv w-full" placeholder="REFERENCIA" wire:model="referencia_tarjeta_debito">
+                            </div>
+                            @endif
+    
+                            @if($metodo_pago == "DOLAR")
+                            <div class="mt-[10px]">
+                                <input type="number" class="input-pdv w-full" placeholder="USD" wire:model="pago_con_usd" wire:input="actualizar_cambio">
+                            </div>
+                            @endif
+    
+                            
+                            @if($metodo_pago == "TARJETA CREDITO")
+                            <div class="mt-[10px]">
+                                <input type="number" class="input-pdv w-full" placeholder="REFERENCIA" wire:model="referencia_pago_tarjeta_credito">
+                            </div>
+                            @endif
+    
+    
+                            <div class="mt-[10px]">
+                                <button class="btn-primary w-full" wire:click="generar_tratamiento">Aceptar</button>
+                            </div>
+                            <div class="mt-[10px] flex gap-x-10">
+                                <p>Generar Nota</p>
+                                <input type="checkbox" class="w-[20px]" wire:model="generar_ticket">
+                            </div>
                         </div>
-
-                        @if($metodo_pago == "EFECTIVO")
-                        <div class="mt-[10px]">
-                            <input type="number" class="input-pdv w-[50%]" placeholder="PAGO CON..." wire:model="pago_con_mxn" wire:input="actualizar_cambio">
-                        </div>
-                        @endif
-                        <div class="mt-[10px]">
-                            <button class="btn-primary w-[50%]" wire:click="generar_tratamiento">Aceptar</button>
-                        </div>
-                        <div class="mt-[10px] flex gap-x-10">
-                            <p>Generar Nota</p>
-                            <input type="checkbox" class="w-[20px]" wire:model="generar_ticket">
-                        </div>
+                       
                     </div>
                 </div>
             </div>

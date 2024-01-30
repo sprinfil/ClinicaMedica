@@ -1,7 +1,5 @@
 quitar tratamiento en la cita
 boton cobrar que te mande directamente a la vista de cobranza
 impuestos (monto, monto total, porcentaje de impuesto)
-
-modificar punto de venta ahora deberia poder agregarse mas de un tratamiento (se debe hacer una nueva tabla ventas).
-entradas y salidas de dinero en el corte de caja
-mensajeria
+mandar nota de venta por whatsapp
+visualizar pdf en la vista

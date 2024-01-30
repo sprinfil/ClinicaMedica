@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Historials\HistoriaOdontologica;
 
+use App\Models\Configuracion;
 use Carbon\Carbon;
 use App\Models\Usuario;
 use Livewire\Component;
@@ -22,13 +23,20 @@ class Crear extends Component
     public $servicio_seleccionado;
     public $tabla_punto_venta;
     public $contador = 0;
-    public $total = 0;
+    public $total;
     public $generar_ticket = true;
     public $nota;
     public $metodo_pago;
     public $error;
     public $pago_con_mxn;
     public $cambio;
+    public $referencia_tarjeta_debito;
+    public $referencia_pago_tarjeta_credito;
+    public $pago_con_usd;
+    public $total_usd;
+    public $cambio_usd;
+    public $impuesto;
+    public $total_impuesto;
 
     public function render()
     {
@@ -40,6 +48,7 @@ class Crear extends Component
         $this->fecha = Carbon::now()->format('d-m-Y h:i A');
         $this->medicos = Usuario::medicos();
         $this->servicios = Servicio::all();
+
     }
 
     public function agregar_servicio()
@@ -101,6 +110,14 @@ class Crear extends Component
         for($i = 0 ; $i < $this->contador ; $i ++){
             $this->total += $this->tabla_punto_venta[$i]['total'];
         }
+
+        $this->total_usd = $this->total / Configuracion::first()->dolar;
+
+        $this->impuesto = (Configuracion::first()->impuesto / 100) * ($this->metodo_pago == 'DOLAR'  ? $this->total_usd : $this->total);
+
+        $this->total_impuesto = $this->impuesto + ($this->metodo_pago == 'DOLAR' ? $this->total_usd : $this->total);
+
+
         $this->actualizar_cambio();
     }
 
@@ -109,11 +126,15 @@ class Crear extends Component
             $tratamiento = new Tratamiento;
             $tratamiento->fecha = Carbon::now()->format('Y-m-d h:i:s');
             $tratamiento->nota = $this->nota;
-            $tratamiento->monto = $this->total;
+            $tratamiento->monto = ($this->metodo_pago == "DOLAR" ? $this->total_usd : $this->total);
             $tratamiento->metodo_pago = $this->metodo_pago;
             $tratamiento->usuario_id = $this->atendio;
             $tratamiento->paciente_id = $this->paciente->id;
             $tratamiento->pago_con_mxn = $this->pago_con_mxn;
+            $tratamiento->referencia_pago_tarjeta_debito = $this->referencia_tarjeta_debito;
+            $tratamiento->referencia_pago_tarjeta_credito = $this->referencia_pago_tarjeta_credito;
+            $tratamiento->pago_con_usd = $this->pago_con_usd;
+            $tratamiento->impuesto = $this->impuesto;
             $tratamiento->save();
     
             for($i = 0 ; $i < $this->contador ; $i ++){
@@ -131,13 +152,21 @@ class Crear extends Component
 
     public function actualizar_metodo_pago(){
         $this->render();
+        $this->calcular_total();
     }
 
     public function actualizar_cambio(){
-        if($this->pago_con_mxn != null){
-            $this->cambio = $this->pago_con_mxn - $this->total;
-        }else{
+        if($this->pago_con_usd != null && $this->metodo_pago == "DOLAR"){
+            $this->cambio_usd = $this->pago_con_usd - $this->total_impuesto;
+            $this->cambio = $this->cambio_usd  * Configuracion::first()->dolar;
+        }
+        if($this->pago_con_mxn != null && $this->metodo_pago == "EFECTIVO"){
+            $this->cambio = $this->pago_con_mxn - $this->total_impuesto;
+        }
+
+        if( $this->pago_con_usd == null && $this->pago_con_mxn == null){
             $this->cambio = 0;
+            $this->cambio_usd = 0;
         }
         $this->render();
     }
