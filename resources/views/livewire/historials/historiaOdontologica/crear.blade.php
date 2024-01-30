@@ -157,7 +157,7 @@
                         <div class="mt-[10px]">
                             <p class="md:text-[50px] text-[20px]">TOTAL MXN $ {{ $total }}</p>
                             @if($metodo_pago == "EFECTIVO")
-                            <p class="md:text-[50px] text-[20px]">CAMBIO MXN $  {{ $cambio }}</p>
+                            <p class="md:text-[50px] text-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
                             @endif
                         </div>
                         <div class="mt-[10px] ">
@@ -174,7 +174,7 @@
 
                         @if($metodo_pago == "EFECTIVO")
                         <div class="mt-[10px]">
-                            <input type="number" class="input-pdv w-[50%]" placeholder="PAGO CON..." wire:model="pago_con" wire:input="actualizar_cambio">
+                            <input type="number" class="input-pdv w-[50%]" placeholder="PAGO CON..." wire:model="pago_con_mxn" wire:input="actualizar_cambio">
                         </div>
                         @endif
                         <div class="mt-[10px]">

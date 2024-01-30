@@ -24,12 +24,12 @@
        
             <div class="w-full overflow-auto no-scrollbar bg-principal rounded-md py-3 px-3  mt-[30px] shadow-lg" id="hijo">
                 <div class="w-full flex justify-center ">
-                    <p class="text-[20px] uppercase">{{ $fecha->monthName }}</p>
+                    <p class="text-[30px] uppercase">AGENDA</p>
                 </div>
                 <div
                     class="relative w-full grid grid-cols-9 mt-[20px]  h-full overflow-auto  min-w-[1000px] no-scrollbar">
                     <div>
-                        <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md sticky-top h-[77px] "
+                        <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md sticky-top h-[115px] "
                             wire:click="retroceder_fecha">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-9 h-9">
@@ -50,12 +50,14 @@
 
                     @foreach ($dias as $dia)
                         <div class="container">
-                            <div class="sticky-top bg-principal py-2 shadow-md">
-                                <div class="w-full flex justify-center">
-                                    <p>{{ $dia->dayName }}</p>
+                            <div class="sticky-top bg-principal py-2 shadow-md ">
+                                <div class="w-full flex justify-center flex-col items-center">
+                                    <p>{{ $dia->monthName  }}</p>
+                                    <p class="text-[25px]">{{ $dia->dayName }}</p>
                                 </div>
-                                <div class="w-full flex justify-center text-[25px]">
-                                    <p>{{ $dia->format('d') }}</p>
+                                <div class="w-full flex justify-center text-[15px] flex-col items-center">
+                                    <p class="text-[25px]">{{ $dia->format('d') }}</p>
+                                  
                                 </div>
                             </div>
                             @foreach ($horas as $hora)
@@ -84,7 +86,7 @@
                     @endforeach
                     <div class="container">
                         <div class="sticky-top">
-                            <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md h-[77px] bg-principal text-fuente-botones"
+                            <div class="flex items-center justify-center cursor-pointer btn-primary shadow-md h-[115px] bg-principal text-fuente-botones"
                                 wire:click ="avanzar_fecha">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-9 h-9 ">

@@ -27,7 +27,7 @@ class Crear extends Component
     public $nota;
     public $metodo_pago;
     public $error;
-    public $pago_con;
+    public $pago_con_mxn;
     public $cambio;
 
     public function render()
@@ -113,7 +113,7 @@ class Crear extends Component
             $tratamiento->metodo_pago = $this->metodo_pago;
             $tratamiento->usuario_id = $this->atendio;
             $tratamiento->paciente_id = $this->paciente->id;
-            $tratamiento->pago_con = $this->pago_con;
+            $tratamiento->pago_con_mxn = $this->pago_con_mxn;
             $tratamiento->save();
     
             for($i = 0 ; $i < $this->contador ; $i ++){
@@ -134,8 +134,8 @@ class Crear extends Component
     }
 
     public function actualizar_cambio(){
-        if($this->pago_con != null){
-            $this->cambio = $this->pago_con - $this->total;
+        if($this->pago_con_mxn != null){
+            $this->cambio = $this->pago_con_mxn - $this->total;
         }else{
             $this->cambio = 0;
         }

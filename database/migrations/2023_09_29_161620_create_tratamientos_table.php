@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('nota')->nullable();
             $table->decimal('monto',8 ,2)->nullable();
             $table->string('metodo_pago')->nullable();
-            $table->decimal('pago_con',8 ,2)->nullable();
+            $table->string('referencia_pago_tarjeta_debito')->nullable();
+            $table->string('referencia_pago_tarjeta_credito')->nullable();
+            $table->decimal('pago_con_mxn',8 ,2)->nullable();
+            $table->decimal('pago_con_usd',8 ,2)->nullable();
 
             $table->foreignId('usuario_id')->constrained();
             $table->foreignId('paciente_id')->constrained();
