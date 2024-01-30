@@ -16,6 +16,7 @@ use App\Http\Controllers\subirImagenController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\HistoriaClinicaController;
 use App\Http\Controllers\HistoriaOdontologicaController;
+use App\Http\Controllers\ServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,4 +96,9 @@ Route::get('/clear', function() {
     Artisan::call('view:clear');
     Artisan::call('config:cache');
     return  "all cleared ...";
+});
+
+
+Route::controller(ServicioController::class)->group(function() {
+    Route::get('servicios', 'index')->name('servicios.index');
 });

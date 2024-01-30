@@ -14,9 +14,6 @@ class Pacientes extends Component
     use WithPagination;
     public $filtroNombre = '';
 
-
-    
-
     public function render()
     {
         $query = Paciente::query();
