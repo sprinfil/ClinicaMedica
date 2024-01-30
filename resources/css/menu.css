@@ -1,13 +1,14 @@
 .close-nav{
     width: 0px;
   }
+  .close-nav-cel{
+    display: none;
+  }
 .ocultar-texto{
   opacity: 0;
   display: none;
 }
-.boton-toggle-menu{
 
-}
 .fondo{
   width: 0px;
 }
@@ -34,4 +35,5 @@
     display: none;
   }
 }
-  
+
+

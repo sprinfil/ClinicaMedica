@@ -9,4 +9,9 @@ class DetalleTratamiento extends Model
 {
     use HasFactory;
     public $timestamps=false;
+
+    public function servicio()
+    {
+        return $this->hasOne(Servicio::class,'id','servicio_id');
+    }
 }

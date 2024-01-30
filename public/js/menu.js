@@ -1,36 +1,45 @@
-function togglemenu() {
 
-    document.getElementById("menu").classList.toggle("close-nav");
-    document.getElementById("main").classList.toggle("main-cerrado");
-    document.getElementById("boton-toggle-menu").classList.toggle("boton-toggle-menu");
-    let submenu = document.getElementsByClassName("submenu");
-    let texto = document.getElementsByClassName("texto");
-    let icono = document.getElementsByClassName("icono");
+    function togglemenu() {
 
+        if(document.getElementById("menu").classList.contains("close-nav-cel")){
+            document.getElementById("menu").classList.toggle("close-nav-cel");
+        }else{
+            document.getElementById("menu").classList.toggle("close-nav");
+        }
+        document.getElementById("main").classList.toggle("main-cerrado");
+        let submenu = document.getElementsByClassName("submenu");
+        let texto = document.getElementsByClassName("texto");
     
-
-    for(let i = 0; i < texto.length ; i++){
-        texto[i].classList.toggle("ocultar-texto");
+        
+    
+        for(let i = 0; i < texto.length ; i++){
+            texto[i].classList.toggle("ocultar-texto");
+        }
+        for(let i = 0; i < submenu.length ; i++){
+            submenu[i].classList.add("ocultar");
+        }
     }
-    for(let i = 0; i < submenu.length ; i++){
-        submenu[i].classList.add("ocultar");
+    
+    function toggleSubMenu(id){
+        let submenu = document.getElementById(id);
+        if(!document.getElementById("menu").classList.contains("close-nav")){
+            submenu.classList.toggle("ocultar");
+        }  
     }
-}
 
-function toggleSubMenu(id){
-    let submenu = document.getElementById(id);
-    if(!document.getElementById("menu").classList.contains("close-nav")){
-        submenu.classList.toggle("ocultar");
-    }  
-}
+    $(document).ready(function() {
+        var anchoVentana = $(window).width();
+        if (anchoVentana < 1180) {
+            $('#menu').addClass('close-nav-cel');
+            $('#main').addClass('main-cerrado');
 
-//creo que esta funcion no se ocupa
-function abrirMenu(){
-    document.getElementById("menu").classList.remove("close-nav");
-    document.getElementById("main").classList.remove("main-cerrado");
-    document.getElementById("boton-toggle-menu").classList.remove("boton-toggle-menu");
-    let texto = document.getElementsByClassName("texto");
-    for(let i = 0; i < texto.length ; i++){
-        texto[i].classList.remove("ocultar-texto");
-    }
-}
+            let submenu = document.getElementsByClassName("submenu");
+            let texto = document.getElementsByClassName("texto");
+            for(let i = 0; i < texto.length ; i++){
+                texto[i].classList.add("ocultar-texto");
+            }
+            for(let i = 0; i < submenu.length ; i++){
+                submenu[i].classList.add("ocultar");
+            }
+            }
+    });

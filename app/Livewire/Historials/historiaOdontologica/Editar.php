@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Historials\HistoriaOdontologica;
 
+use App\Models\Configuracion;
+use App\Models\DetalleTratamiento;
 use App\Models\Imagen;
 use App\Models\Paciente;
 use App\Models\Tratamiento;
@@ -23,11 +25,23 @@ class Editar extends Component
     public $greenClass = "";
 
     public $dtFecha;
-    public $txtTratamiento;
     public $txtAtendio;
     public $txtNotas;
     public $txtMetodoPago;
     public $txtMonto;
+    public $metodo_pago;
+    public $detalle_tratamiento;
+    public $total;
+    public $impuesto;
+    public $total_impuesto;
+    public $cambio;
+    public $referencia_pago_tarjeta_debito;
+    public $referencia_pago_tarjeta_credito;
+    public $pago_con_mxn;
+    public $pago_con_usd;
+    public $cambio_mxn;
+    public $imagenes_clinicas;
+    public $imagenes_radiografias;
 
     public function render()
     {
@@ -37,24 +51,35 @@ class Editar extends Component
     public function Mount($tratamiento_id, $paciente_id){
         $this->tratamiento = Tratamiento::find($tratamiento_id);
         $this->paciente = Paciente::find($paciente_id);
-
         $this->fechaTratamiento = new Carbon($this->tratamiento->fecha);
 
- 
-        $this->tratamientoNombre = $this->tratamiento->tratamiento;
         $this->nota = $this->tratamiento->nota;
         $this->monto = $this->tratamiento->monto;
 
         $this->imagenes = Imagen::where('tratamiento_id',$this->tratamiento->id)->get();
+        $this->imagenes_clinicas = Imagen::where('tratamiento_id',$this->tratamiento->id)
+        ->where('tipo','clinica')->get();
+        $this->imagenes_radiografias = Imagen::where('tratamiento_id',$this->tratamiento->id)
+        ->where('tipo','radiografia')->get();
 
-        //inputs
+      
         $this->dtFecha = $this->tratamiento->fecha;
         $this->txtMetodoPago = $this->tratamiento->metodo_pago;
-        $this->txtTratamiento = $this->tratamiento->tratamiento;
         $this->txtAtendio = $this->tratamiento->atendio->nombre;
         $this->txtMonto = $this->tratamiento->monto;
         $this->txtNotas = $this->tratamiento->nota;
+        $this->metodo_pago = $this->tratamiento->metodo_pago;
 
+        $this->detalle_tratamiento = DetalleTratamiento::where('tratamiento_id',$this->tratamiento->id)->get();
+        $this->total = $this->tratamiento->monto;
+        $this->impuesto = $this->tratamiento->impuesto;
+        $this->total_impuesto = $this->tratamiento->monto + $this->tratamiento->impuesto;
+        $this->cambio = ($this->tratamiento->metodo_pago == "DOLAR" ? $this->tratamiento->pago_con_usd : $this->tratamiento->pago_con_mxn) - $this->total_impuesto;
+        $this->referencia_pago_tarjeta_debito = $this->tratamiento->referencia_pago_tarjeta_debito;
+        $this->referencia_pago_tarjeta_credito = $this->tratamiento->referencia_pago_tarjeta_credito;
+        $this->pago_con_mxn = $this->tratamiento->pago_con_mxn;
+        $this->pago_con_usd = 'USD ' . $this->tratamiento->pago_con_usd;
+        $this->cambio_mxn = $this->cambio * Configuracion::first()->dolar;
     }
 
     public function toggleEdicion(){
@@ -67,8 +92,6 @@ class Editar extends Component
             //aplicar edicion   
             $this->tratamiento->fecha = $this->dtFecha;
             $this->tratamiento->nota = $this->txtNotas;
-            $this->tratamiento->metodo_pago =  $this->txtMetodoPago;
-            $this->tratamiento->monto = $this->txtMonto;
             $imagenes_eliminar = Imagen::where('eliminar','si');
             $imagenes_eliminar->delete();
 

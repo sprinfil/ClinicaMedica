@@ -1,13 +1,13 @@
 <!--Seccion menu-->
-<nav class="close-nav text-gray-300 min-[1180px]:w-[250px] w-screen ease-out duration-500 bg-negro-menu h-screen shadow-lg"
+<nav class=" text-gray-300 min-[1180px]:w-[250px] w-screen ease-out duration-500 bg-negro-menu h-screen shadow-lg"
     id="menu">
     <div class="px-3"> <!--seccion superior-->
         <div class="flex justify-between h-full pt-3">
             <div class="">
                 <!--Texto Superior-->
-                <p class="texto ocultar-texto text-[20px] text-fuente">MENU</p>
+                <p class="texto  text-[20px] text-fuente">MENU</p>
                 @if (session()->has('usuario'))
-                    <p class="text-[17px] texto mt-2 ocultar-texto md:hidden block">{{ session('usuario')->nombre }} -
+                    <p class="text-[17px] texto mt-2  md:hidden block">{{ session('usuario')->nombre }} -
                         {{ session('usuario')->Tipo }}</p>
                 @endif
             </div>
@@ -21,12 +21,16 @@
             </div>
 
         </div>
-        <br>
+
         <hr class="bg-fuente h-[1px]">
 
 
-        <div class="overflow-auto no-scrollbar pt-3 mt-2" id="contenedor-botones"> <!--div contenedor-->
-            <div class="mt-10"> <!--seccion botones-->
+        <div class="overflow-auto no-scrollbar pt-3" id="contenedor-botones"> <!--div contenedor-->
+            <div class=""> <!--seccion botones-->
+            <!--LOGO EMPRESA-->
+            <div class=" flex items-center justify-center">
+                <img  src="/images/logo.png" alt="" class="w-[100px]">
+            </div>
                 <ul class="mt-6 relative">
 
                     <!--///////Home//////-->
@@ -41,7 +45,7 @@
                             </svg>
                             <!--Texto-->
                             <li
-                                class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                 <span>Home</span>
                             </li>
                         </div>
@@ -61,7 +65,7 @@
                             </svg>
                             <!--Texto-->
                             <li
-                                class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                 <span>Pacientes</span>
                             </li>
                         </div>
@@ -83,7 +87,7 @@
 
                             <!--Texto-->
                             <li
-                                class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                 <span>Citas</span>
                             </li>
                         </div>
@@ -104,7 +108,7 @@
 
                         <!--Texto-->
                         <li
-                            class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                            class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                             <span>Reportes</span>
                         </li>
                     </div>
@@ -114,7 +118,7 @@
                             <a href="{{ route('corte_caja') }}">
                                 <div
                                     class="hover:bg-principal active:bg-active hover:text-fuente-botones ease-out duration-500 rounded-sm py-2">
-                                    <li class="texto ocultar-texto ml-[10px]"><span>Corte de caja</span></li>
+                                    <li class="texto  ml-[10px]"><span>Corte de caja</span></li>
                                 </div>
                             </a>
                         </ul>
@@ -133,7 +137,7 @@
                                   </svg>  
                                 <!--Texto-->
                                 <li
-                                    class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                    class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                     <span>Servicios</span>
                                 </li>
                             </div>
@@ -150,7 +154,7 @@
                                 </svg>
                                 <!--Texto-->
                                 <li
-                                    class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                    class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                     <span>Usuarios</span>
                                 </li>
                             </div>
@@ -170,7 +174,7 @@
     
                                 <!--Texto-->
                                 <li
-                                    class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente-botones">
+                                    class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente-botones">
                                     <span>Ajustes</span>
                                 </li>
                             </div>
@@ -198,7 +202,7 @@
                             </svg>
                             <!-- Texto -->
                             <li
-                                class="text-center font-400 ml-[30px] texto ocultar-texto text-[20px] h-[30px] mt-[5px] text-fuente">
+                                class="text-center font-400 ml-[30px] texto  text-[20px] h-[30px] mt-[5px] text-fuente">
                                 <span>Salir</span>
                             </li>
                         </button>
@@ -221,10 +225,13 @@
                                     </svg>
                                 </div>
                                 <p class="text-fuente">Surcode®</p>
-                            </div>
+                    </div>
+
 
 
                 </ul>
+
+
 
             </div>
 

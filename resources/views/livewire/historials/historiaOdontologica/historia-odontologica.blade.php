@@ -27,9 +27,6 @@
                 <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Tratamiento
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Fecha
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -41,6 +38,9 @@
                         <th scope="col" class="px-6 py-3">
                             Metodo de pago
                         </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,11 +48,6 @@
                     @foreach ($tratamientos as $tratamiento)
                         <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer"
                             wire:click="editar({{ $tratamiento->id }})">
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                id="casilla">
-                                <span>{{ $tratamiento->tratamiento }}</span>
-                            </td>
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla">
@@ -73,6 +68,14 @@
                                 id="casilla">
                                 <span>{{ $tratamiento->metodo_pago }}</span>
                             </td>
+                            <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
+                              </span>
+                        </td>
                         </tr>
                     @endforeach
                     @endif

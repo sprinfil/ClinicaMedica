@@ -160,14 +160,14 @@
                             @if($metodo_pago == "DOLAR")
                             <p class="text-[25px]">TOTAL USD   $ {{ number_format($total_usd , 2)}}</p>
                             <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                            <p class="text-[25px] font-bold">MONTO TOTAL USD $ {{ $total_impuesto }}</p>
+                            <p class="text-[25px] font-bold">MONTO TOTAL USD $ {{ number_format(  $total_impuesto, 2)}}</p>
 
                             <p class="text-[25px] mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio_usd, 2)}}</p>
                             <p class="text-[25px]" >CAMBIO MXN $  {{ number_format( $cambio, 2)}}</p>
                             @else
                                 <p class="text-[25px]">TOTAL MXN $ {{ $total }}</p>
                                 <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                                <p class="text-[25px] font-bold">MONTO TOTAL MXN $ {{ $total_impuesto }}</p>
+                                <p class="text-[25px] font-bold">MONTO TOTAL MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
                                 @if($metodo_pago == "EFECTIVO")
                                 <p class="text-[25px] mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
                                 @endif

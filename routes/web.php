@@ -31,6 +31,7 @@ use App\Http\Controllers\ServicioController;
 
 //HOME
 Route::get('/', HomeController::class)->name('home');
+Route::get('/retroceso', [HomeController::class, 'retroceso'])->name('retroceso');
 
 
 // AUTH
