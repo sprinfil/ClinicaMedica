@@ -61,14 +61,6 @@
                                     <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
                                         {{ $message }} </div>
                                 @enderror
-
-                                <p class="mt-[10px]">Tratamiento</p>
-                                <input name="tratamiento" type="input" class="input-pdv w-full"
-                                    placeholder="Tratamiento" wire:model="tratamiento">
-                                @error('tratamiento')
-                                    <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
-                                        {{ $message }} </div>
-                                @enderror
                             </div>
                             <!--Segunda columna-->
                             <div>

@@ -72,8 +72,8 @@ class Editar extends Component
 
         $this->detalle_tratamiento = DetalleTratamiento::where('tratamiento_id',$this->tratamiento->id)->get();
         $this->total = $this->tratamiento->monto;
-        $this->impuesto = $this->tratamiento->impuesto;
-        $this->total_impuesto = $this->tratamiento->monto + $this->tratamiento->impuesto;
+        $this->impuesto = ($this->metodo_pago == "DOLAR" ? $this->tratamiento->impuesto / Configuracion::first()->dolar : $this->tratamiento->impuesto);
+        $this->total_impuesto = $this->tratamiento->monto + ($this->metodo_pago == "DOLAR" ? $this->tratamiento->impuesto / Configuracion::first()->dolar : $this->tratamiento->impuesto);
         $this->cambio = ($this->tratamiento->metodo_pago == "DOLAR" ? $this->tratamiento->pago_con_usd : $this->tratamiento->pago_con_mxn) - $this->total_impuesto;
         $this->referencia_pago_tarjeta_debito = $this->tratamiento->referencia_pago_tarjeta_debito;
         $this->referencia_pago_tarjeta_credito = $this->tratamiento->referencia_pago_tarjeta_credito;

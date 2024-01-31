@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id')->nullable();
             $table->date('fecha')->nullable();
             $table->integer('efectivo')->nullable();
-            $table->integer('tarjeta')->nullable();
+            $table->integer('tarjeta_credito')->nullable();
+            $table->integer('tarjeta_debito')->nullable();
             $table->integer('dolares')->nullable();
             $table->integer('cheques')->nullable();
-            $table->integer('total')->nullable();
+            $table->integer('total_bruto')->nullable();
+            $table->integer('total_neto')->nullable();
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');
         });

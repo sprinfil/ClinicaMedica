@@ -50,13 +50,13 @@
 
                     @foreach ($dias as $dia)
                         <div class="container">
-                            <div class="sticky-top bg-principal py-2 shadow-md ">
+                            <div class="sticky-top bg-principal py-2 shadow-md min-h-[115px]">
                                 <div class="w-full flex justify-center flex-col items-center">
-                                    <p>{{ $dia->monthName  }}</p>
-                                    <p class="text-[25px]">{{ $dia->dayName }}</p>
+                                    <p class="uppercase">{{ $dia->monthName  }}</p>
+                                    <p class="md:text-[20px] text-[15px] uppercase">{{ $dia->dayName }}</p>
                                 </div>
                                 <div class="w-full flex justify-center text-[15px] flex-col items-center">
-                                    <p class="text-[25px]">{{ $dia->format('d') }}</p>
+                                    <p class="md:text-[20px] text-[15px]">{{ $dia->format('d') }}</p>
                                   
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                         @if($citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][4] == 'confirmada') bg-green-800 hover:hover:bg-green-700 @else bg-terciario hover:bg-[#205753] @endif" 
                                         wire:click="show_detalle({{ "'" . $hora . "'" }},{{ "'" . $dia->dayName . "'" }},{{ "'" . $dia->format('Y') . "'" }},{{ "'" . $dia->monthName . "'" }},{{ "'" . $dia->format('d') . "'" }},{{ "'" . $dia->format('Y-m-d') . "'" }}, {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][2] }})">
                                         <div class="flex items-center justify-center  overflow-hidden text-center">
-                                            <p class="text-[11px] ">
+                                            <p class="text-[13px] ">
                                                 {{ $citas_disponibles_ocupadas[$dia->format('Y-m-d')][$hora][1] }}</p>
                                         </div>
                                         <div class="flex items-center justify-center overflow-hidden text-center">
@@ -106,7 +106,7 @@
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar">
             <table class="w-full text-sm text-left text-fuente dark:text-fuente">
-                <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
+                <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente text-center">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             FECHA
@@ -123,17 +123,14 @@
                         <th scope="col" class="px-6 py-3">
                             ATIENDE
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            TRATAMIENTO
-                        </th>
-                        <th colspan="2" scope="col" class="px-6 py-3 text-center ">
+                        <th colspan="3" scope="col" class="px-6 py-3 text-center ">
                             OPCIONES
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($citas_ordenadas as $cita)
-                        <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 ">
+                        <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 text-center">
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla">
@@ -176,13 +173,6 @@
                                     {{ $cita->atiendee->nombre }}
                                 </span>
                             </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
-                                id="casilla">
-                                <span>
-                                    {{ $cita->tratamiento }}
-                                </span>
-                            </td>
                             <td wire:click="confirmar_cita({{ $cita->id }})" scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones text-center"
                                 id="casilla">
@@ -196,11 +186,20 @@
                                         No confirmada</div>
                                 @endif
                             </td>
+                            <td wire:click="cobrar_cita({{ $cita->pacientee->id }})" scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones text-center"
+                                id="casilla">
+                                <div
+                                class="bg-terciario py-2 text-fuente rounded-md shadow-md cursor-pointer hover:bg-[#205753] transition ease-in-out delay-40 px-4">
+                                Cobrar Cita</div>
+
+                            </td>
                             <td wire:click="cancelar_cita({{ $cita->id }})" class="px-6 py-4">
                                 <div
                                     class="bg-rojo text-center py-2 text-fuente rounded-md shadow-md cursor-pointer hover:bg-red-600 transition ease-in-out delay-40 px-4">
                                     Cancelar cita / Finalizar Cita</div>
                             </td>
+                            
                         </tr>
                     @endforeach
                 </tbody>

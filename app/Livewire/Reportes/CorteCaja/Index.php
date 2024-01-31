@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Reportes\CorteCaja;
 
+use App\Models\Configuracion;
 use Carbon\Carbon;
 use App\Models\Corte;
 use Livewire\Component;
@@ -15,6 +16,7 @@ class Index extends Component
 
 
     public $selected_corte;
+    public $impuestos_cobrados = 0;
     public function render()
     {
         $cortes = Corte::orderby('fecha','desc')->paginate(10);
@@ -31,10 +33,14 @@ class Index extends Component
     public function mount(){
 
         $this->selected_corte = Corte::orderby('fecha','desc')->first();
+        if( $this->selected_corte ){
+            $this->impuestos_cobrados = $this->selected_corte->total_neto * (Configuracion::first()->impuesto / 100);
+        }
     }   
 
     public function select_corte($corte_id){
         $this->selected_corte =  Corte::find($corte_id);  
+        $this->impuestos_cobrados = $this->selected_corte->total_neto * (Configuracion::first()->impuesto / 100);
     }
 
     public function create_corte_alert(){
@@ -60,7 +66,9 @@ class Index extends Component
         }
 
         $efectivo = Tratamiento::total_efectivo(Carbon::now()->toDateString());
-        $tarjeta = Tratamiento::total_tarjeta(Carbon::now()->toDateString());
+        $tarjeta_credito = Tratamiento::total_tarjeta_credito(Carbon::now()->toDateString());
+        $tarjeta_debito = Tratamiento::total_tarjeta_debito(Carbon::now()->toDateString());
+        $dolares = Tratamiento::total_dolares(Carbon::now()->toDateString());
 
         $corte = new Corte();
 
@@ -68,12 +76,14 @@ class Index extends Component
         $corte->fecha = Carbon::now()->toDateString();
 
         $corte->efectivo = $efectivo;
-        $corte->tarjeta = $tarjeta;
+        $corte->tarjeta_credito = $tarjeta_credito;
+        $corte->tarjeta_debito = $tarjeta_debito;
+        $corte->dolares = $dolares;
 
-        $corte->dolares = 0;
-        $corte->cheques = 0;
+        $total_neto = $efectivo + $tarjeta_credito + $tarjeta_debito + ($dolares * Configuracion::first()->dolar);
 
-        $corte->total = $efectivo + $tarjeta;
+        $corte->total_neto = $total_neto;
+        $corte->total_bruto = $total_neto - ($total_neto * (Configuracion::first()->impuesto/100));
 
         $corte->save();
         $this->mount();

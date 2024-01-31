@@ -158,16 +158,16 @@
                     <div class="">
                         <div class="mt-[10px] flex-col items-end flex w-[400px]">
                             @if($metodo_pago == "DOLAR")
-                            <p class="text-[25px]">TOTAL USD   $ {{ number_format($total_usd , 2)}}</p>
+                            <p class="text-[25px]">TOTAL BRUTO USD   $ {{ number_format($total_usd , 2)}}</p>
                             <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                            <p class="text-[25px] font-bold">MONTO TOTAL USD $ {{ number_format(  $total_impuesto, 2)}}</p>
+                            <p class="text-[25px] font-bold">TOTAL NETO USD $ {{ number_format(  $total_impuesto, 2)}}</p>
 
                             <p class="text-[25px] mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio_usd, 2)}}</p>
                             <p class="text-[25px]" >CAMBIO MXN $  {{ number_format( $cambio, 2)}}</p>
                             @else
-                                <p class="text-[25px]">TOTAL MXN $ {{ $total }}</p>
+                                <p class="text-[25px]">TOTAL BRUTO MXN $ {{ $total }}</p>
                                 <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                                <p class="text-[25px] font-bold">MONTO TOTAL MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
+                                <p class="text-[25px] font-bold">TOTAL NETO MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
                                 @if($metodo_pago == "EFECTIVO")
                                 <p class="text-[25px] mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
                                 @endif

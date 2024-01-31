@@ -97,7 +97,6 @@ class Create extends Component
         $this->validate([ 
             'selected_paciente' => 'required',
             'selected_atiende' => 'required',
-            'tratamiento' => 'required',
         ]);
 
         $hora_inicio = Carbon::createFromFormat('h:i A', $this->hora_inicio);
@@ -123,7 +122,6 @@ class Create extends Component
                 'fecha'=> $this->fecha,
                 'paciente' => intval($this->selected_paciente),
                 'atiende' => intval($this->selected_atiende),
-                'tratamiento' => $this->tratamiento,
                 'hora_inicio'=> $hora_inicio->format('H:i:s'),
                 'hora_fin'=> $hora_fin->format('H:i:s'),
                 'agendo' =>  session('usuario')->id,

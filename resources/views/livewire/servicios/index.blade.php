@@ -83,22 +83,7 @@
                         </tr>                    
                     @endif
                 </tbody>
-                <tfoot class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-center">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-center">
-                            Nombre
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-center">
-                            Precio
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-center">
-                            Opciones
-                        </th>
-                    </tr>
-                </tfoot>
+
             </table>
         </div>
     </div>

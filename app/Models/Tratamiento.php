@@ -21,26 +21,62 @@ class Tratamiento extends Model
     }
 
     static public function total_efectivo($fecha){
-        return $efectivo = Tratamiento::whereDate('fecha',$fecha)
-        ->where('metodo_pago','Efectivo')
+        $totalMonto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'EFECTIVO')
         ->sum('monto');
+    
+    $totalImpuesto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'EFECTIVO')
+        ->sum('impuesto');
+    
+        return $totalMonto + $totalImpuesto;
     }
 
-    static public function total_tarjeta($fecha){
-        return $efectivo = Tratamiento::whereDate('fecha',$fecha)
-        ->where('metodo_pago','tarjeta')
+    static public function total_tarjeta_debito($fecha){
+        $totalMonto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'TARJETA DEBITO')
         ->sum('monto');
+    
+        $totalImpuesto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'TARJETA DEBITO')
+        ->sum('impuesto');
+    
+        return $totalMonto + $totalImpuesto;
+    }
+
+    static public function total_tarjeta_credito($fecha){
+        $totalMonto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'TARJETA CREDITO')
+        ->sum('monto');
+    
+        $totalImpuesto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'TARJETA CREDITO')
+        ->sum('impuesto');
+    
+        return $totalMonto + $totalImpuesto;
     }
 
     static public function total_dolares($fecha){
-        return $efectivo = Tratamiento::whereDate('fecha',$fecha)
-        ->where('metodo_pago','dolar')
+        $totalMonto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'DOLAR')
         ->sum('monto');
+    
+        $totalImpuesto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'DOLAR')
+        ->sum('impuesto');
+    
+        return $totalMonto + $totalImpuesto;
     }
 
     static public function total_cheques($fecha){
-        return $efectivo = Tratamiento::whereDate('fecha',$fecha)
-        ->where('metodo_pago','cheque')
+        $totalMonto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'CHEQUE')
         ->sum('monto');
+    
+        $totalImpuesto = Tratamiento::whereDate('fecha', $fecha)
+        ->where('metodo_pago', 'CHEQUE')
+        ->sum('impuesto');
+    
+        return $totalMonto + $totalImpuesto;
     }
 }

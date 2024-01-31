@@ -85,4 +85,8 @@ class Detalle extends Component
         
         $this->dispatch('refrescar_citas');
     }
+
+    public function cobrar_cita(){
+        return redirect(route('historia_odontologica_create',['paciente_id' =>$this->cita->pacientee->id ]));
+    }
 }

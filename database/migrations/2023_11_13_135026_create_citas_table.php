@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('paciente')->nullable();
             $table->unsignedBigInteger('agendo')->nullable();
             $table->unsignedBigInteger('atiende')->nullable();
-            $table->string('tratamiento')->nullable();
             $table->boolean('confirmada')->nullable();
 
 

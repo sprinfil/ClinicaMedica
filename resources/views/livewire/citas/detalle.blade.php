@@ -79,12 +79,15 @@
                         <!--///////Botones (contenedor inferior)//////-->
                         <div class="bg-fuente w-full h-[80px] flex justify-end py-3">
 
-                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
-                                wire:click="salir">Volver</p>
-                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
+                
+                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
                             wire:click="cancelar_cita">Cancelar / Finalizar Cita</p>
-                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer "
-                            wire:click="confirmar_cita">@if($cita->confirmada) Confirmada @else Confirmar @endif</p>
+                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
+                            wire:click="cobrar_cita">Cobrar Cita</p>
+                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer @if($cita->confirmada) bg-green-500 @endif"
+                            wire:click="confirmar_cita">@if($cita->confirmada) Cita Confirmada @else Confirmar Cita @endif</p>
+                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
+                            wire:click="salir">Volver</p>
                         </div>
                     </form>
                 </div>

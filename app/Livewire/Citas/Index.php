@@ -221,4 +221,8 @@ class Index extends Component
                                         'cita_id'=>$cita_id,
                                     ]);
     }
+
+    public function cobrar_cita($paciente_id){
+        return redirect(route('historia_odontologica_create',['paciente_id' =>$paciente_id]));
+    }
 }

@@ -124,7 +124,7 @@ class Crear extends Component
     public function generar_tratamiento(){
         if($this->tabla_punto_venta != null && $this->atendio != null && $this->metodo_pago != null){
             $tratamiento = new Tratamiento;
-            $tratamiento->fecha = Carbon::now()->format('Y-m-d h:i:s');
+            $tratamiento->fecha = Carbon::now()->format('Y-m-d H:i:s');
             $tratamiento->nota = $this->nota;
             $tratamiento->monto = ($this->metodo_pago == "DOLAR" ? $this->total_usd : $this->total);
             $tratamiento->metodo_pago = $this->metodo_pago;
@@ -134,7 +134,7 @@ class Crear extends Component
             $tratamiento->referencia_pago_tarjeta_debito = $this->referencia_tarjeta_debito;
             $tratamiento->referencia_pago_tarjeta_credito = $this->referencia_pago_tarjeta_credito;
             $tratamiento->pago_con_usd = $this->pago_con_usd;
-            $tratamiento->impuesto = $this->impuesto;
+            $tratamiento->impuesto = ($this->metodo_pago == "DOLAR" ? $this->impuesto * Configuracion::first()->dolar: $this->impuesto);
             $tratamiento->save();
     
             for($i = 0 ; $i < $this->contador ; $i ++){
