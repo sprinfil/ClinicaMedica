@@ -81,7 +81,7 @@
 
                 
                             <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
-                            wire:click="cancelar_cita">Cancelar / Finalizar Cita</p>
+                            wire:click="cancelar_cita">Cancelar Cita</p>
                             <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
                             wire:click="cobrar_cita">Cobrar Cita</p>
                             <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer @if($cita->confirmada) bg-green-500 @endif"

@@ -197,7 +197,7 @@
                             <td wire:click="cancelar_cita({{ $cita->id }})" class="px-6 py-4">
                                 <div
                                     class="bg-rojo text-center py-2 text-fuente rounded-md shadow-md cursor-pointer hover:bg-red-600 transition ease-in-out delay-40 px-4">
-                                    Cancelar cita / Finalizar Cita</div>
+                                    Cancelar cita</div>
                             </td>
                             
                         </tr>
