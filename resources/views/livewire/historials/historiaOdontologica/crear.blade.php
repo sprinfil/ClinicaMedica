@@ -156,20 +156,20 @@
                     </div>
                     <!--METODO PAGO-->
                     <div class="">
-                        <div class="mt-[10px] flex-col items-end flex w-[400px]">
+                        <div class="mt-[10px] flex-col md:items-end flex w-[400px] text-[25px]">
                             @if($metodo_pago == "DOLAR")
-                            <p class="text-[25px]">TOTAL BRUTO USD   $ {{ number_format($total_usd , 2)}}</p>
-                            <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                            <p class="text-[25px] font-bold">TOTAL NETO USD $ {{ number_format(  $total_impuesto, 2)}}</p>
+                            <p class="">TOTAL BRUTO USD   $ {{ number_format($total_usd , 2)}}</p>
+                            <p class="">I.V.A $ {{ $impuesto }}</p>
+                            <p class=" font-bold">TOTAL NETO USD $ {{ number_format(  $total_impuesto, 2)}}</p>
 
-                            <p class="text-[25px] mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio_usd, 2)}}</p>
-                            <p class="text-[25px]" >CAMBIO MXN $  {{ number_format( $cambio, 2)}}</p>
+                            <p class="mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio_usd, 2)}}</p>
+                            <p class="" >CAMBIO MXN $  {{ number_format( $cambio, 2)}}</p>
                             @else
-                                <p class="text-[25px]">TOTAL BRUTO MXN $ {{ $total }}</p>
-                                <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                                <p class="text-[25px] font-bold">TOTAL NETO MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
+                                <p class="">TOTAL BRUTO MXN $ {{ $total }}</p>
+                                <p class="">I.V.A $ {{ $impuesto }}</p>
+                                <p class=" font-bold">TOTAL NETO MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
                                 @if($metodo_pago == "EFECTIVO")
-                                <p class="text-[25px] mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
+                                <p class=" mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
                                 @endif
                             @endif
                         </div>
