@@ -29,7 +29,7 @@
             <div class=""> <!--seccion botones-->
             <!--LOGO EMPRESA-->
             <div class=" flex items-center justify-center">
-                <img  src="/images/logo.png" alt="" class="w-[100px]">
+                <img  src="/storage/images/logo.png" alt="" class="w-[100px]">
             </div>
                 <ul class="mt-6 relative">
 

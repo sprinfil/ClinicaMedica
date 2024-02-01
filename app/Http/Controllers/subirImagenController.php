@@ -36,7 +36,7 @@ class subirImagenController extends Controller
     public function store_radiografia(Request $request){
         $tratamiento = Tratamiento::find($request->tratamiento_id);
 
-        //guardar la imagen y obtener ruta
+        //guardar la imagen
         $imagen = $request->file('file')->store('public/radiografia/'.$tratamiento->id);
 
         //convertir la ruta en vez de public a storage
@@ -53,5 +53,11 @@ class subirImagenController extends Controller
     public function salir(Request $request){
         $paciente_id = $request->paciente_id;
         return redirect(route('historia_odontologica',['paciente_id' => $paciente_id]));
+    }
+
+
+    public function subir_logo(Request $request){
+          $nombreArchivo = 'logo.png';
+          $request->file('file')->storeAs('public/images/', $nombreArchivo);
     }
 }

@@ -68,6 +68,7 @@ Route::controller(subirImagenController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/subirImagen/{tratamiento_id}/{paciente_id}','index')->name('historia_odontologica_imagen');
     Route::post('historial-medico/historia-odontologica/subirClinica/{tratamiento_id}/{paciente_id}','store_clinica')->name('historia_odontologica_clinica_subir');
     Route::post('historial-medico/historia-odontologica/subirRadiografia/{tratamiento_id}/{paciente_id}','store_radiografia')->name('historia_odontologica_radiografia_subir');
+    Route::post('/configuracion/subir_logo','subir_logo')->name('subir_logo');
 });
 
 Route::controller(CitaController::class)->group(function() {
@@ -87,6 +88,7 @@ Route::controller(HistoriaClinicaController::class)->group(function() {
     
     Route::controller(PdfController::class)->group(function () {
         Route::get('historial-medico/historia-clinica/{paciente_id}/pdf','informacion_historia_clinica_paciente_pdf')->name('historia_clinica_paciente_pdf');
+        Route::get('historial-medico/historia-odontologica/ticket/pdf/{tratamiento_id}/{paciente_id}','generar_ticket_venta')->name('generar_ticket_venta');
     });
 });
 

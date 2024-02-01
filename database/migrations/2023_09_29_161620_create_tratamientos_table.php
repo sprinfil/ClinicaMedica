@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('pago_con_mxn',8 ,2)->nullable();
             $table->decimal('pago_con_usd',8 ,2)->nullable();
             $table->decimal('impuesto',8 ,2)->nullable();
+            $table->string('ticket')->nullable();
 
             $table->foreignId('usuario_id')->constrained();
             $table->foreignId('paciente_id')->constrained();

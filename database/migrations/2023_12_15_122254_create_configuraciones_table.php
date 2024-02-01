@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('configuraciones', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_empresa')->nullable()->default('SurCode');;
             $table->integer('impuesto')->nullable()->default(10);
-            $table->integer('dolar')->nullable()->default(18);
-            $table->Time('horario_inicio')->nullable();
-            $table->Time('horario_final')->nullable();
+            $table->integer('dolar')->nullable()->default(16);
+            $table->Time('horario_inicio')->nullable()->default('09:00:00');
+            $table->Time('horario_final')->nullable()->default('13:00:00');;
         });
     }
 

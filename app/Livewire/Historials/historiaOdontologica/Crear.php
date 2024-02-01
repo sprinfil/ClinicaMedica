@@ -2,13 +2,16 @@
 
 namespace App\Livewire\Historials\HistoriaOdontologica;
 
-use App\Models\Configuracion;
+use App\Jobs\GenerarTicket;
 use Carbon\Carbon;
 use App\Models\Usuario;
 use Livewire\Component;
 use App\Models\Paciente;
 use App\Models\Servicio;
+use Dompdf\Dompdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Tratamiento;
+use App\Models\Configuracion;
 use App\Models\DetalleTratamiento;
 
 class Crear extends Component
@@ -143,8 +146,9 @@ class Crear extends Component
                 $detalle_tratamiento->servicio_id = $this->tabla_punto_venta[$i]['servicio_id'];
                 $detalle_tratamiento->cantidad = $this->tabla_punto_venta[$i]['cantidad'];
                 $detalle_tratamiento->save();
-            }   
+            } 
             return redirect(route('historia_odontologica_imagen',['paciente_id' => $this->paciente->id,'tratamiento_id' => $tratamiento->id]));
+
         }else{
             $this->error = true;
         }
@@ -169,6 +173,10 @@ class Crear extends Component
             $this->cambio_usd = 0;
         }
         $this->render();
+    }
+
+    public function generar_ticket($tratamiento){
+         redirect(route('generar_ticket_venta',['paciente_id' => $this->paciente->id,'tratamiento_id' => $tratamiento->id]));
     }
 
 }

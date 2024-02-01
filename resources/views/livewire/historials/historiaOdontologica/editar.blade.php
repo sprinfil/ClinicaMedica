@@ -13,23 +13,44 @@
     <div class="mx-2 md:mx-[60px] ">
 
         <!--Cabecera-->
+
         <div class=" w-full h-full bg-terciario shadow-lg rounded-md overflow-x-hidden">
             <!--Titulo -->
             <div class="justify-between mt-[20px] mx-[20px]">
                 <p class="text-fuente text-[40px] mb-[20px]">{{ $tratamiento->tratamiento }}</p>
                 <!--opciones-->
-                <div class="mb-[20px]">
-                    @if (session()->has('usuario') && session('usuario')->Tipo === 'Admin')
-                        <p class="text-fuente text-[20px]">Opciones</p>
+                <p class="text-fuente text-[20px]">Opciones</p>
+                <div class="mb-[20px] flex">
+              
+                     
                         <button class="btn-primary mt-[10px] {{ $greenClass }}"
                             @if ($edit == true) @class(['bg-green-200']) @endif
                             wire:click="toggleEdicion">{{ $lblBoton }}</button>
-                        <button class="btn-primary-red mt-[10px]  "
-                            wire:click = "TratamientoEliminar">Eliminar</button>
-                    @endif
+
+                            @if($tratamiento->ticket)
+                            <a href="{{ '/storage/tickets/'.$paciente->id.'/'.$tratamiento->id ."/".$tratamiento->ticket}}">
+                                <div class="btn-primary items-center w-[150px] flex mt-[10px]  ml-[10px] gap-x-3">
+                                    <p>Ver Ticket</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                      </svg>                          
+                                </div>
+                            </a>
+                            @else
+                                <div class="btn-primary items-center w-[150px] flex mt-[10px]  ml-[10px] gap-x-3" wire:click="generar_ticket">
+                                    <p>Generar Ticket</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                      </svg>                          
+                                </div>
+
+                            @endif
+            
+            
                 </div>
             </div>
         </div>
+ 
 
         <!--Datos del tratamiento-->
         <div class="h-full bg-[#E1E1E1] shadow-lg pb-[40px] mt-[20px] rounded-lg">
@@ -59,13 +80,10 @@
 
                     </div>
                     <div>
-
-                        <p class="text-fuente-botones">Método de pago:</p>
+                        <!--
+                                                    <p class="text-fuente-botones">Método de pago:</p>
                         <input type="text" class="input-pdv w-full" wire:model="metodo_pago" disabled>
-                        @error('metodo_pago')
-                            <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }}
-                            </div>
-                        @enderror
+                        -->
 
                     </div>
                 </div>
@@ -86,129 +104,50 @@
             </form>
         </div>
 
-         <!--TRATAMIENTOS REALIZADOS-->
-                 <!--CONTENEDOR-->
-                 <div class="md:grid grid-cols-2 gap-10 px-7 py-7">
-                    <!--TABLA-->
-                    <div>
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar min-h-[230px]">
-                            <table class="w-full text-sm text-left text-fuente dark:text-fuente">
-                                <thead
-                                    class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente text-center">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            Descripcion
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Cantidad
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Precio Unitario
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Total
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($detalle_tratamiento != null)
+        <!--SERVICIOS REALIZADOS-->
+         <!--TABLA-->
+         <div class="mt-[30px] text-[20px]">
+            <p>Servicios realizados</p>
+         </div>
+         <div>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar min-h-[230px] w-[50%]">
+                <table class="w-full text-sm text-left text-fuente dark:text-fuente">
+                    <thead
+                        class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente text-center">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Descripcion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($detalle_tratamiento != null)
 
-                                        @foreach ($detalle_tratamiento as $detalle)
-                                            <tr
-                                                class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400  text-center">
+                            @foreach ($detalle_tratamiento as $detalle)
+                                <tr
+                                    class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400  text-center">
 
-                                                <td scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
-                                                    id="casilla">
-                                                    <span>
-                                                        {{ $detalle->servicio->nombre }}
-                                                    </span>
-                                                </td>
-                                                <td scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                                    id="casilla">
-                                                    <span>
-                                                        {{ $detalle->cantidad  }}
-                                                    </span>
-                                                </td>
-                                                <td scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
-                                                    id="casilla">
-                                                    <span>
-                                                        {{ number_format( $detalle->servicio->precio , 2)}}
-                                                    </span>
-                                                </td>
-                                                <td scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
-                                                    id="casilla">
-                                                    <span>
-                                                        {{number_format(($detalle->servicio->precio * $detalle->cantidad), 2)}}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!--METODO PAGO-->
-                    <div class="">
-                        <div class="mt-[10px] flex-col items-end flex w-[400px]">
-                            @if($metodo_pago == "DOLAR")
-                            <p class="text-[25px]">TOTAL BRUTO USD   $ {{ number_format($total , 2)}}</p>
-                            <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                            <p class="text-[25px] font-bold">TOTAL NETO USD $ {{ number_format(  $total_impuesto, 2)}}</p>
+                                    <td scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
+                                        id="casilla">
+                                        <span>
+                                            {{ $detalle->servicio->nombre }}
+                                        </span>
+                                    </td>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                            <p class="text-[25px] mt-[20px]" >CAMBIO USD $  {{ number_format( $cambio, 2)}}</p>
-                            <p class="text-[25px]" >CAMBIO MXN $  {{ number_format( $cambio_mxn, 2)}}</p>
-                            @else
-                                <p class="text-[25px]">TOTAL BRUTO MXN $ {{ $total }}</p>
-                                <p class="text-[25px]">I.V.A $ {{ $impuesto }}</p>
-                                <p class="text-[25px] font-bold">TOTAL NETO MXN $ {{ number_format(  $total_impuesto, 2)}}</p>
-                                @if($metodo_pago == "EFECTIVO")
-                                <p class="text-[25px] mt-[20px]" >CAMBIO MXN $  {{ $cambio }}</p>
-                                @endif
-                            @endif
-                        </div>
-                        <div class="w-[400px]">
-    
-                            @if($metodo_pago == "EFECTIVO")
-                            <p class="text-[20px] mt-[20px]">Pago con...</p>
-                            <div class="mt-[10px]">
-                                <input type="number" class="input-pdv w-full" placeholder="MXN" wire:model="pago_con_mxn" wire:input="actualizar_cambio" disabled>
-                            </div>
-                            @endif
-    
-                            @if($metodo_pago == "TARJETA DEBITO")
-                            <p class="text-[20px] mt-[20px]">REFERENCIA</p>
-                            <div class="mt-[10px]">
-                                <input type="number" class="input-pdv w-full" placeholder="REFERENCIA" wire:model="referencia_pago_tarjeta_debito" disabled>
-                            </div>
-                            @endif
-    
-                            @if($metodo_pago == "DOLAR")
-                            <p class="text-[20px] mt-[20px]">Pago con...</p>
-                            <div class="mt-[10px]">
-                                <input type="text" class="input-pdv w-full" placeholder="USD" wire:model="pago_con_usd" wire:input="actualizar_cambio" disabled>
-                            </div>
-                            @endif
-    
-                            
-                            @if($metodo_pago == "TARJETA CREDITO")
-                            <p class="text-[20px] mt-[20px]">REFERENCIA</p>
-                            <div class="mt-[10px]">
-                                <input type="number" class="input-pdv w-full" placeholder="REFERENCIA" wire:model="referencia_pago_tarjeta_credito" disabled>
-                            </div>
-                            @endif
-                        </div>
-                       
-                    </div>
-                    <!--FIN TRATAMINETOS-->
-                </div>
+        <!---FIN-->
+        </div>
 
         <!--Imagenes clinicas-->
-        <div class="h-full  bg-[#E1E1E1] shadow-lg  mt-[20px]  rounded-lg mb-[30px] @if(count($imagenes_clinicas) == 0 && !$edit) hidden @endif">
+        <div class="h-full  bg-[#E1E1E1] shadow-lg  mt-[20px]  rounded-lg mb-[30px] @if(count($imagenes_clinicas) == 0 && !$edit) hidden @endif mx-2 md:mx-[60px] ">
             <div class="w-full bg-negro-menu text-center py-2 rounded-t-lg">
               <p class="text-fuente text-[20px]">Imagenes Clinicas</p>
             </div>
@@ -251,7 +190,7 @@
 
      
         <!--Radiografias-->
-        <div class="h-full  bg-[#E1E1E1] shadow-lg  mt-[20px]  rounded-lg mb-[30px] @if(count($imagenes_radiografias) == 0 && !$edit) hidden @endif">
+        <div class="h-full  bg-[#E1E1E1] shadow-lg  mt-[20px]  rounded-lg mb-[30px] @if(count($imagenes_radiografias) == 0 && !$edit) hidden @endif mx-2 md:mx-[60px] ">
           <div class="w-full bg-negro-menu text-center py-2 rounded-t-lg">
             <p class="text-fuente text-[20px]">Radiografias</p>
           </div>

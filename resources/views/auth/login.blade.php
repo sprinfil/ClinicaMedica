@@ -9,7 +9,7 @@
         <div class="w-full flex justify-center items-center bg-principal rounded-3xl md:w-[800px] py-9 h-[700px] shadow-lg">
             <div class="flex flex-col items-center justify-center w-[70%] ">
                 <div>
-                        <img  src="images/logo.png" alt="" class="w-[200px]">
+                        <img  src="storage/images/logo.png" alt="" class="w-[200px]">
                 </div>                    
                 <div>
                     <h2 class="text-2xl text-fuente-botones font-semibold my-10 mx-2 text-[30px]">BIENVENIDO</h2>

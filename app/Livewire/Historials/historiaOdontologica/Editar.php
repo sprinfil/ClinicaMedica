@@ -122,4 +122,8 @@ class Editar extends Component
     public function TratamientoEliminar(){
         $this->dispatch('advertenciaTratamientoEliminar', data: ['tratamiento_id' => $this->tratamiento->id, 'paciente_id' => $this->paciente->id]);
     }
+
+    public function generar_ticket(){
+        return redirect(route('generar_ticket_venta',['paciente_id' => $this->paciente->id,'tratamiento_id' => $this->tratamiento->id]));
+   }
 }

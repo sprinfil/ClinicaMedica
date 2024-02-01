@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Historial;
+use App\Models\DetalleTratamiento;
 use DateTime;
 use Dompdf\Dompdf;
 use App\Models\Paciente;
+use App\Models\Historial;
+use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\File;
+
 
 class PdfController extends Controller
 {
@@ -31,10 +35,38 @@ class PdfController extends Controller
                 return $pdf->download($nombreArchivo);
                 
             } else {
-                return redirect(route('historia-clinica'));
+                return redirect(route('historia-clinica',['paciente_id'=>$paciente->id]));
             }
         } else {
-            return redirect(route('historia-clinica'));
+            return redirect(route('historia-clinica',['paciente_id'=>$paciente->id]));
         }
+    }
+
+    public function generar_ticket_venta(Request $request){
+        $tratamiento = Tratamiento::find($request->tratamiento_id);
+        $paciente = Paciente::find($request->paciente_id);
+        $detalles = DetalleTratamiento::where('tratamiento_id',$tratamiento->id)->get();
+
+        $pdf = PDF::loadView('docs.pacientes.doc_ticket',['paciente'=>$paciente, 'tratamiento'=>$tratamiento,'detalles'=>$detalles]);
+        $nombreArchivo = 'TICKET_' . $paciente->nombre . '_' . $paciente->apellido_1 . '_' . date('dmY') . '.pdf';
+
+        // Rutas para el almacenamiento
+        $rutaBase = storage_path('app/public/tickets/');
+        $rutaPaciente = $rutaBase . $paciente->id . '/';
+        $rutaTratamiento = $rutaPaciente . $tratamiento->id . '/';
+        $rutaCompleta = $rutaTratamiento . $nombreArchivo;
+
+                // Crear directorios si no existen
+        File::makeDirectory($rutaBase, 0775, true, true);
+        File::makeDirectory($rutaPaciente, 0775, true, true);
+        File::makeDirectory($rutaTratamiento, 0775, true, true);
+
+        $pdf->save($rutaCompleta);
+        $tratamiento->ticket = $nombreArchivo;
+        $tratamiento->save();
+
+        return $pdf->download($nombreArchivo);
+        //return $pdf->download('hola.pdf');
+        //return redirect(route('historia_odontologica_imagen',['paciente_id' => $request->paciente_id,'tratamiento_id' => $request->tratamiento_id]));
     }
 }

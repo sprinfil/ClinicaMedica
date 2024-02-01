@@ -215,10 +215,6 @@
                             <div class="mt-[10px]">
                                 <button class="btn-primary w-full" wire:click="generar_tratamiento">Aceptar</button>
                             </div>
-                            <div class="mt-[10px] flex gap-x-10">
-                                <p>Generar Nota</p>
-                                <input type="checkbox" class="w-[20px]" wire:model="generar_ticket">
-                            </div>
                         </div>
                        
                     </div>

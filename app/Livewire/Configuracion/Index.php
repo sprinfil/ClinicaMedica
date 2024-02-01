@@ -17,6 +17,7 @@ class Index extends Component
     //monedas
     public $dolar;
     public $impuesto;
+    public $empresa_nombre;
 
 
 
@@ -31,6 +32,7 @@ class Index extends Component
         $this->horario_final = Carbon::createFromFormat('H:i:s', $this->configuracion->horario_final ?? '00:00:00')->format('H:i:s');
         $this->dolar = $this->configuracion->dolar ?? 0;
         $this->impuesto = $this->configuracion->impuesto ?? 0;
+        $this->empresa_nombre =  $this->configuracion->nombre_empresa;
     }
 
     public function configuracion_citas_guardar(){
@@ -74,5 +76,13 @@ class Index extends Component
         $this->configuracion->horario_final = $configuracion->horario_final;
         $this->configuracion->dolar = $configuracion->dolar;
         $this->configuracion->impuesto = $configuracion->impuesto;
+    }
+
+    public function aplicar_nombre_empresa(){
+        if($this->empresa_nombre != null){
+            $this->configuracion->nombre_empresa = $this->empresa_nombre;
+            $this->configuracion->save();
+            $this->dispatch('nombre_empresa_succes');
+        }
     }
 }
