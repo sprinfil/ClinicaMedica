@@ -39,16 +39,13 @@
                             Nombre
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Apellido 1
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Apellido 2
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Puesto
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Tipo
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            status
                         </th>
                         <th scope="col" class="px-6 py-3">
 
@@ -72,16 +69,6 @@
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                 id="casilla" wire:click="editar({{ $usuario->id }})">
-                                <span>{{ $usuario->apellido_1 }}</span>
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                id="casilla" wire:click="editar({{ $usuario->id }})">
-                                <span>{{ $usuario->apellido_2 }}</span>
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                id="casilla" wire:click="editar({{ $usuario->id }})">
                                 <span>{{ $usuario->Puesto }}</span>
                             </td>
                             <td scope="row"
@@ -89,10 +76,23 @@
                                 id="casilla" wire:click="editar({{ $usuario->id }})">
                                 <span>{{ $usuario->Tipo }}</span>
                             </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="font-medium text-blue-600 dark:text-rojo hover:underline"
-                                    wire:click="eliminar({{ $usuario->id }})">Eliminar</button>
-                            </td>
+                            <td scope="row"
+                            class="px-6 py-4 font-medium  whitespace-nowrap dark:text-fuente-botones"
+                            id="casilla" wire:click="editar({{ $usuario->id }})">
+                            <span class="text-fuente @if($usuario->status == "ACTIVO")bg-green-600 @else bg-red-500 @endif px-3 py-2 rounded-lg">{{ $usuario->status }}</span>
+                        </td>
+                        @if($usuario->status == "ACTIVO")
+                        <td class="px-6 py-4 text-right">
+                            <button class="font-medium text-fuente  hover:bg-red-600  transition ease-out  bg-red-500  px-3 py-3 rounded-md"
+                               wire:click="eliminar({{ $usuario->id }})"> DESACTIVAR USUARIO </button>
+                        </td>
+                        @else
+                        <td class="px-6 py-4 text-right">
+                            <button class="font-medium text-fuente  hover:bg-green-700transition ease-out   bg-green-600 px-3 py-3 rounded-md"
+                                wire:click="activar({{ $usuario->id }})">ACTIVAR USUARIO </button>
+                        </td>
+                        @endif
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -103,3 +103,53 @@
 
 
 </div>
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    //DESACTIVAR USUARIO
+    window.addEventListener('desactivar_advertvencia', event => {
+        Swal.fire({
+            title: "¿Desactivar usuario?",
+            text: "El usuario se dara de baja",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.dispatch('baja_usuario')
+                Swal.fire({
+                    title: "Hecho",
+                    text: "Usuario dado de baja.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
+    //ACTIVAR USUARIO
+    window.addEventListener('activar_advertvencia', event => {
+        Swal.fire({
+            title: "¿Activar usuario?",
+            text: "El usuario se activara de nuevo",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.dispatch('activar_usuario')
+                Swal.fire({
+                    title: "Hecho",
+                    text: "Usuario Activado.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+</script>
+@endsection

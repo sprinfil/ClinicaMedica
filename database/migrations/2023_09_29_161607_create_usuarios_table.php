@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido_1')->nullable();
             $table->string('apellido_2')->nullable();
+            $table->string('celular')->nullable();
+            $table->string('correo')->nullable();
+            $table->string('status')->nullable();
             $table->enum('Puesto', ['Medico','Recepcionista'])->nullable();
             $table->enum('Tipo', ['Admin','Empleado']);
         });

@@ -24,26 +24,43 @@
                             @csrf
                             <div class="placeholder:w-full h-auto md:px-[60px] px-[30px] grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="usuario" name="usuario"  wire:model="usuario">
+                                    <p class="text-fuente-botones mb-2">Usuario</p>
+                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="usuario" name="usuario" wire:model="usuario" value="{{old('usuario')}}">
                                     @error('usuario')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
-                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Nombre(s)" name="nombre" wire:model="nombre">
+                                    <p class="text-fuente-botones mb-2">Nombre(s)</p>
+                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Nombre(s)" name="nombre" wire:model="nombre" value="{{old('nombre')}}" >
                                     @error('nombre')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
-                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Apellido 1" name="apellido_1" wire:model="apellido_1">
+                                    <p class="text-fuente-botones mb-2">Apellido 1</p>
+                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Apellido 1" name="apellido_1" wire:model="apellido_1" value="{{old('apellido_1')}}" >
                                     @error('apellido_1')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
-                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Apellido 2" name="apellido_2" wire:model="apellido_2">
+                                    <p class="text-fuente-botones mb-2">Apellido 2</p>
+                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Apellido 2" name="apellido_2" wire:model="apellido_2" value="{{old('apellido_2')}}" >
                                     @error('apellido_2')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+    
+                                    <p class="text-fuente-botones mb-2">Celular</p>
+                                    <input type="number" class="input-pdv w-full mb-3 text-[20px]" placeholder="Celular" name="celular" wire:model="celular" value="{{old('celular')}}" >
+                                    @error('celular')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
                                     
                                 </div>
     
                                 <div>
-                                    <input type="password" class="input-pdv w-full text-[20px] mb-3 " placeholder="clave" name="clave" wire:model="clave">
+                                    <p class="text-fuente-botones mb-2">Correo</p>
+                                    <input type="text" class="input-pdv w-full mb-3 text-[20px]" placeholder="Correo" name="correo" wire:model="correo" value="{{old('correo')}}" >
+                                    @error('correo')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+    
+                                    <p class="text-fuente-botones mb-2">Clave</p>
+                                    <input type="password" class="input-pdv w-full text-[20px] mb-3 " placeholder="clave" name="clave" wire:model="clave" value="{{old('clave')}}" >
                                     @error('clave')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
+                                    <p class="text-fuente-botones mb-2">Repetir Clave</p>
+                                    <input type="password" class="input-pdv w-full text-[20px] mb-3 " placeholder="clave" name="clave2" wire:model="clave2" value="{{old('clave2')}}" >
+                                    @error('clave2')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
+    
                                     <p class="text-fuente-botones mb-2">Puesto</p>
-                                    <select name="Puesto" class="input-pdv w-full text-[20px] mb-3" wire:model="Puesto">
+                                    <select name="Puesto" class="input-pdv w-full text-[20px] mb-3" wire:model="Puesto" value="{{old('Puesto')}}" >
                                         <option value="" >Seleccionar</option>
                                         <option value="Medico" >Medico</option>
                                         <option value="Recepcionista">Recepcionista</option>
@@ -51,7 +68,7 @@
                                     @error('Puesto')<div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center"> {{ $message }} </div>@enderror
     
                                     <p class="text-fuente-botones mb-2">Tipo de usuario</p>
-                                    <select name="Tipo" name="tipo" class="input-pdv w-full text-[20px] mb-3 " wire:model="Tipo">
+                                    <select name="Tipo" name="tipo" class="input-pdv w-full text-[20px] mb-3 " wire:model="Tipo" value="{{old('Tipo')}}" >
                                         <option value="" >Seleccionar</option>
                                         <option value="Empleado" >Empleado</option>
                                         <option value="Admin">Admin</option>

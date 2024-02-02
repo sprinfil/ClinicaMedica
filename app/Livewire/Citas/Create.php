@@ -46,6 +46,7 @@ class Create extends Component
             $queryMedicos->where(DB::raw("CONCAT(nombre, ' ',apellido_1, ' ', apellido_2)"), 'LIKE', '%' . $this->filtroNombreUsuario . '%');
         }
         $queryMedicos->where('Puesto', 'Medico');
+        $queryMedicos->where('status','ACTIVO');
 
         $this->pacientes = $query->orderBy('id')->get();
         $this->medicos = $queryMedicos->get();

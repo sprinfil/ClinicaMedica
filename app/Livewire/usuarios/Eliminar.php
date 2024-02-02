@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Eliminar extends Component
 {
-    protected $listeners = ['eliminar'];
+    //protected $listeners = ['eliminar'];
 
     public $esconder = 'hidden';
     public $usuario_objeto;

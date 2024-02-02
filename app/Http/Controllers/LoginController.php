@@ -25,19 +25,20 @@ class LoginController extends Controller
 
         $usuarioEncontrado = Usuario::where('usuario', $usuario)->first();
 
-        if ($usuarioEncontrado && password_verify($clave, $usuarioEncontrado->clave)) {
-            // Autenticación exitosa
-            // Puedes guardar el usuario en la sesión si es necesario
-            session(['usuario' => $usuarioEncontrado]);
-            
-        
-            return redirect()->route('home');
-
-        } else {
-            // Autenticación fallida
-            return back()->with('mensaje', 'Credenciales Incorrectas');
+        if($usuarioEncontrado->status == "ACTIVO"){
+            if ($usuarioEncontrado && password_verify($clave, $usuarioEncontrado->clave)) {
+                // Autenticación exitosa
+                // Puedes guardar el usuario en la sesión si es necesario
+                session(['usuario' => $usuarioEncontrado]);                   
+                return redirect()->route('home');
+    
+            } else {
+                // Autenticación fallida
+                return back()->with('mensaje', 'Credenciales Incorrectas');
+            }     
+        }else{
+            return back()->with('mensaje', 'cuenta suspendida');
         }
-        
 
     }
 }

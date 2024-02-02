@@ -20,6 +20,9 @@ class Editar extends Component
     public $apellido_2 = '';
     public $Puesto = '';
     public $Tipo = '';
+    public $clave2 = '';
+    public $correo ='';
+    public $celular = '';
 
     
     public function render()
@@ -37,6 +40,8 @@ class Editar extends Component
         $this->apellido_2 =  $this->usuario_objeto->apellido_2;
         $this->Puesto =  $this->usuario_objeto->Puesto;
         $this->Tipo =  $this->usuario_objeto->Tipo;
+        $this->celular = $this->usuario_objeto->celular;
+        $this->correo = $this->usuario_objeto->correo;
     }
 
 
@@ -46,54 +51,30 @@ class Editar extends Component
     }
 
     public function save(){
-        //No modificar clave
-        if($this->clave == ''){
-            $validated = $this->validate([ 
-                'usuario' => 'required|min:5',
-                'nombre' => 'required',
-                'apellido_1' => 'required',
-                'apellido_2' => 'required',
-                'Puesto' => 'required',
-                'Tipo' => 'required'
+        $this->validate([ 
+            'usuario' => 'required|min:5',
+            'clave' => 'nullable',
+            'clave2' => 'nullable|same:clave',
+            'nombre' => 'required',
+            'apellido_1' => 'required',
+            'apellido_2' => 'required',
+            'Puesto' => 'required',
+            'Tipo' => 'required',
+            'celular' => 'nullable',
+            'correo' => 'nullable'
         ]);
-    
-    
-            $this->usuario_objeto->usuario =  $this->usuario;
-            $this->usuario_objeto->nombre =  $this->nombre;
-            $this->usuario_objeto->apellido_1 =  $this->apellido_1;
-            $this->usuario_objeto->apellido_2 =  $this->apellido_2;
-            $this->usuario_objeto->Puesto =  $this->Puesto;
-            $this->usuario_objeto->Tipo =  $this->Tipo;
-    
-            $this->usuario_objeto->save();
-    
-            $this->cerrar();
-        }
-        else{
-            //Modificar clave
-            $validated = $this->validate([ 
-                'usuario' => 'required|min:5',
-                'clave' => 'required',
-                'nombre' => 'required',
-                'apellido_1' => 'required',
-                'apellido_2' => 'required',
-                'Puesto' => 'required',
-                'Tipo' => 'required'
-        ]);
-    
-    
-            $this->usuario_objeto->usuario =  $this->usuario;
-            $this->usuario_objeto->clave = bcrypt($this->clave);
-            $this->usuario_objeto->nombre =  $this->nombre;
-            $this->usuario_objeto->apellido_1 =  $this->apellido_1;
-            $this->usuario_objeto->apellido_2 =  $this->apellido_2;
-            $this->usuario_objeto->Puesto =  $this->Puesto;
-            $this->usuario_objeto->Tipo =  $this->Tipo;
-    
-            $this->usuario_objeto->save();
-    
-            $this->cerrar();
-        }
 
-    }
+            $this->usuario_objeto->usuario = $this->usuario;
+            $this->usuario_objeto->nombre = $this->nombre;
+            $this->usuario_objeto->apellido_1 = $this->apellido_1;
+            $this->usuario_objeto->apellido_2 = $this->apellido_2;
+            $this->usuario_objeto->celular = $this->celular;
+            $this->usuario_objeto->correo = $this->correo;
+            $this->clave != '' ? $this->usuario_objeto->clave = bcrypt($this->clave): '' ; 
+            $this->usuario_objeto->puesto = $this->Puesto;
+            $this->usuario_objeto->tipo = $this->Tipo;
+            $this->usuario_objeto->save();
+
+            $this->cerrar();
+        }
 }

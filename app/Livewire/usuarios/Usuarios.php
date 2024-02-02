@@ -13,6 +13,8 @@ class Usuarios extends Component
     use WithPagination;
     public $usuario;
     public $FiltroNombre;
+    public $baja_usuario;
+    public $activar_usuario;
 
     public function render()
     {
@@ -38,10 +40,31 @@ class Usuarios extends Component
     }
 
     public function eliminar($usuario_id){
-        $this->dispatch('eliminar', ['usuario' => $usuario_id]);
+        $this->baja_usuario = Usuario::find($usuario_id);
+        $this->dispatch('desactivar_advertvencia');
+    }
+
+    #[On('baja_usuario')] 
+    public function baja_usuario(){
+        $usuario = Usuario::find($this->baja_usuario->id);
+        $usuario->status = 'BAJA';
+        $usuario->save();
     }
 
     public function actualizarFiltroNombre(){
         $this->render();
+    }
+
+    public function activar($usuario_id){
+        $this->activar_usuario = Usuario::find($usuario_id);
+        $this->dispatch('activar_advertvencia');
+    }
+
+    
+    #[On('activar_usuario')] 
+    public function activar_usuario(){
+        $usuario = Usuario::find($this->activar_usuario->id);
+        $usuario->status = 'ACTIVO';
+        $usuario->save();
     }
 }

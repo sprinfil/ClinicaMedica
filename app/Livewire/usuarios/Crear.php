@@ -18,6 +18,9 @@ class Crear extends Component
     public $apellido_2 = '';
     public $Puesto = '';
     public $Tipo = '';
+    public $clave2 = '';
+    public $correo ='';
+    public $celular = '';
 
     public function render()
     {
@@ -26,35 +29,32 @@ class Crear extends Component
 
     public function save()
     {
-
-        //primera vuelta para validar los datos (si no lo hago de esta manera la contrasena se encripta en tiempo de ejecucion)
-        $validated = $this->validate([ 
+        $this->validate([ 
                 'usuario' => 'required|min:5',
                 'clave' => 'required',
+                'clave2' => 'required|same:clave',
                 'nombre' => 'required',
                 'apellido_1' => 'required',
                 'apellido_2' => 'required',
                 'Puesto' => 'required',
-                'Tipo' => 'required'
+                'Tipo' => 'required',
+                'celular' => 'nullable',
+                'correo' => 'nullable'
         ]);
 
-        //encripto la contraseña 
-        $this->clave = bcrypt($this->clave);
+        $usuario = new Usuario();
 
-        //vuelvo a llenar todos los datos de validated (tengo que llenar todos por que si solo lleno clave no tendra los 
-        //demas datos al momento de pasarlo a la funcion create)
-        
-        $validated = $this->validate([ 
-            'usuario' => 'required|min:5',
-            'clave' => 'required',
-            'nombre' => 'required',
-            'apellido_1' => 'required',
-            'apellido_2' => 'required',
-            'Puesto' => 'required',
-            'Tipo' => 'required'
-    ]);
-
-        Usuario::create($validated);
+        $usuario->usuario = $this->usuario;
+        $usuario->nombre = $this->nombre;
+        $usuario->apellido_1 = $this->apellido_1;
+        $usuario->apellido_2 = $this->apellido_2;
+        $usuario->celular = $this->celular;
+        $usuario->correo = $this->correo;
+        $usuario->clave = bcrypt($this->clave);
+        $usuario->puesto = $this->Puesto;
+        $usuario->tipo = $this->Tipo;
+        $usuario->status = 'ACTIVO';
+        $usuario->save();
 
        $this->cancel();
     }
