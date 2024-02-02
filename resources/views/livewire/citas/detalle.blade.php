@@ -49,14 +49,6 @@
                                     <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
                                         {{ $message }} </div>
                                 @enderror
-
-                                <p class="mt-[10px]">Tratamiento</p>
-                                <input name="tratamiento" type="input" class="input-pdv w-full"
-                                    placeholder="Tratamiento" wire:model="tratamiento" disabled>
-                                @error('tratamiento')
-                                    <div class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
-                                        {{ $message }} </div>
-                                @enderror
                             </div>
                             <!--Segunda columna-->
                             <div>
@@ -77,17 +69,18 @@
 
 
                         <!--///////Botones (contenedor inferior)//////-->
-                        <div class="bg-fuente w-full h-[80px] flex justify-end py-3">
+                        <div class="bg-fuente w-full h-[80px] justify-end py-3 overflow-auto md:flex items-end">
 
-                
-                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
-                            wire:click="cancelar_cita">Cancelar Cita</p>
-                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
-                            wire:click="cobrar_cita">Cobrar Cita</p>
-                            <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer @if($cita->confirmada) bg-green-500 @endif"
-                            wire:click="confirmar_cita">@if($cita->confirmada) Cita Confirmada @else Confirmar Cita @endif</p>
-                            <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
-                            wire:click="salir">Volver</p>
+                            <div class="flex px-[20px] md:px-[0px]">
+                                <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer text-fuente-botones"
+                                wire:click="cobrar_cita">Cobrar Cita</p>
+                                <p class="btn-primary right-0 mr-2  items-center flex cursor-pointer @if($cita->confirmada) bg-green-500 @endif"
+                                wire:click="confirmar_cita">@if($cita->confirmada) Cita Confirmada @else Confirmar Cita @endif</p>
+                                <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
+                                wire:click="cancelar_cita">Cancelar Cita</p>
+                                <p class="btn-primary-red right-0 mr-2  items-center flex cursor-pointer text-fuente"
+                                wire:click="salir">Volver</p>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -48,7 +48,7 @@ class PdfController extends Controller
         $detalles = DetalleTratamiento::where('tratamiento_id',$tratamiento->id)->get();
 
         $pdf = PDF::loadView('docs.pacientes.doc_ticket',['paciente'=>$paciente, 'tratamiento'=>$tratamiento,'detalles'=>$detalles]);
-        $nombreArchivo = 'TICKET_' . $paciente->nombre . '_' . $paciente->apellido_1 . '_' . date('dmYh:i:s') . '.pdf';
+        $nombreArchivo = 'TICKET_' . $paciente->nombre . '_' . $paciente->apellido_1 . '_' . date('dmYhis') . '.pdf';
 
         // Rutas para el almacenamiento
         $rutaBase = storage_path('app/public/tickets/');

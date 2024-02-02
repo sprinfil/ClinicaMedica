@@ -110,7 +110,7 @@
             <p>Servicios realizados</p>
          </div>
          <div>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar min-h-[230px] w-[50%]">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg  my-[25px] no-scrollbar min-h-[230px] w-[100%] md:w-[50%]">
                 <table class="w-full text-sm text-left text-fuente dark:text-fuente">
                     <thead
                         class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente text-center">

@@ -30,10 +30,10 @@
                                         NOMBRE
                                     </th>
                                     <th scope="col" colspan="1" class="px-6 py-3">
-                                        TOTAL BRUTO
+                                        SUBTOTAL
                                     </th>
                                     <th scope="col" colspan="2" class="px-6 py-3">
-                                        TOTAL NETO
+                                        TOTAL
                                     </th>
 
                                 </tr>
@@ -157,7 +157,7 @@
                                         PACIENTE
                                     </th>
                                     <th scope="col" class="px-2 py-3">
-                                        Monto Neto
+                                        TOTAL
                                     </th>
                                     <th scope="col" class="px-2 py-3">
                                         Metodo de pago

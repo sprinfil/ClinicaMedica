@@ -76,7 +76,7 @@
     <div class=" justify-end flex mr-[20px] items-center w-full">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button class=" block mr-[10px] underline text-blue-500 ">Cerrar sesion</button>
+            <button class=" mr-[10px] underline text-blue-500 hidden md:block">Cerrar sesion</button>
         </form>
         <p class="text-fuente block">
 

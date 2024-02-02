@@ -108,21 +108,21 @@
             <tr>
                 <td style="text-align: center;">{{ $detalle->servicio->nombre}}</td>
                 <td style="text-align: center;">{{ $detalle->cantidad}}</td>
-                <td style="text-align: center;">{{ $detalle->servicio->precio}}</td>
-                <td style="text-align: center;">{{ $detalle->cantidad * $detalle->servicio->precio}}</td>
+                <td style="text-align: center;">$ {{  number_format($detalle->servicio->precio,2)}}</td>
+                <td style="text-align: center;">$ {{ number_format($detalle->cantidad * $detalle->servicio->precio,2)}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="contenedor-total">
-        <p>TOTAL BRUTO: $ {{  number_format($tratamiento->monto, 2)}}</p>
+        <p>SUBTOTAL: $ {{  number_format($tratamiento->monto, 2)}}</p>
         @if($tratamiento->metodo_pago == "DOLAR")
         <p>I.V.A: $ {{ number_format($tratamiento->impuesto / App\Models\Configuracion::first()->dolar, 2) }}</p>
-        <h1>TOTAL NETO: $ {{  number_format(  (($tratamiento->impuesto / App\Models\Configuracion::first()->dolar) + $tratamiento->monto), 2)}}</h1>
+        <h1>TOTAL: $ {{  number_format(  (($tratamiento->impuesto / App\Models\Configuracion::first()->dolar) + $tratamiento->monto), 2)}}</h1>
         @else
         <p>I.V.A: $ {{ number_format($tratamiento->impuesto, 2) }}</p>
-        <h1>TOTAL NETO: $ {{  number_format(  ($tratamiento->impuesto + $tratamiento->monto), 2)}}</h1>
+        <h1>TOTAL: $ {{  number_format(  ($tratamiento->impuesto + $tratamiento->monto), 2)}}</h1>
         @endif
 
         @if($tratamiento->metodo_pago == "EFECTIVO")

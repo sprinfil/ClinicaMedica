@@ -28,9 +28,7 @@
         @section('menu')
             @include('layouts.menu')
         @show
-
         @endif
-   
 
     
     <!--Main-->
