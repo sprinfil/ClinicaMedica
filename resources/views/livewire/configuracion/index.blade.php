@@ -74,7 +74,7 @@
                     <div class="w-full bg-negro-menu text-center py-2">
                         <p class="text-fuente text-[25px]">INFORMACION DE LA EMPRESA</p>
                     </div>
-                    <div class="ml-[59px] mt-[30px] flex gap-x-4">
+                    <div class="ml-[59px] mt-[30px] flex gap-x-4 flex-wrap">
                         <div>
                             <p>Nombre de la Empresa</p>
                             <input type="text" class="input-pdv" wire:model="empresa_nombre">
