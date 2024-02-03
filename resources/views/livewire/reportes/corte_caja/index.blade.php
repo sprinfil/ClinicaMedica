@@ -66,7 +66,7 @@
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
-                                                $ {{ number_format(  $corte->total_bruto, 2)}}
+                                                $ {{ number_format(  $corte->subtotal, 2)}}
                                             </span>
                                         </td>
 
@@ -74,7 +74,7 @@
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
-                                                $ {{ number_format(  $corte->total_neto, 2)}}
+                                                $ {{ number_format(  $corte->total, 2)}}
                                             </span>
                                         </td>
 
@@ -109,32 +109,136 @@
                             <p class="text-fuente text-sm">Desglose de Ingresos</p>
                         </div>
                         <div class="ml-[30px] mt-[10px]">
-                            <p class="text-fuente-botones text-sm">Corte del
+                            <p class="text-fuente-botones text-[15px] font-bold">Corte del
                                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $selected_corte->fecha)->format('d') }}
                                 de
                                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $selected_corte->fecha)->monthName }} del
                                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $selected_corte->fecha)->format('Y') }}</p>
                         </div>
 
-                        <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 ">
+                        <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 ">
                             <div>
-                                <p class="text-fuente-botones">Efectivo</p>
-                                <input class="input-pdv w-full mb-3 text-[15px]"
-                                    value="{{ $selected_corte ? number_format(  $selected_corte->efectivo , 2): '' }}" disabled>
-                                <p class="text-fuente-botones">Dolar</p>
-                                <input class="input-pdv w-full mb-3 text-[15px]"
-                                    value="{{ $selected_corte ?  number_format(  $selected_corte->dolares , 2): '' }}" disabled>
+                                <!--EFECTIVO-->
+                                <p class="text-fuente-botones text-center font-bold">Efectivo</p>
+
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Subtotal</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(   $selected_corte->efectivo_subtotal , 2): '' }}" disabled>
+                                </div>
+
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Impuestos</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->efectivo_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Total</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(   $selected_corte->efectivo_subtotal + $selected_corte->efectivo_impuestos  , 2): '' }}" disabled>
+                                </div>
+
+                                 <!--DOLAR-->
+                                <p class="text-fuente-botones text-center font-bold">Dolar</p>
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Subtotal</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? 'USD $ '.number_format(  $selected_corte->dolares_subtotal , 2): '' }}" disabled>
+                                </div>
+
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Impuestos</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? 'USD $ '.number_format(  $selected_corte->dolares_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Total</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? 'USD $ '.number_format(   $selected_corte->dolares_subtotal + $selected_corte->dolares_impuestos , 2): '' }}" disabled>
+                                </div>
+
                             </div>
                             <div>
-                                <p class="text-fuente-botones">Tarjeta Credito</p>
-                                <input class="input-pdv w-full mb-3 text-[15px]"
-                                    value="{{ $selected_corte ? number_format( $selected_corte->tarjeta_credito, 2): '' }}" disabled>
-                                <p class="text-fuente-botones">Tarjeta Debito</p>
-                                <input class="input-pdv w-full mb-3 text-[15px]"
-                                    value="{{ $selected_corte ? number_format( $selected_corte->tarjeta_debito , 2): '' }}" disabled>
-                                <p class="text-fuente-botones">Impuestos Cobrados</p>
-                                <input class="input-pdv w-full mb-3 text-[15px]" value="{{number_format( $impuestos_cobrados , 2) }}"
-                                    disabled>
+                                <!--TARJETA CREDITO-->
+                                <p class="text-fuente-botones text-center font-bold">Tarjeta Credito</p>
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Subtotal</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->tarjeta_credito_subtotal , 2): '' }}" disabled>
+                                </div>
+
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Impuestos</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->tarjeta_credito_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Total</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->tarjeta_credito_subtotal  + $selected_corte->tarjeta_credito_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                <!--TARJETA DEBITO-->
+                                <p class="text-fuente-botones text-center font-bold">Tarjeta Debito</p>
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Subtotal</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->tarjeta_debito_subtotal , 2): '' }}" disabled>
+                                </div>
+
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Impuestos</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->tarjeta_debito_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Total</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format( $selected_corte->tarjeta_debito_subtotal + $selected_corte->tarjeta_debito_impuestos , 2): '' }}" disabled>
+                                </div>
+
+                                <!--IMPUESTOS-->
+                                <p class="text-fuente-botones text-center font-bold mt-[20px]">Impuestos Cobrados</p>
+                                <div class="flex gap-x-4 items-center">
+                                    <div class="w-[150px] flex justify-end">
+                                        <p class="text-fuente-botones text-center">Total</p>
+                                    </div>
+                                    <input class="input-pdv w-full mb-3 text-[15px]"
+                                    value="{{ $selected_corte ? '$ '.number_format(  $selected_corte->total_impuestos , 2): '' }}" disabled>
+                                </div>
+
                             </div>
                         </div>
 
@@ -157,7 +261,10 @@
                                         PACIENTE
                                     </th>
                                     <th scope="col" class="px-2 py-3">
-                                        TOTAL
+                                        SUBTOTAL
+                                    </th>
+                                    <th scope="col" class="px-2 py-3">
+                                        total
                                     </th>
                                     <th scope="col" class="px-2 py-3">
                                         Metodo de pago
@@ -186,8 +293,13 @@
                                         <td scope="row"
                                             class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
-                                            <span>$ {{number_format(  $tratamiento->monto + $tratamiento->impuesto  , 2)  }}</span>
+                                            <span>$ {{number_format(  $tratamiento->monto,2) }}</span>
                                         </td>
+                                        <td scope="row"
+                                        class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                        id="casilla">
+                                        <span>$ {{number_format(  $tratamiento->total,2) }}</span>
+                                    </td>
                                         <td scope="row"
                                             class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">

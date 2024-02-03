@@ -123,14 +123,14 @@
                                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
                                                     id="casilla">
                                                     <span>
-                                                        {{ $servicio['unitario'] }}
+                                                       $ {{ number_format($servicio['unitario'] ,2) }}
                                                     </span>
                                                 </td>
                                                 <td scope="row"
                                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
                                                     id="casilla">
                                                     <span>
-                                                        {{ $servicio['total'] }}
+                                                        $ {{ $servicio['total'] }}
                                                     </span>
                                                 </td>
                                                 <td scope="row"
@@ -162,17 +162,17 @@
                         <div class="mt-[10px] flex-col md:items-end flex w-[400px] text-[25px]">
                             @if ($metodo_pago == 'DOLAR')
                                 <p class="">SUBTOTAL USD $ {{ number_format($total_usd, 2) }}</p>
-                                <p class="">I.V.A $ {{ $impuesto }}</p>
+                                <p class="">I.V.A $ {{ number_format($impuesto,2)  }}</p>
                                 <p class=" font-bold">TOTAL USD $ {{ number_format($total_impuesto, 2) }}</p>
 
                                 <p class="mt-[20px]">CAMBIO USD $ {{ number_format($cambio_usd, 2) }}</p>
                                 <p class="">CAMBIO MXN $ {{ number_format($cambio, 2) }}</p>
                             @else
-                                <p class="">SUBTOTAL MXN $ {{ $total }}</p>
-                                <p class="">I.V.A $ {{ $impuesto }}</p>
+                                <p class="">SUBTOTAL MXN $ {{ number_format($total ,2) }}</p>
+                                <p class="">I.V.A $ {{ number_format($impuesto ,2) }}</p>
                                 <p class=" font-bold">TOTAL MXN $ {{ number_format($total_impuesto, 2) }}</p>
                                 @if ($metodo_pago == 'EFECTIVO')
-                                    <p class=" mt-[20px]">CAMBIO MXN $ {{ $cambio }}</p>
+                                    <p class=" mt-[20px]">CAMBIO MXN $ {{ number_format($cambio,2)  }}</p>
                                 @endif
                             @endif
                         </div>

@@ -65,17 +65,43 @@ class Index extends Component
             $corte_eliminar->delete();
         }
 
-        $efectivo = Tratamiento::total_efectivo(Carbon::now()->toDateString());
-        $tarjeta_credito = Tratamiento::total_tarjeta_credito(Carbon::now()->toDateString());
-        $tarjeta_debito = Tratamiento::total_tarjeta_debito(Carbon::now()->toDateString());
-        $dolares = Tratamiento::total_dolares(Carbon::now()->toDateString());
+        $efectivo_con_impuestos = Tratamiento::total_efectivo_con_impuestos(Carbon::now()->toDateString());
+        $tarjeta_credito_con_impuestos = Tratamiento::total_tarjeta_credito_con_impuestos(Carbon::now()->toDateString());
+        $tarjeta_debito_con_impuestos = Tratamiento::total_tarjeta_debito_con_impuestos(Carbon::now()->toDateString());
+        $dolares_con_impuestos = Tratamiento::total_dolares_con_impuestos(Carbon::now()->toDateString());
+
+        $efectivo_sin_impuestos = Tratamiento::total_efectivo_sin_impuestos(Carbon::now()->toDateString());
+        $tarjeta_credito_sin_impuestos = Tratamiento::total_tarjeta_credito_sin_impuestos(Carbon::now()->toDateString());
+        $tarjeta_debito_sin_impuestos = Tratamiento::total_tarjeta_debito_sin_impuestos(Carbon::now()->toDateString());
+        $dolares_sin_impuestos = Tratamiento::total_dolares_sin_impuestos(Carbon::now()->toDateString());
 
         $corte = new Corte();
 
         $corte->usuario_id = session('usuario')->id;
         $corte->fecha = Carbon::now()->toDateString();
+        
+        $corte->subtotal = $efectivo_sin_impuestos +  $tarjeta_credito_sin_impuestos +  $tarjeta_debito_sin_impuestos + ($dolares_sin_impuestos * Configuracion::first()->dolar);
+        $corte->total =  $efectivo_con_impuestos + $tarjeta_credito_con_impuestos +   $tarjeta_debito_con_impuestos +  ($dolares_con_impuestos * Configuracion::first()->dolar);
 
-        $corte->efectivo = $efectivo;
+        $corte->efectivo_subtotal = $efectivo_sin_impuestos;
+        $corte->efectivo_impuestos = Tratamiento::efectivo_impuestos(Carbon::now()->toDateString());
+
+        $corte->dolares_subtotal = $dolares_sin_impuestos;
+        $corte->dolares_impuestos = Tratamiento::dolares_impuestos(Carbon::now()->toDateString());
+
+        $corte->tarjeta_credito_subtotal = $tarjeta_credito_sin_impuestos;
+        $corte->tarjeta_credito_impuestos = Tratamiento::tarjeta_credito_impuestos(Carbon::now()->toDateString());
+
+        $corte->tarjeta_debito_subtotal = $tarjeta_debito_sin_impuestos;
+        $corte->tarjeta_debito_impuestos = Tratamiento::tarjeta_debito_impuestos(Carbon::now()->toDateString());
+
+        $corte->total_impuestos = Tratamiento::efectivo_impuestos(Carbon::now()->toDateString())
+         + (Tratamiento::dolares_impuestos(Carbon::now()->toDateString()) * Configuracion::first()->dolar) +
+         Tratamiento::tarjeta_credito_impuestos(Carbon::now()->toDateString()) + 
+         Tratamiento::tarjeta_debito_impuestos(Carbon::now()->toDateString());
+
+/*
+     $corte->efectivo = $efectivo;
         $corte->tarjeta_credito = $tarjeta_credito;
         $corte->tarjeta_debito = $tarjeta_debito;
         $corte->dolares = $dolares;
@@ -84,6 +110,8 @@ class Index extends Component
 
         $corte->total_neto = $total_neto;
         $corte->total_bruto = $total_neto - ($total_neto * (Configuracion::first()->impuesto/100));
+*/
+   
 
         $corte->save();
         $this->mount();

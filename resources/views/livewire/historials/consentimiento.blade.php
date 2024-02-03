@@ -1,19 +1,23 @@
 <div>
     <!--navegacion superior-->
     <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
+        <a href="{{ route('pacientes') }}" class="underline text-blue-500">Pacientes</a>
+        /
+         <a href="{{ route('expediente', ['paciente_id' => $paciente->id]) }}" class="underline text-blue-500">{{ $paciente->getFullNombre($paciente->id) }}</a>
+        /
         <a href="{{ route('consentimiento', ['paciente_id' => $paciente->id]) }}" class="underline text-blue-500">Consentimiento</a>
     </div>
     <div class="mx-2 md:mx-[60px] mt-[20px]">
         <!--Cabecera-->
         <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden border-2 border-color-borde">
             <div class="mx-[10px] md:mx-[50px]  justify-between">
-                <p class="text-fuente text-[40px]">Consentimiento <span class="text-slate-900 font-extrabold">{{ $paciente->getFullNombre($paciente->id) }}</span></p>
+                <p class="text-fuente text-[40px]">Consentimiento <span class="text-fuente font-extrabold">{{ $paciente->getFullNombre($paciente->id) }}</span></p>
             </div>
         </div>
     </div>
 
-    <div class="md:flex sm:block w-full justify-center gap-2">
-        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto">
+    <div class="md:flex sm:block w-full justify-center gap-2 mb-[100px]">
+        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto overflow-auto">
             <a href="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" target="_blank" class="text-white text-xl">
                 <button class="btn-primary bg-red-500 text-white font-bold mb-5">Ver PDF</button>
             </a>

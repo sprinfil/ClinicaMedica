@@ -138,6 +138,7 @@ class Crear extends Component
             $tratamiento->referencia_pago_tarjeta_credito = $this->referencia_pago_tarjeta_credito;
             $tratamiento->pago_con_usd = $this->pago_con_usd;
             $tratamiento->impuesto = ($this->metodo_pago == "DOLAR" ? $this->impuesto * Configuracion::first()->dolar: $this->impuesto);
+            $tratamiento->total = $this->total_impuesto ;
             $tratamiento->save();
     
             for($i = 0 ; $i < $this->contador ; $i ++){
