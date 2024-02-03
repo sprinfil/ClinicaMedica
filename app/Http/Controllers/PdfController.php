@@ -83,4 +83,19 @@ class PdfController extends Controller
         // Manejo de errores si el archivo no existe
         abort(404, 'El archivo PDF no se encontró.');
     }
+
+    public function ver_ticket_tratamiento($paciente_id, $tratamiento_id)
+    {
+        $tratamiento = Tratamiento::find($tratamiento_id);
+
+        $pdfPath = 'tickets/'.$paciente_id.'/'.$tratamiento_id.'/'.$tratamiento->ticket;
+
+        // Asegúrate de que el archivo exista antes de intentar mostrarlo
+        if (Storage::disk('public')->exists($pdfPath)) {
+            return response()->file(Storage::disk('public')->path($pdfPath));
+        }
+
+        // Manejo de errores si el archivo no existe
+        abort(404, 'El archivo PDF no se encontró.');
+    }
 }

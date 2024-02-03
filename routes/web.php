@@ -91,6 +91,7 @@ Route::controller(HistoriaClinicaController::class)->group(function() {
         Route::get('historial-medico/historia-clinica/{paciente_id}/pdf','informacion_historia_clinica_paciente_pdf')->name('historia_clinica_paciente_pdf');
         Route::get('historial-medico/historia-odontologica/ticket/pdf/{tratamiento_id}/{paciente_id}','generar_ticket_venta')->name('generar_ticket_venta');
         Route::get('verpdf/{paciente_id}', 'verpdf')->name('verpdf');
+        Route::get('ver_ticket/{paciente_id}/{tratamiento_id}', 'ver_ticket_tratamiento')->name('ver_ticket_tratamiento');
     });
 });
 
