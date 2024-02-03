@@ -54,6 +54,7 @@ Route::controller(PacienteController::class)->group(function(){
 
 Route::get('historial-medico', [HistorialController::class, 'index'])->name('historial_medico');
 Route::get('historial-medico/expediente/{paciente_id}', [HistorialController::class, 'expediente'])->name('expediente');
+Route::get('historial-medico/consentimiento/{paciente_id}', [HistorialController::class, 'consentimiento'])->name('consentimiento');
 
 Route::controller(HistoriaOdontologicaController::class)->group(function () {
     Route::get('historial-medico/historia-odontologica/{paciente_id}','index')->name('historia_odontologica');
@@ -89,6 +90,7 @@ Route::controller(HistoriaClinicaController::class)->group(function() {
     Route::controller(PdfController::class)->group(function () {
         Route::get('historial-medico/historia-clinica/{paciente_id}/pdf','informacion_historia_clinica_paciente_pdf')->name('historia_clinica_paciente_pdf');
         Route::get('historial-medico/historia-odontologica/ticket/pdf/{tratamiento_id}/{paciente_id}','generar_ticket_venta')->name('generar_ticket_venta');
+        Route::get('verpdf/{paciente_id}', 'verpdf')->name('verpdf');
     });
 });
 

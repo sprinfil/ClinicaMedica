@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('titulo','servicios')
+@section('titulo','Servicios')
 @section('contenido')
     @livewire('servicios.index')
     @livewire('servicios.editar')

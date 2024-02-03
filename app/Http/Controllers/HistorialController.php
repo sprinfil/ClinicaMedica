@@ -30,4 +30,8 @@ class HistorialController extends Controller
         $edad = $fecha_nacimiento->age;
         return view('historials.expediente',compact('paciente','edad'));
     }
+
+    public function consentimiento($paciente_id){
+        return view('historials.consentimiento', ['paciente_id' => intval($paciente_id)]);
+    }
 }

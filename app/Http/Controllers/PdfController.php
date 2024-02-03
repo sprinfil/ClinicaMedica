@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetalleTratamiento;
 use DateTime;
 use Dompdf\Dompdf;
 use App\Models\Paciente;
@@ -10,7 +9,9 @@ use App\Models\Historial;
 use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\DetalleTratamiento;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 
 class PdfController extends Controller
@@ -68,5 +69,18 @@ class PdfController extends Controller
         return $pdf->download($nombreArchivo);
         //return $pdf->download('hola.pdf');
         //return redirect(route('historia_odontologica_imagen',['paciente_id' => $request->paciente_id,'tratamiento_id' => $request->tratamiento_id]));
+    }
+
+    public function verpdf($paciente_id)
+    {
+        $pdfPath = 'contratos/consentimiento_'.$paciente_id.'.pdf';
+
+        // Asegúrate de que el archivo exista antes de intentar mostrarlo
+        if (Storage::disk('public')->exists($pdfPath)) {
+            return response()->file(Storage::disk('public')->path($pdfPath));
+        }
+
+        // Manejo de errores si el archivo no existe
+        abort(404, 'El archivo PDF no se encontró.');
     }
 }

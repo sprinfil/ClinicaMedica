@@ -69,8 +69,13 @@
                                     <span>{{'$ ' . $servicio->precio }}</span>
                                 </td>
                                 <td class="flex justify-center items-center h-[50px]"> <!-- Ajusta la altura según sea necesario -->
-                                    <button class="font-medium text-blue-600 dark:text-rojo hover:underline"
-                                        wire:click="eliminar({{ $servicio->id }})">Eliminar</button>
+                                    @if ($servicio->status == 'ACTIVO')
+                                        <button class="font-medium text-blue-600 dark:text-rojo hover:underline"
+                                            wire:click="deshabilitar({{ $servicio->id }})">Deshabilitar</button>
+                                    @else
+                                        <button class="font-medium text-blue-600 dark:text-blue hover:underline"
+                                        wire:click="habilitar({{ $servicio->id }})">Habilitar</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -90,3 +95,50 @@
 
 
 </div>
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    window.addEventListener('deshabilitar_advertencia', event => {
+        Swal.fire({
+            title: "¿Deseas deshabilitar el servicio?",
+            text: "El servicio sera deshabilitado",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.dispatch('deshabilitar_servicio')
+                Swal.fire({
+                    title: "Hecho",
+                    text: "Servicio deshabilitado.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+
+    window.addEventListener('habilitar_advertencia', event => {
+        Swal.fire({
+            title: "¿Deseas habilitar el servicio?",
+            text: "El servicio sera habilitado",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.dispatch('habilitar_servicio')
+                Swal.fire({
+                    title: "Hecho",
+                    text: "Servicio habilitado.",
+                    icon: "success"
+                });
+            }
+        });
+    });
+</script>
+@endsection

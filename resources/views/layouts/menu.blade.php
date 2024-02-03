@@ -6,7 +6,7 @@
             <div class="">
                 <!--Texto Superior-->
                 <p class="texto  text-[20px] text-fuente">MENU</p>
-                <p class="texto  text-[20px] text-fuente">{{ App\Models\Configuracion::first()->nombre_empresa }}</p>
+                <p class="texto  text-[20px] text-fuente">{{ App\Models\Configuracion::first()->nombre_empresa ?? 'SurCodeMedics' }}</p>
                 @if (session()->has('usuario'))
                     <p class="text-[17px] texto mt-2  md:hidden block">{{ session('usuario')->nombre }} -
                         {{ session('usuario')->Tipo }}</p>

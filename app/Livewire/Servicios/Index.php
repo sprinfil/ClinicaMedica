@@ -20,8 +20,8 @@ class Index extends Component
     {
         $query = Servicio::query();
       
-        if ($this->nombre) {
-            $query->where('nombre', 'like', '%' . $this->nombre . '%');
+        if ($this->nombreFiltro) {
+            $query->where('nombre', 'like', '%' . $this->nombreFiltro . '%');
         }
 
         $servicios = $query->orderBy('id')->paginate(8);
@@ -43,7 +43,27 @@ class Index extends Component
         $this->dispatch('editar', ['servicio' => $servicio_id]);
     }
 
-    public function eliminar($servicio_id){
-        $this->dispatch('eliminar', ['servicio' => $servicio_id]);
+    public $servicio_deshabilitar;
+    public $servicio_habilitar;
+
+    public function deshabilitar($servicio_id){
+        $this->servicio_deshabilitar = Servicio::findOrfail($servicio_id);
+        $this->dispatch('deshabilitar_advertencia');
+    }
+
+    #[On('deshabilitar_servicio')] 
+    public function deshabilitar_servicio(){
+        $this->servicio_deshabilitar->status = 'INACTIVO';
+        $this->servicio_deshabilitar->save();
+    }
+    public function habilitar($servicio_id){
+        $this->servicio_habilitar = Servicio::findOrfail($servicio_id);
+        $this->dispatch('habilitar_advertencia');
+    }
+
+    #[On('habilitar_servicio')] 
+    public function habilitar_servicio(){
+        $this->servicio_habilitar->status = 'ACTIVO';
+        $this->servicio_habilitar->save();
     }
 }

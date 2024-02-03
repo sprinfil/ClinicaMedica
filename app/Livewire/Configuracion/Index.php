@@ -32,7 +32,7 @@ class Index extends Component
         $this->horario_final = Carbon::createFromFormat('H:i:s', $this->configuracion->horario_final ?? '00:00:00')->format('H:i:s');
         $this->dolar = $this->configuracion->dolar ?? 0;
         $this->impuesto = $this->configuracion->impuesto ?? 0;
-        $this->empresa_nombre =  $this->configuracion->nombre_empresa;
+        $this->empresa_nombre =  $this->configuracion->nombre_empresa ?? 'SurCodeMedics';
     }
 
     public function configuracion_citas_guardar(){

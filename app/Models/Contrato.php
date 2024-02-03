@@ -9,4 +9,10 @@ class Contrato extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $fillable = [
+        'pdf',
+        'fecha',
+        'paciente_id',
+    ];
 }
