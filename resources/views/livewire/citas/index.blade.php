@@ -11,6 +11,11 @@
             <div class="mx-[10px] md:mx-[50px]  justify-between">
                 <p class="text-fuente text-[40px]">CITAS</p>
             </div>
+            <div class=" md:mx-[50px] mx-2 mt-[20px]">
+                <a href="https://calendar.google.com/calendar">
+                    <button class="btn-primary">Google Calendar</button>
+                </a>
+            </div>
         </div>
 
         <p class="mt-[30px]">Fecha</p>
@@ -49,8 +54,8 @@
 
 
                     @foreach ($dias as $dia)
-                        <div class="container">
-                            <div class="sticky-top bg-principal py-2 shadow-md min-h-[115px]">
+                        <div class="container ">
+                            <div class="sticky-top bg-principal py-2 shadow-md min-h-[115px] ">
                                 <div class="w-full flex justify-center flex-col items-center">
                                     <p class="uppercase">{{ $dia->monthName  }}</p>
                                     <p class="md:text-[20px] text-[15px] uppercase">{{ $dia->dayName }}</p>
