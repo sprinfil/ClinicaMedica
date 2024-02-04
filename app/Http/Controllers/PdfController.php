@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Dompdf\Dompdf;
+use App\Models\Contrato;
 use App\Models\Paciente;
 use App\Models\Historial;
 use App\Models\Tratamiento;
@@ -73,14 +74,18 @@ class PdfController extends Controller
 
     public function verpdf($paciente_id)
     {
-        $pdfPath = 'contratos/consentimiento_'.$paciente_id.'.pdf';
-
-        // Asegúrate de que el archivo exista antes de intentar mostrarlo
-        if (Storage::disk('public')->exists($pdfPath)) {
-            return response()->file(Storage::disk('public')->path($pdfPath));
+        try {
+            $contrato = Contrato::where('paciente_id', $paciente_id)->get()->first();
+            if($contrato)
+                $pdfPath = $contrato->pdf;
+    
+            if (Storage::disk('public')->exists($pdfPath)) 
+            {   
+                return response()->file(Storage::disk('public')->path($pdfPath));
+            }
+    
+        } catch (\Throwable $th) {
+            abort(404, 'El archivo PDF no se encontró.');
         }
-
-        // Manejo de errores si el archivo no existe
-        abort(404, 'El archivo PDF no se encontró.');
     }
 }

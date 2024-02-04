@@ -97,6 +97,29 @@
     
                 </div>
             </div>
+
+            <!--Ajustes de Firma-->
+            <div class="h-full bg-[#E1E1E1] shadow-lg mt-[20px] mb-2 rounded-lg ease-out duration-300 overflow-hidden">
+                <div class="w-full bg-negro-menu text-center py-2">
+                    <p class="text-fuente text-[25px]">FIRMA RESPONSABLE</p>
+                </div>
+                <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 bg-white">
+                    <div>
+                        <p class="text-fuente-botones">Firma Actual:</p>
+                        <img src="storage/firmas/firma.png" alt="" class="w-[full] mt-5 bg-white" id="imagen">
+                    </div>
+                    <div>
+                        <p class="text-fuente-botones">Firma Nueva:</p>
+                        <canvas id="signaturePad" class="border border-1 border-black w-[300px] h-[200px]"></canvas>
+                        <br>
+                        <div class="md:flex md:flex-grap gap-2">
+                            <button type="button" id="saveSig" class="btn-primary font-bold">Firmar y guardar</button>
+                            <button type="button" id="clearSig" class="btn-primary font-bold">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
         <!--FIN-->
     </div>
 
@@ -104,6 +127,7 @@
 </div>
 </div>
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener('horario_succes', event => {
@@ -153,6 +177,55 @@
         headers: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
+    }
+</script>
+
+<script>
+    var signaturePad = new SignaturePad(document.getElementById('signaturePad'), {
+        backgroundColor: 'rgba(255, 255, 255, 0)', // Transparent background
+        penColor: 'rgb(0, 0, 0)'
+    });
+
+    document.getElementById('clearSig').addEventListener('click', function (e) {
+        e.preventDefault(); // Previene el comportamiento por defecto del formulario
+
+        signaturePad.clear();
+        return ;
+    });
+
+    document.getElementById('saveSig').addEventListener('click', function (e) {
+        e.preventDefault(); // Previene el comportamiento por defecto del formulario
+
+        if (signaturePad.isEmpty()) {
+            Swal.fire({
+                icon: "error",
+                title: "Firma Necesaria",
+                text: "Es necesaria haber introducido una firma",
+            });
+            return ;
+        }
+
+        var dataURL = signaturePad.toDataURL();
+
+        @this.set('signatureImage', dataURL);
+        @this.call('saveFirma');
+    });
+
+    window.addEventListener('firma_success', event => {
+        reloadImagen();
+    });
+
+    function reloadImagen() {
+        var imagen = document.getElementById('imagen');
+        var fecha = new Date().getTime(); // Obtén el tiempo actual en milisegundos
+        var nuevaSrc = `storage/firmas/firma.png?${fecha}`; // Añade el tiempo actual como parámetro GET
+        imagen.src = nuevaSrc; // Actualiza la src de la imagen        
+
+            Swal.fire({
+                icon: "success",
+                title: "Firma Guardada",
+                text: "Firma para documentos guardada con exito",
+            });
     }
 </script>
 @endsection

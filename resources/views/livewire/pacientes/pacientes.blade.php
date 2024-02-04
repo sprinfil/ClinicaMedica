@@ -35,22 +35,22 @@
                 <table class="w-full text-sm text-left text-fuente dark:text-fuente">
                     <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                                 Nombre Completo
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                                 Correo
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                                 N&uacute;mero
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                                 Fecha de Nacimiento
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                                 Genero
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-2 py-2">
                               
                             </th>
                         </tr>
@@ -60,42 +60,42 @@
                             <tr
                                 class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400  hover:bg-gray-400 cursor-pointer">
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
                                     id="casilla">
                                     <span>{{ $paciente->getFullNombre($paciente->id) }}</span>
                                 </td>
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
                                     <span>{{ $paciente->correo }}</span>
                                 </td>
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
                                     <span>{{ $paciente->numero }}</span>
                                 </td>
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
                                     <span>{{ \Carbon\Carbon::parse($paciente->fecha_nac)->format('d/m/Y') }}</span>
                                 </td>
                                 <td wire:click="editar({{ $paciente->id }})" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                     id="casilla">
                                     <span>{{ $paciente->Genero }}</span>
                                 </td>
                                 <td wire:click="" scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                                    class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap "
                                     id="casilla">
                                     <a href="{{ route('expediente', ['paciente_id' => $paciente->id]) }}">
                                         <div
-                                        class=" items-center  text-fuente-botones ml-[10px] bg-amber-500 rounded-md cursor-pointer shadow-md py-1 px-3 flex hover:bg-amber-600 ease-out duration-500 h-[50px]">
+                                        class=" items-center  text-fuente-botones ml-[10px] bg-amber-500 rounded-md cursor-pointer shadow-md py-1 px-1 flex hover:bg-amber-600 ease-out duration-500 h-[50px]">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="currentColor" class="w-6 h-6 text-fuente-botones  mr-[10px]">
+                                            stroke="currentColor" class="w-6 h-6 text-fuente-botones  mr-1">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
                                         </svg>
-                                        VER EXPEDIENTE
+                                        <p class="mr-1">VER EXPEDIENTE</p>
                                     </div>
                                     </a>
 

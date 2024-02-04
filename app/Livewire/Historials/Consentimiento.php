@@ -27,28 +27,25 @@ class Consentimiento extends Component
 
     public function render()
     {
-        $this->consentimientoPath = 'contratos/consentimiento_'.$this->paciente_id.'.pdf';
+        $contrato = Contrato::where('paciente_id', $this->paciente_id)->orderBy('id', 'desc')->get()->first();
+        if($contrato)
+            $this->consentimientoPath = $contrato->pdf;
+
         return view('livewire.historials.consentimiento');
     }
 
     public function saveConsentimiento()
     {
         try {
-            //code...
-            $image = $this->signatureImage; // Esto es la base64 de la imagen
-            // dd($image);
-            // Convierte la imagen base64 a archivo y guárdala en el storage
+            $image = $this->signatureImage;
             list($type, $image) = explode(';', $image);
             list(, $image) = explode(',', $image);
             $image = base64_decode($image);
-            $imageName = 'firmas/'.time().'.png';
-            Storage::disk('public')->put($imageName, $image);
-    
-            Storage::put($imageName, $image);
-    
+            $imageName = 'firmas/'.$this->paciente_id.'.png';
+            Storage::disk('public')->put($imageName, $image);    
+
             $pdf = PDF::loadView('docs.pacientes.doc_consentimiento', ['paciente' => $this->paciente, 'firma' => $imageName]);
-            $pdf->stream();
-            $pdfPath = "contratos/consentimiento_{$this->paciente_id}.pdf";
+            $pdfPath = "contratos/consentimiento_". now()->format('dmY') . "_{$this->paciente_id}.pdf";
             Storage::disk('public')->put($pdfPath, $pdf->output());
     
             $contrato = Contrato::firstOrNew(
@@ -57,16 +54,12 @@ class Consentimiento extends Component
             );
             
             $contrato->save();
-    
-            $timestamp = now()->timestamp;
-    
-            // Actualiza el path del consentimiento con el timestamp como parámetro de query
-            $this->consentimientoPath = "contratos/consentimiento_{$this->paciente_id}.pdf?time={$timestamp}";
+        
+            $this->consentimientoPath = $contrato->pdf;
     
             $this->render();
-            $this->dispatch('recargarIframe');
+            $this->dispatch('recargarIframe', ['paciente_id' => json_encode($this->paciente_id)]);
         } catch (\Throwable $th) {
-            //throw $th;
         }
     }
 }

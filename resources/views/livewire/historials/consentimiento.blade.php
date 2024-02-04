@@ -13,13 +13,12 @@
     </div>
 
     <div class="md:flex sm:block w-full justify-center gap-2">
-        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto">
-            <a href="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" target="_blank" class="text-white text-xl">
-                <button class="btn-primary bg-red-500 text-white font-bold mb-5">Ver PDF</button>
-            </a>
-
+        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto" id="iframe_container">
             @if ($consentimientoPath)
-            <iframe src="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" id="iframe" width="100%" height="100%" frameborder="0"></iframe>
+                <a href="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" target="_blank" class="text-white text-xl">
+                    <button class="btn-primary bg-red-500 text-white font-bold mb-5">Ver PDF</button>
+                </a>
+                <iframe data-baseurl="/verpdf" src="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" id="iframe" width="100%" height="50%" frameborder="0"></iframe>
             @else
                 <p class=" text-slate-400">Sin contrato de consentimiento</p>
             @endif
@@ -73,7 +72,7 @@
                 <canvas id="signaturePad" class="border border-1 border-black w-[300px] h-[200px]"></canvas>
                 <br>
                 <button type="button" id="saveSig" class="btn-primary font-bold">Firmar y guardar consentimiento</button>
-                <button id="clearSig" class="btn-primary font-bold">Limpiar</button>
+                <button type="button" id="clearSig" class="btn-primary font-bold">Limpiar</button>
             </form>
             <p class=" font-extralight mt-2">Nota: Este consentimiento es un compromiso entre el paciente y la clínica dental y no reemplaza ninguna otra forma legal de consentimiento requerido por las leyes locales. Si tiene alguna duda, consulte con su abogado antes de firmar.</p>
         </div>
@@ -86,28 +85,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     var signaturePad = new SignaturePad(document.getElementById('signaturePad'), {
-        backgroundColor: 'rgba(255, 255, 255, 0)', // Transparent background
+        backgroundColor: 'rgba(255, 255, 255, 0)', 
         penColor: 'rgb(0, 0, 0)'
     });
 
-    document.getElementById('clearSig').addEventListener('click', function () {
-        signaturePad.clear();
-    });
+    document.getElementById('clearSig').addEventListener('click', function (e) {
+        e.preventDefault(); 
 
-    document.getElementById('saveSig').addEventListener('click', function () {
-        if (signaturePad.isEmpty()) {
-            return Swal.fire({
-                    icon: "error",
-                    title: "Firma Necesaria",
-                    text: "Es necesario firmar el documento",
-                    });
-        } else {
-            @this.dispatch('saveConsentimiento', signaturePad);
-        }
+        signaturePad.clear();
+        return ;
     });
 
     document.getElementById('saveSig').addEventListener('click', function (e) {
-        e.preventDefault(); // Previene el comportamiento por defecto del formulario
+        e.preventDefault(); 
 
         if (signaturePad.isEmpty()) {
             Swal.fire({
@@ -125,12 +115,32 @@
     });
 
     window.addEventListener('recargarIframe', event => {
-        reloadIframe();
+        const paciente_id = event.detail[0].paciente_id;
+        reloadIframe(paciente_id);
     });
 
-    function reloadIframe() {
+    function reloadIframe(paciente_id) {
         var iframe = document.getElementById('iframe');
-        iframe.src = iframe.src.split('?')[0] + '?' + new Date().getTime();
+        
+        if (iframe) {
+            
+            var baseUrl = iframe.dataset.baseurl; 
+            iframe.src = `${baseUrl}/${paciente_id}?${new Date().getTime()}`;
+        } else {
+            iframe = document.createElement('iframe');
+            iframe.id = 'iframe';
+            iframe.width = '100%';
+            iframe.height = '50%';
+            iframe.frameBorder = '0';
+            iframe.src = `/verpdf/${paciente_id}?${new Date().getTime()}`;
+
+            
+            var container = document.getElementById('iframe_container'); 
+            if (container) {
+                container.appendChild(iframe);
+            }
+        }
+
         Swal.fire({
                 icon: "success",
                 title: "PDF Generado",

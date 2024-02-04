@@ -5,6 +5,7 @@ namespace App\Livewire\Configuracion;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Configuracion;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
@@ -19,7 +20,7 @@ class Index extends Component
     public $impuesto;
     public $empresa_nombre;
 
-
+    public $signatureImage;
 
     public function render()
     {
@@ -83,6 +84,22 @@ class Index extends Component
             $this->configuracion->nombre_empresa = $this->empresa_nombre;
             $this->configuracion->save();
             $this->dispatch('nombre_empresa_succes');
+        }
+    }
+
+    public function saveFirma()
+    {
+        try {
+            $image = $this->signatureImage; // Esto es la base64 de la imagen
+            list($type, $image) = explode(';', $image);
+            list(, $image) = explode(',', $image);
+            $image = base64_decode($image);
+            $imageName = 'firmas/firma.png';
+            Storage::disk('public')->put($imageName, $image);    
+    
+            $this->dispatch('firma_success');
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }
