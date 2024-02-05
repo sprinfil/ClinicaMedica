@@ -49,7 +49,7 @@ class Crear extends Component
     {
         $this->paciente = Paciente::find($paciente_id);
         $this->fecha = Carbon::now()->format('d-m-Y h:i A');
-        $this->medicos = Usuario::where('status', 'ACTIVO')->get();
+        $this->medicos = Usuario::medicos();
         $this->servicios = Servicio::where('status', 'ACTIVO')->get();
 
     }

@@ -56,6 +56,6 @@ class Usuario extends Model implements Authenticatable
     }
 
     static public function medicos(){
-        return Usuario::where('puesto','medico')->get();
+        return Usuario::where('puesto','medico')->where('status', 'ACTIVO')->get();
     }
 }
