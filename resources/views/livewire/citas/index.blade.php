@@ -44,7 +44,7 @@
 
                         <div>
                             @foreach ($horas as $hora)
-                                <div class="flex items-center justify-center py-2">
+                                <div class="flex items-center justify-center pt-4 h-[56px]">
                                     <p>{{ $hora }}</p>
                                 </div>
                             @endforeach
@@ -135,9 +135,9 @@
                 </thead>
                 <tbody>
                     @foreach ($citas_ordenadas as $cita)
-                        <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 text-center">
+                        <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 text-center h-[90px]">
                             <td scope="row"
-                                class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones "
                                 id="casilla">
                                 <span>
                                     {{ Carbon\Carbon::createFromFormat('Y-m-d', $cita->fecha)->format('d/m/Y') }}

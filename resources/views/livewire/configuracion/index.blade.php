@@ -103,7 +103,7 @@
                 <div class="w-full bg-negro-menu text-center py-2">
                     <p class="text-fuente text-[25px]">FIRMA RESPONSABLE</p>
                 </div>
-                <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 bg-white">
+                <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 bg-[#E1E1E1]">
                     <div>
                         <p class="text-fuente-botones">Firma Actual:</p>
                         <img src="storage/firmas/firma.png" alt="" class="w-[full] mt-5 bg-white" id="imagen">
@@ -116,6 +116,7 @@
                             <button type="button" id="saveSig" class="btn-primary font-bold">Firmar y guardar</button>
                             <button type="button" id="clearSig" class="btn-primary font-bold">Limpiar</button>
                         </div>
+                        <p class="mt-[20px]">Para aplicar los cambios pulse CTRL + F5</p>
                     </div>
                 </div>
     
