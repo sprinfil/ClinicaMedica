@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Livewire\WithFileUploads; 
 use Illuminate\Support\Facades\Storage; 
 use PDF; 
+use Illuminate\Support\Facades\File;
 use Livewire\Attributes\On; 
 
 class Consentimiento extends Component
@@ -41,8 +42,9 @@ class Consentimiento extends Component
             list($type, $image) = explode(';', $image);
             list(, $image) = explode(',', $image);
             $image = base64_decode($image);
+
             $imageName = 'firmas/'.$this->paciente_id.'.png';
-            Storage::disk('public')->put($imageName, $image);    
+            Storage::disk('public')->put($imageName, $image);  
 
             $pdf = PDF::loadView('docs.pacientes.doc_consentimiento', ['paciente' => $this->paciente, 'firma' => $imageName]);
             $pdfPath = "contratos/consentimiento_". now()->format('dmY') . "_{$this->paciente_id}.pdf";

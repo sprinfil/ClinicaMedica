@@ -17,7 +17,7 @@
     </div>
 
     <div class="md:flex sm:block w-full justify-center gap-2">
-        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto" id="iframe_container">
+        <div class="sm:w-[90%] md:w-[45%] mt-10 bg-slate-100 p-10 sm:ml-8 sm:h-[90%] md:h-auto max-h-[1382px]" id="iframe_container">
             @if ($consentimientoPath)
                 <a href="{{ route('verpdf', ['paciente_id' => $paciente->id]) }}" target="_blank" class="text-white text-xl">
                     <button class="btn-primary bg-red-500 text-white font-bold mb-5">Ver PDF</button>
@@ -78,7 +78,7 @@
                 <button type="button" id="saveSig" class="btn-primary font-bold">Firmar y guardar consentimiento</button>
                 <button type="button" id="clearSig" class="btn-primary font-bold">Limpiar</button>
             </form>
-            <p class=" font-extralight mt-2">Nota: Este consentimiento es un compromiso entre el paciente y la clínica dental y no reemplaza ninguna otra forma legal de consentimiento requerido por las leyes locales. Si tiene alguna duda, consulte con su abogado antes de firmar.</p>
+            <p class=" font-extralight mt-2 mb-[50px]">Nota: Este consentimiento es un compromiso entre el paciente y la clínica dental y no reemplaza ninguna otra forma legal de consentimiento requerido por las leyes locales. Si tiene alguna duda, consulte con su abogado antes de firmar.</p>
         </div>
     </div>
 

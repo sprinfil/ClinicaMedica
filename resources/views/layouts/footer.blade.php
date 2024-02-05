@@ -1,5 +1,6 @@
-    <footer class=" mt-14 font-extrabold text-3xl text-right rounded-lg shadow-b shadow-md fixed bottom-0 right-0">
-        <div id="clock" class="clock p-2"></div>
+    <footer class=" mt-14 text-3xl text-right shadow-b shadow-md fixed bottom-0 right-0 bg-negro-menu w-full text-fuente text-[12px] md:text-[17px] h-[30px] flex justify-end items-center">
+        <p class="mr-[15px]"> {{ Carbon\Carbon::now()->dayName }} {{ Carbon\Carbon::now()->format('d') }} de {{ Carbon\Carbon::now()->monthName }} del {{ Carbon\Carbon::now()->format('Y') }}</p>
+        <div id="clock" class="clock p-2">   </div>
     </footer>
     <script>
         // Función para actualizar el reloj
