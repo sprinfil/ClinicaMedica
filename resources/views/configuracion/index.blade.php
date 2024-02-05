@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('titulo','usuarios')
+@section('titulo','Ajustes')
 @section('contenido')
     @livewire('configuracion.index')
 @endsection

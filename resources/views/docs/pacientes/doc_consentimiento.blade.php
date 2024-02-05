@@ -31,7 +31,7 @@
 
 <!--HEADER-->
 <div class="contenedor-header">
-    <img src="{{ public_path() . '/images/logo.png' }}" alt="">
+    <img src="{{ public_path() . '/storage/images/logo.png'}}" alt="">
     <h1>{{ App\Models\Configuracion::first()->nombre_empresa ?? 'SurCodeMedics' }}</h1>
 </div>
 <hr>
@@ -57,7 +57,7 @@
             <span class="font-bold"><b>3.</b></span> He tenido la oportunidad de preguntar y se me han respondido todas las preguntas que he formulado respecto a los tratamientos, riesgos, complicaciones posibles y medidas preventivas.
             <br>
             <br>
-            <span class="font-bold"><b>4.</b></span> Entiendo que, como en cyualquier tratamiento médico o dental, no se pueden garantizar resultados.
+            <span class="font-bold"><b>4.</b></span> Entiendo que, como en cualquier tratamiento médico o dental, no se pueden garantizar resultados.
             <br>
             <br>
             <span class="font-bold"><b>5.</b></span> Autorizo la realización de fotografías, radiografías, moldes y cualquier otro estudio necesario para mi diagnóstico y plan de tratamiento, así como su utilización en mi historia clínica dental.
@@ -85,7 +85,7 @@
                 </td>
                 <!-- Firma de SurCodeMedics o Representante Legal -->
                 <td class="firma-texto">
-                    <img src="{{ public_path() . '/images/logo.png' }}" class="firma-imagen" alt="Firma de SurCodeMedics">
+                    <img src="{{ public_path() . '/storage/firmas/firma.png'}}" class="firma-imagen" alt="Firma de SurCodeMedics">
                     <div>Firma de {{ App\Models\Configuracion::first()->nombre_empresa ?? 'SurCodeMedics' }} o Representante Legal</div>
                 </td>
             </tr>

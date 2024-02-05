@@ -22,12 +22,14 @@ class Index extends Component
     public $citas;
     public $citas_disponibles_ocupadas;
     public $cita_eliminar;
+    public $empresa;
 
 
 
     public function render()
     {
-    
+        $this->empresa = Configuracion::first()->nombre_empresa ?? 'SurCodeMedics';
+
         $citas_ordenadas = Cita::orderby('fecha','asc')
         ->orderby('hora_inicio','asc')
         ->where('fecha','>',Carbon::now()->toDateString())
