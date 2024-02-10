@@ -27,7 +27,10 @@
                     <p class="text-fuente-botones">Horario Final:</p>
                     <input class="input-pdv w-full mb-3 text-[15px]" type="time" wire:model = "horario_final">
                     <div class="flex justify-end">
-                        <button class="btn-primary" wire:click="configuracion_citas_guardar">Guardar Cambios</button>
+                        <button class="btn-primary" wire:click="configuracion_citas_guardar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2E86C1" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
+                    <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
+                  </svg></button>
 
                     </div>
                 </div>
@@ -59,7 +62,10 @@
 
                     </div>
                     <div class=" flex justify-end">
-                        <button class="btn-primary" wire:click="configuracion_moneda_guardar">Guardar Cambios</button>
+                        <button class="btn-primary" wire:click="configuracion_moneda_guardar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2E86C1" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
+                    <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
+                  </svg></button>
                     </div>
 
                 </div>
@@ -106,7 +112,7 @@
                 <div class=" px-7 py-7 gap-x-20 grid grid-cols-1 md:grid-cols-2 bg-[#E1E1E1]">
                     <div>
                         <p class="text-fuente-botones">Firma Actual:</p>
-                        <img src="storage/firmas/firma.png" alt="" class="w-[full] mt-5 bg-white" id="imagen">
+                        <img src="storage/firmas/firma.png" alt="" class="w-[full] mt-5 bg-blue" id="imagen">
                     </div>
                     <div>
                         <p class="text-fuente-botones">Firma Nueva:</p>

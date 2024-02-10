@@ -16,7 +16,9 @@ use App\Http\Controllers\subirImagenController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\HistoriaClinicaController;
 use App\Http\Controllers\HistoriaOdontologicaController;
+use App\Http\Controllers\RadiografiaController;
 use App\Http\Controllers\ServicioController;
+use App\Livewire\Historials\Radiografia;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,4 +109,8 @@ Route::get('/clear', function() {
 
 Route::controller(ServicioController::class)->group(function() {
     Route::get('servicios', 'index')->name('servicios.index');
+});
+
+Route::controller(RadiografiaController::class)->group(function() {
+    Route::get('radiografias/{paciente_id}', 'index')->name('radiografias');
 });

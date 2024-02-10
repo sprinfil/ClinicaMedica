@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tratamiento;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Imagen extends Model
 {
@@ -11,4 +12,9 @@ class Imagen extends Model
     public $timestamps = false;
     protected $fillable = ['url'];
     use HasFactory;
+
+    public function getTratamiento($tratamiento_id){
+        $tratamiento = Tratamiento::find($tratamiento_id);
+        return $tratamiento;
+    }
 }
