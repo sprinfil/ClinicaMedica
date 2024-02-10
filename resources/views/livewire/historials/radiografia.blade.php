@@ -65,11 +65,11 @@
                 @if (count($radiografias) > 0)
                     @foreach ($radiografias as $index2 => $radiografia)
                         <!-- Cada slide contiene tanto la imagen como la fecha -->
-                        <div class="slide2 p-5 border border-1 border-gray-600 rounded-lg shadow-md bg-white" id="slide2-{{ $index2 }}" style="display: {{ $index2 === 0 ? 'block' : 'none' }};">
+                        <div class="slide2 p-5 border border-1 border-gray-600 rounded-lg shadow-md bg-white  h-[100%]" id="slide2-{{ $index2 }}" style="display: {{ $index2 === 0 ? 'block' : 'none' }};">
                             <p><span class="font-bold">Fecha:</span> {{ $radiografia->fecha }}</p>                           
                             <img 
                                 src="{{ asset('storage/' . $radiografia->path) }}"
-                                class="object-cover w-full h-64 rounded-md cursor-pointer"
+                                class="object-cover w-full rounded-md cursor-pointer  h-[100%]"
                                 alt="Radiografía"
                                 @click="imageSrc = '{{ asset('storage/' . $radiografia->path) }}'; imageModalOpen = true"   
                             />                        
@@ -193,6 +193,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     let currentSlide = 0;
+    let currentSlide2 = 0;
     // Selecciona todos los contenedores de los slides en lugar de solo las imágenes
     const slides = document.querySelectorAll('#radiografiasCarousel .slide'); 
     const totalSlides = slides.length;
@@ -212,7 +213,7 @@
     // Mostrar la primera imagen al cargar
     showSlide(currentSlide);
 
-    let currentSlide2 = 0;
+ 
     // Selecciona todos los contenedores de los slides en lugar de solo las imágenes
     var slides2 = document.querySelectorAll('#radiografiasCarousel2 .slide2'); 
     var totalSlides2 = slides2.length;
