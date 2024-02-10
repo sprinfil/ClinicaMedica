@@ -52,7 +52,7 @@ class RadiografiaViewer extends Component
             
             if ($tratamientos){
                 foreach ($tratamientos as $tratamiento){
-                    $imagen = Imagen::where('tratamiento_id', $tratamiento->id)->where('tipo', 'radiografia')->first();
+                    $imagen = Imagen::where('tratamiento_id', $tratamiento->id)->where('tipo', 'radiografia')->get();
                     if ($imagen) {
                         $radiografias[] = $imagen;
                     }                }

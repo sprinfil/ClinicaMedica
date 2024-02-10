@@ -9,7 +9,8 @@
         .zoomed-in {
             transform: scale(2);
         }
-        </style>
+    </style>
+    
     @if ($paciente)
         <!--navegacion superior-->
         <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
@@ -30,34 +31,40 @@
             <!-- Radiografias Carousel -->
             <div id="radiografiasCarousel" class="w-[85%] m-auto mt-10 mb-14">
                 <h2 class=" text-2xl font-extrabold">Radiografias de Tratamientos</h2>
-                @foreach ($radiografiasTratamientos as $index => $radiografia)
-                    @php
-                        $tratamiento = $radiografia->getTratamiento($radiografia->tratamiento_id);
-                        $fecha = \Carbon\Carbon::parse($tratamiento->fecha);
-                    @endphp
-                    <!-- Cada slide contiene tanto la imagen como la fecha -->
-                    <div class="slide p-5 border border-1 border-gray-600 rounded-lg shadow-md bg-white" id="slide-{{ $index }}" style="display: {{ $index === 0 ? 'block' : 'none' }};">
-                        <p><span class="font-bold">Fecha:</span> {{ $fecha->format('d/m/Y') }}</p>                           
-                        <img src="{{ $radiografia->url }}"class="object-cover w-full h-64 rounded-md cursor-pointer"
-                        alt="Radiografía"
-                        @click="imageSrc = '{{ asset($radiografia->url) }}'; imageModalOpen = true"   >
-                    </div>
-                @endforeach
-                <!-- Navegación -->
-                <div class="flex items-center justify-between mt-2">
-                    <button onclick="changeSlide(-1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
-                          </svg>
-                          
-                    </button>
-                    <button onclick="changeSlide(1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
-</svg>
+                @if (count($radiografiasTratamientos) > 1)
+                    @foreach ($radiografiasTratamientos as $tratamientos)
+                        @foreach ($tratamientos as $index => $radiografia)
+                            @php
+                                $tratamiento = $radiografia->getTratamiento($radiografia->tratamiento_id);
+                                $fecha = \Carbon\Carbon::parse($tratamiento->fecha);
+                            @endphp
+                            <!-- Cada slide contiene tanto la imagen como la fecha -->
+                            <div class="slide p-5 border border-1 border-gray-600 rounded-lg shadow-md h-[100%] bg-white" id="slide-{{ $index }}" style="display: {{ $index === 0 ? 'block' : 'none' }};">
+                                <p><span class="font-bold">Fecha:</span> {{ $fecha->format('d/m/Y') }}</p>                           
+                                <img src="{{ $radiografia->url }}"class="object-cover w-full h-[100%] rounded-md cursor-pointer"
+                                alt="Radiografía"
+                                @click="imageSrc = '{{ asset($radiografia->url) }}'; imageModalOpen = true"   >
+                            </div>
+                        @endforeach
+                    @endforeach
+                    <!-- Navegación -->
+                    <div class="flex items-center justify-between mt-2">
+                        <button onclick="changeSlide(-1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
+                            </svg>
+                            
+                        </button>
+                        <button onclick="changeSlide(1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+                            </svg>
 
-                    </button>
-                </div>
+                        </button>
+                    </div>
+                @else
+                    <p>Sin radiografias</p>
+                @endif
             </div>
             <!-- Radiografias Carousel -->
             <div id="radiografiasCarousel2" class="w-[85%] m-auto mt-5 mb-14">
@@ -88,12 +95,11 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
                               </svg>
-                              
                         </button>
                         <button onclick="changeSlide2(1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
-</svg>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+                            </svg>
 
                         </button>
                     </div>
@@ -192,37 +198,44 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    let currentSlide = 0;
-    let currentSlide2 = 0;
-    // Selecciona todos los contenedores de los slides en lugar de solo las imágenes
+    var currentSlide = 0;
+    
     const slides = document.querySelectorAll('#radiografiasCarousel .slide'); 
     const totalSlides = slides.length;
 
     function showSlide(index) {
+        if (index < 0 || index >= totalSlides) {
+            console.error("Índice fuera de rango. No se puede mostrar el slide:", index);
+            return;
+        }
         slides.forEach((slide, idx) => {
-            slide.style.display = 'none'; // Esto ahora ocultará tanto la imagen como la fecha
+            slide.style.display = 'none'; 
         });
-        slides[index].style.display = 'block'; // Esto mostrará el nuevo slide activo
+        slides[index].style.display = 'block'; 
     }
 
     function changeSlide(direction) {
         currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
         showSlide(currentSlide);
     }
-
-    // Mostrar la primera imagen al cargar
+    
+    
     showSlide(currentSlide);
-
- 
-    // Selecciona todos los contenedores de los slides en lugar de solo las imágenes
+    
     var slides2 = document.querySelectorAll('#radiografiasCarousel2 .slide2'); 
     var totalSlides2 = slides2.length;
+    var currentSlide2 = 0;
 
     function showSlide2(index2) {
+        if (index2 < 0 || index2 >= totalSlides2) {
+            console.error("Índice fuera de rango. No se puede mostrar el slide:", index2);
+            return;
+        }
+
         slides2.forEach((slide2, idx) => {
-            slide2.style.display = 'none'; // Esto ahora ocultará tanto la imagen como la fecha
+            slide2.style.display = 'none'; 
         });
-        slides2[index2].style.display = 'block'; // Esto mostrará el nuevo slide activo
+        slides2[index2].style.display = 'block'; 
     }
 
     function changeSlide2(direction) {
@@ -230,7 +243,6 @@
         showSlide2(currentSlide2);
     }
 
-    // Mostrar la primera imagen al cargar
     showSlide2(currentSlide2);
         
     window.addEventListener('radiografia_save', event => {
