@@ -73,7 +73,7 @@ class RadiografiaViewer extends Component
     {
         $this->validate([
             'nombre' => 'required|min:3', 
-            'descripcion' => 'required|min:5', 
+            'descripcion' => 'nullable', 
             'imagen' => 'required|image|max:10240', 
         ]);
         

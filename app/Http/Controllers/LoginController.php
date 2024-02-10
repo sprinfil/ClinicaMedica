@@ -24,21 +24,26 @@ class LoginController extends Controller
         $clave = $request->input('clave');
 
         $usuarioEncontrado = Usuario::where('usuario', $usuario)->first();
-
-        if($usuarioEncontrado->status == "ACTIVO"){
-            if ($usuarioEncontrado && password_verify($clave, $usuarioEncontrado->clave)) {
-                // Autenticación exitosa
-                // Puedes guardar el usuario en la sesión si es necesario
-                session(['usuario' => $usuarioEncontrado]);                   
-                return redirect()->route('home');
-    
-            } else {
-                // Autenticación fallida
-                return back()->with('mensaje', 'Credenciales Incorrectas');
-            }     
+        
+        if($usuarioEncontrado){
+            if($usuarioEncontrado->status == "ACTIVO"){
+                if ($usuarioEncontrado && password_verify($clave, $usuarioEncontrado->clave)) {
+                    // Autenticación exitosa
+                    // Puedes guardar el usuario en la sesión si es necesario
+                    session(['usuario' => $usuarioEncontrado]);                   
+                    return redirect()->route('home');
+        
+                } else {
+                    // Autenticación fallida
+                    return back()->with('mensaje', 'Credenciales Incorrectas');
+                }     
+            }else{
+                return back()->with('mensaje', 'cuenta suspendida');
+            }
         }else{
-            return back()->with('mensaje', 'cuenta suspendida');
+            return back()->with('mensaje', 'La cuenta no existe');
         }
+
 
     }
 }
