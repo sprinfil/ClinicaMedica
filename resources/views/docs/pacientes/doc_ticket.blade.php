@@ -90,6 +90,14 @@
                 <td>Nombre</td>
                 <td>{{ $tratamiento->atendio->getNombreCompleto() }}</td>
             </tr>
+            <tr>
+                <td>Correo</td>
+                <td>{{ $tratamiento->atendio->correo }}</td>
+            </tr>
+            <tr>
+                <td>Celular</td>
+                <td>{{ $tratamiento->atendio->celular }}</td>
+            </tr>
         </tbody>
     </table>
 

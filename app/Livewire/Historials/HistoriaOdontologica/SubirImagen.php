@@ -10,7 +10,7 @@ class SubirImagen extends Component
 {
     public $paciente;
     public $tratamiento;
-    public $ticket_descargado;
+    public $ticket_descargado = false;
     public function render()
     {
         return view('livewire.historials.historiaOdontologica.subir-imagen');
@@ -22,9 +22,8 @@ class SubirImagen extends Component
     }
 
     public function descargar_ticket(){
-        $this->ticket_descargado = 'adios';
-        $this->render();
-        redirect( route('generar_ticket_venta', ['paciente_id' => $this->paciente->id, 'tratamiento_id' => $this->tratamiento->id]));
+        $this->ticket_descargado = true;
+        return redirect( route('generar_ticket_venta', ['paciente_id' => $this->paciente->id, 'tratamiento_id' => $this->tratamiento->id]));
 
     }
 }

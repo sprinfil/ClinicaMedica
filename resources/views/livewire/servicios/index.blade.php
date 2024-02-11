@@ -70,10 +70,13 @@
                                 </td>
                                 <td class="flex justify-center items-center h-[50px]"> <!-- Ajusta la altura según sea necesario -->
                                     @if ($servicio->status == 'ACTIVO')
-                                        <button class="font-medium text-blue-600 dark:text-rojo hover:underline"
-                                            wire:click="deshabilitar({{ $servicio->id }})">Deshabilitar</button>
+                                            <button wire:click='deshabilitar({{ $servicio->id }})' class="bg-red-400 hover:bg-red-500 text-red-800 font-bold py-2 px-4 rounded ease-out duration-200">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                </svg>                                  
+                                            </button>
                                     @else
-                                        <button class="font-medium text-blue-600 dark:text-blue hover:underline"
+                                        <button class="font-medium text-fuente dark:text-blue bg-blue-600 py-3 px-2 rounded-lg hover:bg-blue-700 ease-out duration-200"
                                         wire:click="habilitar({{ $servicio->id }})">Habilitar</button>
                                     @endif
                                 </td>

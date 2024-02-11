@@ -15,12 +15,16 @@
         </div>
 
         @if ($selected_corte != null)
-            <div class="grid md:grid-cols-2 mt-[25px] grid-cols-1 gap-11">
+
+            <div class="grid 2xl:grid-cols-3 grid-cols-1 gap-11 mt-[25px]">
                 <!--Primera Columna-->
-                <div class="px-3">
+                <div class="">
                     <!--Tabla-->
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg  no-scrollbar">
-                        <table class="w-full text-sm text-left text-fuente dark:text-fuente">
+                    <div class="bg-negro-menu flex justify-center py-3 rounded-lg mb-[10px]">
+                        <p class="text-fuente">Cortes</p>
+                    </div>
+                    <div class="relative overflow-x-auto shadow-md no-scrollbar rounded-lg">
+                        <table class="w-full text-sm text-left text-fuente dark:text-fuente ">
                             <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
@@ -43,7 +47,7 @@
                                     <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer"
                                         wire:click="select_corte({{ $corte->id }})">
                                         <td scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
                                                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $corte->fecha)->format('d') }}
@@ -55,7 +59,7 @@
                                         </td>
 
                                         <td scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
                                                 {{ $corte->usuario->nombre }}
@@ -63,7 +67,7 @@
                                         </td>
 
                                         <td scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
                                                 $ {{ number_format(  $corte->subtotal, 2)}}
@@ -71,7 +75,7 @@
                                         </td>
 
                                         <td scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
                                             id="casilla">
                                             <span>
                                                 $ {{ number_format(  $corte->total, 2)}}
@@ -79,7 +83,7 @@
                                         </td>
 
                                         <td>
-                                            <div class="flex justify-end items-center px-3 ">
+                                            <div class="flex justify-end items-center px-1 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6 text-fuente-botones ml-[10px]">
@@ -101,7 +105,7 @@
                 </div>
 
                 <!--Segunda Columna-->
-                <div class="px-3 grid grid-rows-2">
+                <div class="px-3">
 
                     <!--Desglose de ingresos-->
                     <div class="h-full bg-[#E1E1E1] shadow-lg  rounded-lg ease-out duration-300 overflow-hidden">
@@ -242,81 +246,85 @@
                             </div>
                         </div>
 
-
-                    </div>
-
-
-                    <!--Tabla-->
-                    <div class="relative overflow-x-auto  rounded-md no-scrollbar mt-[10px]  max-h-[300px]">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-md ">
-                            <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
-                                <tr>
-                                    <th scope="col" class="px-2 py-3">
-                                        Hora
-                                    </th>
-                                    <th scope="col" class="px-2 py-3">
-                                        Atendio
-                                    </th>
-                                    <th scope="col" class="px-2 py-3">
-                                        PACIENTE
-                                    </th>
-                                    <th scope="col" class="px-2 py-3">
-                                        SUBTOTAL
-                                    </th>
-                                    <th scope="col" class="px-2 py-3">
-                                        total
-                                    </th>
-                                    <th scope="col" class="px-2 py-3">
-                                        Metodo de pago
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($tratamientos as $tratamiento)
-                                    <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer"
-                                        wire:click="open_tratamiento({{ $tratamiento->paciente->id }}, {{ $tratamiento->id }})">
-                                        <td scope="row"
-                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                            id="casilla">
-                                            <span>{{ \Carbon\Carbon::parse($tratamiento->fecha)->format('h:i A') }}</span>
-                                        </td>
-                                        <td scope="row"
-                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                            id="casilla">
-                                            <span>{{ $tratamiento->atendio->nombre }}</span>
-                                        </td>
-                                        <td scope="row"
-                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                            id="casilla">
-                                            <span>{{ $tratamiento->paciente->getFullNombre($tratamiento->paciente->id) }}</span>
-                                        </td>
-                                        <td scope="row"
-                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                            id="casilla">
-                                            <span>$ {{number_format(  $tratamiento->monto,2) }}</span>
-                                        </td>
-                                        <td scope="row"
-                                        class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                        id="casilla">
-                                        <span>$ {{number_format(  $tratamiento->total,2) }}</span>
-                                    </td>
-                                        <td scope="row"
-                                            class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
-                                            id="casilla">
-                                            <span>{{ $tratamiento->metodo_pago }}</span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-
-                            </tbody>
-                        </table>
-
                     </div>
 
 
                 </div>
 
+
+                    <!--TRATAMIENTOS-->
+                    <div>
+                        <!--Tabla-->
+                        <div class="bg-negro-menu flex justify-center py-3 mb-[10px] rounded-lg">
+                            <p class="text-fuente">Tratamientos Realizados</p>
+                        </div>
+                   <div class="relative overflow-x-auto no-scrollbar max-h-[300px] rounded-lg">
+                       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-md ">
+                           <thead class="text-xs text-fuente uppercase bg-gray-50 dark:bg-terciario dark:text-fuente">
+                               <tr>
+                                   <th scope="col" class="px-2 py-3">
+                                       Hora
+                                   </th>
+                                   <th scope="col" class="px-2 py-3">
+                                       Atendio
+                                   </th>
+                                   <th scope="col" class="px-2 py-3">
+                                       PACIENTE
+                                   </th>
+                                   <th scope="col" class="px-2 py-3">
+                                       SUBTOTAL
+                                   </th>
+                                   <th scope="col" class="px-2 py-3">
+                                       total
+                                   </th>
+                                   <th scope="col" class="px-2 py-3">
+                                       Metodo de pago
+                                   </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               @foreach ($tratamientos as $tratamiento)
+                                   <tr class="bg-white border-b dark:bg-[#E1E1E1] dark:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-400 cursor-pointer"
+                                       wire:click="open_tratamiento({{ $tratamiento->paciente->id }}, {{ $tratamiento->id }})">
+                                       <td scope="row"
+                                           class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                           id="casilla">
+                                           <span>{{ \Carbon\Carbon::parse($tratamiento->fecha)->format('h:i A') }}</span>
+                                       </td>
+                                       <td scope="row"
+                                           class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                           id="casilla">
+                                           <span>{{ $tratamiento->atendio->nombre }}</span>
+                                       </td>
+                                       <td scope="row"
+                                           class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                           id="casilla">
+                                           <span>{{ $tratamiento->paciente->getFullNombre($tratamiento->paciente->id) }}</span>
+                                       </td>
+                                       <td scope="row"
+                                           class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                           id="casilla">
+                                           <span>$ {{number_format(  $tratamiento->monto,2) }}</span>
+                                       </td>
+                                       <td scope="row"
+                                       class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                       id="casilla">
+                                       <span>$ {{number_format(  $tratamiento->total,2) }}</span>
+                                   </td>
+                                       <td scope="row"
+                                           class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-fuente-botones"
+                                           id="casilla">
+                                           <span>{{ $tratamiento->metodo_pago }}</span>
+                                       </td>
+                                   </tr>
+                               @endforeach
+
+
+                           </tbody>
+                       </table>
+
+                   </div>
+                   </div>
 
             </div>
         @else
