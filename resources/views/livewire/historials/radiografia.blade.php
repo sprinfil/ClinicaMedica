@@ -12,10 +12,15 @@
     </style>
     
     @if ($paciente)
-        <!--navegacion superior-->
-        <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
-            <a href="{{route('radiografias', ['paciente_id' => $paciente->id])}}" class="underline text-blue-500">Radiografias</a> 
-        </div>
+    <!--navegacion superior-->
+    <div class=" text-fuente text-[15px] shadow-lg bg-negro-fondo  px-5 py-2 border-b border-fuente mx-0 mb-[20px]">
+        <a href="{{ route('pacientes') }}" class="underline text-blue-500">Pacientes</a>
+        /
+        <a href="{{ route('expediente', ['paciente_id' => $paciente->id]) }}"
+            class="underline text-blue-500">{{ $paciente->getFullNombre($paciente->id) }}</a>
+        /
+        <a href="" class="underline text-blue-500">Radiografias</a>
+    </div>
 
         <div class="mx-2 md:mx-[60px] mt-[20px]">
             <div>
@@ -27,56 +32,19 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Radiografias Carousel -->
-            <div id="radiografiasCarousel" class="w-[85%] m-auto mt-10 mb-14">
-                <h2 class=" text-2xl font-extrabold">Radiografias de Tratamientos</h2>
-                @if (count($radiografiasTratamientos) > 1)
-                    @foreach ($radiografiasTratamientos as $tratamientos)
-                        @foreach ($tratamientos as $index => $radiografia)
-                            @php
-                                $tratamiento = $radiografia->getTratamiento($radiografia->tratamiento_id);
-                                $fecha = \Carbon\Carbon::parse($tratamiento->fecha);
-                            @endphp
-                            <!-- Cada slide contiene tanto la imagen como la fecha -->
-                            <div class="slide p-5 border border-1 border-gray-600 rounded-lg shadow-md h-[100%] bg-white" id="slide-{{ $index }}" style="display: {{ $index === 0 ? 'block' : 'none' }};">
-                                <p><span class="font-bold">Fecha:</span> {{ $fecha->format('d/m/Y') }}</p>                           
-                                <img src="{{ $radiografia->url }}"class="object-cover w-full h-[100%] rounded-md cursor-pointer"
-                                alt="Radiografía"
-                                @click="imageSrc = '{{ asset($radiografia->url) }}'; imageModalOpen = true"   >
-                            </div>
-                        @endforeach
-                    @endforeach
-                    <!-- Navegación -->
-                    <div class="flex items-center justify-between mt-2">
-                        <button onclick="changeSlide(-1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
-                            </svg>
-                            
-                        </button>
-                        <button onclick="changeSlide(1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
-                            </svg>
 
-                        </button>
-                    </div>
-                @else
-                    <p>Sin radiografias</p>
-                @endif
             </div>
             <!-- Radiografias Carousel -->
-            <div id="radiografiasCarousel2" class="w-[85%] m-auto mt-5 mb-14">
+            <div id="radiografiasCarousel2" class="w-[100%] m-auto mt-5 mb-14 flex justify-center items-center flex-col">
                 <h2 class=" text-2xl font-extrabold">Radiografias</h2>
                 @if (count($radiografias) > 0)
                     @foreach ($radiografias as $index2 => $radiografia)
                         <!-- Cada slide contiene tanto la imagen como la fecha -->
-                        <div class="slide2 p-5 border border-1 border-gray-600 rounded-lg shadow-md bg-white  h-[100%]" id="slide2-{{ $index2 }}" style="display: {{ $index2 === 0 ? 'block' : 'none' }};">
+                        <div class="slide2 p-5 border border-1 border-gray-600 rounded-lg shadow-md bg-white flex justify-center h-[70vh] overflow-auto" id="slide2-{{ $index2 }}" style="display: {{ $index2 === 0 ? 'block' : 'none' }};">
                             <p><span class="font-bold">Fecha:</span> {{ $radiografia->fecha }}</p>                           
                             <img 
                                 src="{{ asset('storage/' . $radiografia->path) }}"
-                                class="object-cover w-full rounded-md cursor-pointer  h-[100%]"
+                                class="object-cover h-[84%] rounded-md cursor-pointer"
                                 alt="Radiografía"
                                 @click="imageSrc = '{{ asset('storage/' . $radiografia->path) }}'; imageModalOpen = true"   
                             />                        
@@ -85,7 +53,7 @@
                             <button wire:click='eliminar({{ $radiografia->id }})' class="bg-red-300 hover:bg-red-400 text-red-800 font-bold py-2 px-4 rounded">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                  </svg>                                  
+                                </svg>                                  
                             </button>
                         </div>
                     @endforeach
@@ -129,6 +97,46 @@
                     <p>Sin radiografias</p>
                 @endif
             </div>
+
+                        
+            <!-- Radiografias Carousel -->
+            <div id="radiografiasCarousel" class="w-[100%] m-auto mt-5 mb-14 flex justify-center items-center flex-col">
+                <h2 class=" text-2xl font-extrabold">Radiografias de Tratamientos</h2>
+                @if (count($radiografiasTratamientos) > 1)
+                    @foreach ($radiografiasTratamientos as $tratamientos)
+                        @foreach ($tratamientos as $index => $radiografia)
+                            @php
+                                $tratamiento = $radiografia->getTratamiento($radiografia->tratamiento_id);
+                                $fecha = \Carbon\Carbon::parse($tratamiento->fecha);
+                            @endphp
+                            <!-- Cada slide contiene tanto la imagen como la fecha -->
+                            <div class="slide p-5 border border-1 border-gray-600 rounded-lg shadow-md  h-[70vh] bg-white overflow-auto"  id="slide-{{ $index }}" style="display: {{ $index === 0 ? 'block' : 'none' }};">
+                                <p><span class="font-bold">Fecha:</span> {{ $fecha->format('d/m/Y') }}</p>  
+                                <a href="{{ route('historia_odontologica_editar',['paciente_id'=>$paciente->id,'tratamiento_id'=>$tratamiento->id]) }}"><div class="btn-primary mb-[20px] text-center flex items-center justify-center">Abrir tratamiento</div></a>
+                                <img src="{{ $radiografia->url }}"class="object-cover w-full h-[100%] rounded-md cursor-pointer h-[84%] "
+                                alt="Radiografía"
+                                @click="imageSrc = '{{ asset($radiografia->url) }}'; imageModalOpen = true"   >
+                            </div>
+                        @endforeach
+                    @endforeach
+                    <!-- Navegación -->
+                    <div class="flex items-center justify-between mt-2">
+                        <button onclick="changeSlide(-1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
+                            </svg>
+                            
+                        </button>
+                        <button onclick="changeSlide(1)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+                            </svg>
+
+                        </button>
+                    </div>
+                @else
+                    <p>Sin radiografias</p>
+                @endif
             
             @if ($modalOpen)
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
