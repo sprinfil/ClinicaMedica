@@ -5,7 +5,7 @@
     </div>
 
     <!--Div principal-->
-    <div class="mx-2 md:mx-[60px] mt-[20px] overflow-auto mb-[100px] no-scrollbar">
+    <div class="mx-2 md:mx-[60px] mt-[20px] mb-[100px] no-scrollbar">
         <!--Cabecera-->
         <div class=" w-full h-full py-4 bg-terciario shadow-lg rounded-md overflow-x-hidden border-2 border-color-borde">
             <div class="mx-[10px] md:mx-[50px]  justify-between">
@@ -16,7 +16,7 @@
 
         @if ($selected_corte != null)
 
-            <div class="grid 2xl:grid-cols-3 grid-cols-1 gap-11 mt-[25px]">
+            <div class="grid 2xl:grid-cols-3 grid-cols-1 gap-1 mt-[25px]">
                 <!--Primera Columna-->
                 <div class="">
                     <!--Tabla-->
@@ -108,10 +108,11 @@
                 <div class="px-3">
 
                     <!--Desglose de ingresos-->
+                    <div class="bg-negro-menu flex justify-center py-3 mb-[10px] rounded-lg">
+                        <p class="text-fuente">Desglose de Ingresos del {{Carbon\Carbon::createFromFormat('Y-m-d',  $selected_corte->fecha)->format('d/m/Y') }}</p>
+                    </div>
+
                     <div class="h-full bg-[#E1E1E1] shadow-lg  rounded-lg ease-out duration-300 overflow-hidden">
-                        <div class="w-full bg-negro-menu text-center py-2">
-                            <p class="text-fuente text-sm">Desglose de Ingresos</p>
-                        </div>
                         <div class="ml-[30px] mt-[10px]">
                             <p class="text-fuente-botones text-[15px] font-bold">Corte del
                                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $selected_corte->fecha)->format('d') }}
@@ -256,7 +257,7 @@
                     <div>
                         <!--Tabla-->
                         <div class="bg-negro-menu flex justify-center py-3 mb-[10px] rounded-lg">
-                            <p class="text-fuente">Tratamientos Realizados</p>
+                            <p class="text-fuente">Tratamientos Realizados el {{Carbon\Carbon::createFromFormat('Y-m-d',  $selected_corte->fecha)->format('d/m/Y') }}</p>
                         </div>
                    <div class="relative overflow-x-auto no-scrollbar max-h-[300px] rounded-lg">
                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-md ">
