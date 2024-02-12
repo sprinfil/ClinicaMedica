@@ -7,6 +7,6 @@
 @section('contenido')
 <div x-data="{ imageModalOpen: false, imageSrc: '' }">
 
-    @livewire('historials.radiografiaviewer', ['paciente_id' => $paciente_id])
+    @livewire('historials.RadiografiaViewer', ['paciente_id' => $paciente_id])
 </div>
 @endsection
