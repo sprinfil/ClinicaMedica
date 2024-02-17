@@ -44,6 +44,7 @@
 
         td{
             border-bottom: 1px solid #ddd;
+            width: 50%;
         }
         th {
             background-color: #286C68;
